@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+#fechaEdit {
+  display: inline-block;
+/*   background-color: #ffffff; */
+  margin-top: 100px;
+  font-family: Raleway;
+  padding: 40px;
+  width: 80%;
+  min-width: 300px;
+}
+#carnet {
+  display: inline-block;
+  background-color: #ffffff;
+/*   margin: 200px auto; */
+  font-family: Raleway;
+  padding: 40px;
+  width: 80%;
+  min-width: 300px;
+}
+.glyphicon {
+    font-size: 10px;
+}
+.edit{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
