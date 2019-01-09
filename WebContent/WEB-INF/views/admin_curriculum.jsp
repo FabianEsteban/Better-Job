@@ -5,9 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link href="../resources/static/css/admin_curriculum.css" rel="stylesheet">
+<link href="../resources/static/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
 <title>Insert title here</title>
 </head>
 <body>
-
+	<section id="main-content">
+		<section class="wrapper">
+			<div id="regForm">
+<!-- 				<h2>CURRICULUMS:</h2> -->
+				
+<!-- 				<div class="col-xs-8 col-sm-8 portlet col-md-offset-2 col-xs-offset-2 col-sm-offset-2"> -->
+					<table id="Table_curriculums" class="table table-striped table-bordered" cellspacing="0" width="100%"></table>
+<!-- 				</div> -->
+				
+				
+			</div>
+		</section>
+	</section>
 </body>
 </html>

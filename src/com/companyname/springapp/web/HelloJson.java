@@ -49,6 +49,16 @@ public class HelloJson {
 		pm = HelloDB.getCurriculum(rut);
 		return pm;
 	}
+	@RequestMapping(value = "/fabian/getAllCurriculum/", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<curriculum> getAllCurriculum(HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<curriculum> pm = new ArrayList<curriculum>();
+		if(ses.isValid()){
+			return pm;
+		}
+		pm = HelloDB.getAllCurriculum();
+		return pm;
+	}
 	@RequestMapping(value = "/fabian/updateNombre/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean updateNombre(@RequestBody curriculum data, HttpSession httpSession) throws Exception{
 		session ses = new session(httpSession);

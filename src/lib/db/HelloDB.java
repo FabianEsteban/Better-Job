@@ -357,6 +357,85 @@ public class HelloDB {
 		return lista;
 
 	}
+	public static ArrayList<curriculum> getAllCurriculum() throws Exception{
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		PreparedStatement ps3 = null;
+		String sql = "";
+		String sql2 = "";
+		String sql3 = "";
+		ArrayList<curriculum> lista = new ArrayList<curriculum>();
+		ArrayList<antecedentes> lista2 = new ArrayList<antecedentes>();
+		ArrayList<educacion> lista3 = new ArrayList<educacion>();
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "SELECT * from curriculum";
+			sql2 = "SELECT * from titulo.antecedentes";
+			sql3 = "SELECT * from titulo.educacion";
+			ps = db.conn.prepareStatement(sql);
+			ps2 = db.conn.prepareStatement(sql2);
+			ps3 = db.conn.prepareStatement(sql3);
+			ResultSet rs = ps.executeQuery();
+			ResultSet rs2 = ps2.executeQuery();
+			ResultSet rs3 = ps3.executeQuery();
+			while (rs.next()) {
+				curriculum pm = new curriculum();
+				pm.setID(rs.getInt("ID"));
+				pm.setRut(rs.getString("rut"));
+				pm.setNombre(rs.getString("nombre"));
+				pm.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+				pm.setPais(rs.getString("pais"));
+				pm.setEstado_civil(rs.getString("estado_civil"));
+				pm.setDireccion(rs.getString("direccion"));
+				pm.setTelefono(rs.getString("telefono"));
+				pm.setCorreo(rs.getString("correo"));
+				pm.setFecha_edit(rs.getString("fecha_edit"));
+				pm.setRegion(rs.getString("region"));
+				pm.setComuna(rs.getString("comuna"));
+				pm.setNombre_recomendacion(rs.getString("nombre_recomendacion"));
+				pm.setEmpresa_recomendacion(rs.getString("empresa_recomendacion"));
+				pm.setTelefono_recomendacion(rs.getString("telefono_recomendacion"));
+				pm.setMail_recomendacion(rs.getString("mail_recomendacion"));
+				pm.setDisponibilidad(rs.getString("disponibilidad"));
+				while (rs2.next()) {
+					antecedentes pm2 = new antecedentes();
+					pm2.setCargo(rs2.getString("cargo"));
+					pm2.setInstitucion(rs2.getString("institucion"));
+					pm2.setAnos(rs2.getString("anos"));
+					pm2.setDescripcion(rs2.getString("descripcion"));
+					lista2.add(pm2);
+					pm.setAntecedentes(lista2);
+				}
+				while (rs3.next()) {
+					educacion pm3 = new educacion();
+					pm3.setID_edu(rs3.getInt("ID_edu"));
+					pm3.setNivel_edu(rs3.getInt("nivel_edu"));
+					pm3.setNombre_edu(rs3.getString("nombre_edu"));
+					pm3.setCarrera_edu(rs3.getString("carrera_edu"));
+					pm3.setFecha_ini(rs3.getString("fecha_ini"));
+					pm3.setFecha_final(rs3.getString("fecha_final"));
+					pm3.setHoras_edu(rs3.getString("horas_edu"));
+					lista3.add(pm3);
+					pm.setEducacion(lista3);
+				}
+				
+				lista.add(pm);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			ps2.close();
+			ps3.close();
+			db.close();
+		}
+		return lista;
+
+	}
 	public static boolean updateNombre (curriculum data) throws Exception{
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");

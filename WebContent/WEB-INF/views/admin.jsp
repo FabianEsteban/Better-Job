@@ -27,6 +27,7 @@
 	<link href="../resources/static/css/style.css" rel="stylesheet">
 	<link href="../resources/static/css/style-responsive.css" rel="stylesheet">
 	<script src="../resources/static/js/Chart.js"></script>
+
 	
 	
 	
@@ -101,6 +102,7 @@
     <!-- page-wrapper -->
 
  	<script src="../resources/static/js/jquery.min.js"></script>
+ 	<script src="../resources/static/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.10/sweetalert2.min.js"></script>	
     <script src="../resources/static/js/include.js" type="text/javascript"></script>
