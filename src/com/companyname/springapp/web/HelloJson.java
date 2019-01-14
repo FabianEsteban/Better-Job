@@ -27,6 +27,26 @@ public class HelloJson {
 		cl = HelloDB.getVariable();
 		return cl;
 	}
+	@RequestMapping(value="/fabian/getDatosxPrivilegio/{privilegio}", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ArrayList<loginApp>getDatosxPrivilegio(@PathVariable String privilegio, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<loginApp> pm = new ArrayList<loginApp>();
+		if(ses.isValid()){
+			return pm;
+		}
+		pm = HelloDB.getDatosxPrivilegio(privilegio);
+		return pm;
+	}
+	@RequestMapping(value="/fabian/getDatosxRut/{rut}", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ArrayList<loginApp>getDatosxRut(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<loginApp> pm = new ArrayList<loginApp>();
+		if(ses.isValid()){
+			return pm;
+		}
+		pm = HelloDB.getDatosxRut(rut);
+		return pm;
+	}
 	@RequestMapping(value="/fabian/saveCuenta/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean saveCuenta(@RequestBody loginApp data) throws Exception{
 		return HelloDB.saveCuenta(data);
@@ -82,6 +102,14 @@ public class HelloJson {
 			return false;
 		}
 		return HelloDB.updateEstado(data);
+	}
+	@RequestMapping(value = "/fabian/updateEstadoLogin/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean updateEstadoLogin(@RequestBody loginApp data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return false;
+		}
+		return HelloDB.updateEstadoLogin(data);
 	}
 	@RequestMapping(value = "/fabian/updatePais/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean updatePais(@RequestBody curriculum data, HttpSession httpSession) throws Exception{

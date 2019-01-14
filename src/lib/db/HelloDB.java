@@ -24,13 +24,85 @@ public class HelloDB {
 		ArrayList<loginApp> data = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select usuario from login";
+			sql = "select ID, usuario, correo, perfilText, estado from login";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				loginApp c = new loginApp();
+				c.setId(rs.getInt("ID"));
 				c.setUsuario(rs.getString("usuario"));
+				c.setCorreo(rs.getString("correo"));
+				c.setPerfilText(rs.getString("perfilText"));
+				c.setEstado(rs.getInt("estado"));
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public static ArrayList<loginApp> getDatosxPrivilegio(String privilegio) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<loginApp> data = new ArrayList<loginApp>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select ID, usuario, correo, perfilText, estado from login where perfilText = '"+privilegio+"'";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				loginApp c = new loginApp();
+				c.setId(rs.getInt("ID"));
+				c.setUsuario(rs.getString("usuario"));
+				c.setCorreo(rs.getString("correo"));
+				c.setPerfilText(rs.getString("perfilText"));
+				c.setEstado(rs.getInt("estado"));
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public static ArrayList<loginApp> getDatosxRut(String rut) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<loginApp> data = new ArrayList<loginApp>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select ID, usuario, correo, perfilText, estado from login where usuario = '"+rut+"'";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				loginApp c = new loginApp();
+				c.setId(rs.getInt("ID"));
+				c.setUsuario(rs.getString("usuario"));
+				c.setCorreo(rs.getString("correo"));
+				c.setPerfilText(rs.getString("perfilText"));
+				c.setEstado(rs.getInt("estado"));
 				data.add(c);
 			}
 			rs.close();
@@ -101,7 +173,8 @@ public class HelloDB {
 		ConnectionDB db = new ConnectionDB();
 		
 		try{
-			sql = "INSERT into login (usuario, correo, pass, perfilText, estado, estado_curriculum) values ('"+data.getUsuario()+"', '"+data.getCorreo()+"', '"+data.getPass()+"', 'postulante', 1, 0)";
+			sql = "INSERT into login (usuario, correo, pass, perfilText, estado, estado_curriculum) "
+					+ "values ('"+data.getUsuario()+"', '"+data.getCorreo()+"', '"+data.getPass()+"', '"+data.getPerfilText()+"', 1, 0)";
 			ps = db.conn.prepareStatement(sql);
 			ps.execute();
 			return true;
@@ -492,6 +565,27 @@ public class HelloDB {
 		ConnectionDB db = new  ConnectionDB();
 		try {			
 			sql = " UPDATE curriculum set estado_civil = '"+data.estado_civil+"', fecha_edit = '"+dateFormat.format(date)+"' where rut='"+data.rut+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	
+public static boolean updateEstadoLogin (loginApp data) throws Exception{
+		
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			sql = " UPDATE login set estado = '"+data.estado+"' where ID = '"+data.id+"'";
 			ps = db.conn.prepareStatement(sql);
 			ps.execute();
 			return true;

@@ -68,7 +68,7 @@
           <li>
             <a class="${active_administrador}" href="admin_administrador">
               <i class="fa fa-user"></i>
-              <span>Administrar Administradores</span>
+              <span>Administrar Cuentas</span>
               </a>
           </li>
           <li>

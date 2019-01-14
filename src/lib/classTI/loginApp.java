@@ -1,7 +1,7 @@
 package lib.classTI;
 
 public class loginApp {
-//	public int id;
+	public int id;
 	public String usuario;
 	public String correo;
 	public String pass;
@@ -11,12 +11,12 @@ public class loginApp {
 	public int estado;
 	public int estado_curriculum;
 	
-//	public int getId(){
-//		return id;
-//	}
-//	public void setId(int id){
-//		this.id = id;
-//	}
+	public int getId(){
+		return id;
+	}
+	public void setId(int id){
+		this.id = id;
+	}
 	public String getUsuario(){
 		return usuario;
 	}

@@ -25,11 +25,11 @@ var arrayFormAplic;
 //	loadInfo($("#filtro").val(), $("#filtro2").val());
 //});
 //
-function loadTabla(data) {
+function loadTabla() {
 //	dataTable.clear().draw();
 	tbl = new Array();
 	
-	$.each(data,function(k, v) {
+	$.each(arrayFormAplic,function(k, v) {
 		var seguimiento = "<button onclick='javascript: seguimiento("+v.ID+")'><span class='glyphicon glyphicon-link'></span></button>"
 		$.each(v.educacion,function(k2, v2) {
 			datos = new Array(v.nombre, v.rut, v2.carrera_edu, v2.nombre_edu, v.disponibilidad+" dias", seguimiento);
@@ -40,7 +40,8 @@ function loadTabla(data) {
 	$('#Table_curriculums').DataTable({
 		data: tbl,
 		scrollY: "200px",
-//		paging: false,
+		responsive: true,
+		paging: true,
 		sPaginationType: "full_numbers", 
 		columns: [
 			{ title: "Nombre" },
@@ -81,8 +82,8 @@ function loadData(){
 		async: false,
 		success: function (data) { 
 			arrayFormAplic = data;
-			console.log(data)
-			loadTabla(data);
+//			console.log(data)
+			loadTabla();
 	    }
 	})
 }

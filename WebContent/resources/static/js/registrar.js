@@ -69,6 +69,7 @@ function saveCuenta(){
     	    					usuario: $("#inputRut").val(),
     	        				correo: $("#inputEmail").val(),
     	        				pass: $("#inputPassword").val(),
+    	        				perfilText: "postulante",
 //    	        				telefono: "+56" + $("#inputTelefono").val()
     	        		}
     	        		$.ajax({
