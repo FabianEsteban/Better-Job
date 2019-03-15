@@ -57,33 +57,81 @@
     </nav>
     
 	<div class="container">
-        <div class="card card-container">           
-            
-            <form class="login-form" action="javascript: saveCuenta()">
-                <span id="reauth-email" class="reauth-email"></span>
-                <div class="form-group">
-                	<input type="text" id="inputRut" class="form-control" oninput="checkRut(this)"  placeholder="RUT" name="username" required autofocus>
-                </div>
-                <div class="form-group">
-                	<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
-                </div>
-				<div class="form-group">
-                	<input type="password" id="inputPassword2" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
-                </div>
-                <div class="form-group">
-                	<input type="text" id="inputEmail" class="form-control" placeholder="Email" name="username" required autofocus>
-                </div>
-                <div class="form-group">
-                	<input type="text" id="inputEmail2" class="form-control" placeholder="Confirmar email" name="username" required>
-                </div>
-<!--                 <div class="form-group"> -->
-<!--                 	<input type="tel" id="inputTelefono" class="form-control" name="telefono" required autofocus> -->
-<!--                 </div> -->   
-                <div class="form-actions">
-                	<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrar</button>
-                </div>
-                
-            </form><!-- /form -->
+        <div class="card card-container">      
+        	<div id="inicio">
+        	
+        		<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="postulante()">Postulante</button>
+        		<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="empresa()">Empresa</button>
+        	
+        	</div>
+        	<div id="empresa">
+        	
+        		<form class="login-form" action="javascript: saveEmpresa()">
+	                <span id="reauth-email" class="reauth-email"></span>
+	                <div class="form-group">
+	                	<input type="text" id="inputRut" class="form-control"  placeholder="RUT" name="username" required autofocus>
+	                </div>
+	                <div class="form-group">
+	                	<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
+	                </div>
+					<div class="form-group">
+	                	<input type="password" id="inputPassword2" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
+	                </div>
+	                <div class="form-group">
+	                	<input type="text" id="inputEmail" class="form-control" placeholder="Email" name="username" required autofocus>
+	                </div>
+	                <div class="form-group">
+	                	<input type="text" id="inputEmail2" class="form-control" placeholder="Confirmar email" name="username" required>
+	                </div>
+	<!--                 <div class="form-group"> -->
+	<!--                 	<input type="tel" id="inputTelefono" class="form-control" name="telefono" required autofocus> -->
+	<!--                 </div> -->   
+	                
+	                	<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrar</button>
+	                
+	                
+	                
+	                	<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()">Cancelar</button>
+					
+	                
+	            </form><!-- /form -->
+	            
+	            
+        	
+        	</div>     
+            <div id="postulante">
+	            <form class="login-form" action="javascript: savePostulante()">
+	                <span id="reauth-email" class="reauth-email"></span>
+	                <div class="form-group">
+	                	<input type="text" id="inputRut" class="form-control" oninput="checkRut(this)"  placeholder="RUT" name="username" required autofocus>
+	                </div>
+	                <div class="form-group">
+	                	<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
+	                </div>
+					<div class="form-group">
+	                	<input type="password" id="inputPassword2" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
+	                </div>
+	                <div class="form-group">
+	                	<input type="text" id="inputEmail" class="form-control" placeholder="Email" name="username" required autofocus>
+	                </div>
+	                <div class="form-group">
+	                	<input type="text" id="inputEmail2" class="form-control" placeholder="Confirmar email" name="username" required>
+	                </div>
+	<!--                 <div class="form-group"> -->
+	<!--                 	<input type="tel" id="inputTelefono" class="form-control" name="telefono" required autofocus> -->
+	<!--                 </div> -->   
+	                
+	                	<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrar</button>
+	                
+	                
+	               
+	                	<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()">Cancelar</button>
+					
+	                
+	            </form><!-- /form -->
+	            
+	            
+			</div>
         </div><!-- /card-container -->
     </div><!-- /container -->
     

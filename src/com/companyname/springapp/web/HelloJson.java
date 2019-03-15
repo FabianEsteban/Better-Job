@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lib.classTI.carreras;
 import lib.classTI.curriculum;
 import lib.classTI.educacion;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
+import lib.classTI.universidades;
 import lib.db.HelloDB;
 import lib.security.session;
 
@@ -25,6 +27,28 @@ public class HelloJson {
 	public @ResponseBody ArrayList<loginApp>getVariable() throws Exception{
 		ArrayList<loginApp> cl = new ArrayList<loginApp>();
 		cl = HelloDB.getVariable();
+		return cl;
+	}
+	@RequestMapping(value="/fabian/getPass/{rut}", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ArrayList<loginApp>getPass(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<loginApp> pm = new ArrayList<loginApp>();
+		if(ses.isValid()){
+			return pm;
+		}
+		pm = HelloDB.getPass(rut);
+		return pm;
+	}
+	@RequestMapping(value="/fabian/getUniversidades/", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ArrayList<universidades>getUniversidades() throws Exception{
+		ArrayList<universidades> cl = new ArrayList<universidades>();
+		cl = HelloDB.getUniversidades();
+		return cl;
+	}
+	@RequestMapping(value="/fabian/getCarreras/", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ArrayList<carreras>getCarreras() throws Exception{
+		ArrayList<carreras> cl = new ArrayList<carreras>();
+		cl = HelloDB.getCarreras();
 		return cl;
 	}
 	@RequestMapping(value="/fabian/getDatosxPrivilegio/{privilegio}", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,6 +75,10 @@ public class HelloJson {
 	public @ResponseBody boolean saveCuenta(@RequestBody loginApp data) throws Exception{
 		return HelloDB.saveCuenta(data);
 	}
+	@RequestMapping(value="/fabian/saveCuentaxAdmin/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean saveCuentaxAdmin(@RequestBody loginApp data) throws Exception{
+		return HelloDB.saveCuentaxAdmin(data);
+	}
 	@RequestMapping(value="/fabian/saveCurriculum/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean saveCurriculum(@RequestBody insertCurriculum data, HttpSession httpSession) throws Exception{
 		session ses = new session(httpSession);
@@ -67,6 +95,26 @@ public class HelloJson {
 			return pm;
 		}
 		pm = HelloDB.getCurriculum(rut);
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxUniversidad/{cod_universidad}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<curriculum> getCurriculumxUniversidad(@PathVariable int cod_universidad, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<curriculum> pm = new ArrayList<curriculum>();
+		if(ses.isValid()){
+			return pm;
+		}
+		pm = HelloDB.getCurriculumxUniversidad(cod_universidad);
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxCarrera/{cod_carrera}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<curriculum> getCurriculumxCarrera(@PathVariable int cod_carrera, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<curriculum> pm = new ArrayList<curriculum>();
+		if(ses.isValid()){
+			return pm;
+		}
+		pm = HelloDB.getCurriculumxCarrera(cod_carrera);
 		return pm;
 	}
 	@RequestMapping(value = "/fabian/getAllCurriculum/", method = {RequestMethod.GET, RequestMethod.POST})
@@ -150,6 +198,14 @@ public class HelloJson {
 			return false;
 		}
 		return HelloDB.updateNombre_edu(data);
+	}
+	@RequestMapping(value = "/fabian/updatePass/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean updatePass(@RequestBody loginApp data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return false;
+		}
+		return HelloDB.updatePass(data);
 	}
 }
 

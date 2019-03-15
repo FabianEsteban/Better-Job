@@ -88,6 +88,8 @@ $(document).ready(function(){
         
     });
 	
+    $('html,body').scrollTop(0);
+    
 });
 var arrayData = "";
 function loadData(usuario){
@@ -104,7 +106,7 @@ function loadData(usuario){
 }
 function Mostrar(){
 	$.each(arrayData, function(k, v) {
-		console.log(v)
+//		console.log(v)
     	$("#nombre").html(v.nombre);
     	$("#rut").html(v.rut);
     	$("#fecha_nacimiento").html(v.fecha_nacimiento);
@@ -261,7 +263,7 @@ function saveCurriculum(){
 	
 
 	
-	console.log(datos_curriculum)
+//	console.log(datos_curriculum)
 
 
 	$.ajax({
@@ -359,7 +361,7 @@ function guardarInstitucion_basica(ID_edu){
 		nombre_edu: $("#newNombre_edu").val(),
 	}
 	
-	console.log(datos)
+//	console.log(datos)
 	
 	$.ajax({
 		url : "/springapp/titulo/fabian/updateNombre_edu/",

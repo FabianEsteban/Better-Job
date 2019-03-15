@@ -25,7 +25,7 @@
 						<div style="width: 100%;">
 							<select id="filtroPrivilegios" class="form-control input-md" style="float: right;">
 								<option value = 0>Todos</option>
-								<option value = "empresa">Empresa</option>
+<!-- 								<option value = "empresa">Empresa</option> -->
 								<option value = "administrador">Administrador</option>
 								<option value = "postulante">Postulante</option>
 							</select>

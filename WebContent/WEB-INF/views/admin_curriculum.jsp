@@ -49,5 +49,53 @@
 			</div>
 		</section>
 	</section>
+	<script type="text/javascript">
+	
+	
+	var table = $('#Table_curriculums').DataTable({
+// 		data: tbl,
+		scrollY: "200px",
+		responsive: true,
+		paging: true,
+		sPaginationType: "full_numbers", 
+		columns: [
+			{ title: "Nombre" },
+			{ title: "Rut" },
+			{ title: "Carrera" },
+			{ title: "Universidad" },
+			{ title: "Disponibilidad" },
+			{ title: "Seguimiento" },
+			{ title: "Evaluación" },
+		],
+		"filter": false
+	});
+	
+	$("#filtroRut").on( "keyup", function () {
+		document.getElementById('filtroUniversidad').value = 0;
+		document.getElementById('filtroCarrera').value = 0;
+		if(this.value === ""){
+// 			privilegio = 0;
+			loadData();
+		}
+	    rut = this.value;
+	    loadRut();
+	} );
+	
+	$("#filtroUniversidad").change(function(){
+		cod_universidad = $("#filtroUniversidad").val();
+		document.getElementById('filtroCarrera').value = 0;
+		document.getElementById('filtroRut').value = '';
+		loadFiltroUniversidad();
+	});
+	
+	$("#filtroCarrera").change(function(){
+		cod_carrera = $("#filtroCarrera").val();
+		document.getElementById('filtroUniversidad').value = 0;
+		document.getElementById('filtroRut').value = '';
+		loadFiltroCarrera();
+	});
+
+	
+	</script>
 </body>
 </html>

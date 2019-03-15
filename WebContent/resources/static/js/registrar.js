@@ -2,6 +2,30 @@ $(document).ready(function(){
 	loadCuentas();
 	
 });
+
+function postulante() {
+	var x = document.getElementById("inicio");
+	x.style.display = "none";
+	var y = document.getElementById("postulante");
+	y.style.display = "block";
+}
+
+function empresa() {
+	var x = document.getElementById("inicio");
+	x.style.display = "none";
+	var y = document.getElementById("empresa");
+	y.style.display = "block";
+}
+
+function volver() {
+	var x = document.getElementById("inicio");
+	x.style.display = "block";
+	var y = document.getElementById("empresa");
+	y.style.display = "none";
+	var z = document.getElementById("postulante");
+	z.style.display = "none";
+}
+
 var cuentas;
 var repite = false;
 //$("#inputTelefono").intlTelInput({
@@ -38,7 +62,7 @@ function loadCuentas(){
 	    }
 	})
 }
-function saveCuenta(){
+function savePostulante(){
 	var email = $("#inputEmail").val();
 
     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -82,14 +106,18 @@ function saveCuenta(){
     	        		},
     	        		success: function (data) {
     	        	        alertaSuccess("Registro completado correctamente");
-    	        	        
-    	        	        window.location = "http://localhost:8080/springapp/titulo/inicio";
+    	        	        location.href = 'inicio';
+//    	        	        window.location = "http://localhost:8080/springapp/titulo/inicio";
     	        	    }
     	        		})
     	    	}
     		}
     	}
     }	
+}
+
+function saveEmpresa(){
+	
 }
 
 function checkRut(rut) {

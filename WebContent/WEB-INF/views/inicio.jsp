@@ -43,6 +43,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contacto">Contacto</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="loginEmpresa">Ingreso empresa</a>
+            </li>
           </ul>
         </div>
       </div>

@@ -77,12 +77,12 @@
               <span>Administrar Curriculums</span>
               </a>
           </li>
-          <li>
-           <a class="${active_seguimiento}" href="admin_seguimiento">
-              <i class="fa fa-dashboard"></i>
-              <span>Seguimiento de Usuarios</span>
-              </a>
-          </li>
+<!--           <li> -->
+<%--            <a class="${active_seguimiento}" href="admin_seguimiento"> --%>
+<!--               <i class="fa fa-dashboard"></i> -->
+<!--               <span>Seguimiento de Usuarios</span> -->
+<!--               </a> -->
+<!--           </li> -->
 <!--           <li class="sub-menu"> -->
 <!--             <a href="javascript:;"> -->
 <!--               <i class="fa fa-tasks"></i> -->

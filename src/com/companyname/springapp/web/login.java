@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,11 +33,15 @@ public class login extends HttpServlet {
 				sesion.setAttribute("usuario", us);
 				sesion.setAttribute("perfil", us.perfilText);
 				sesion.setAttribute("estado", us.estado);
+				sesion.setAttribute("ingresado", us.ingresado);
 				sesion.setAttribute("estado_curriculum", us.estado_curriculum);
 				sesion.setAttribute("usuario", us.getUsuario());
 				lib.security.session ses = new lib.security.session(httpSession);
 				ses.setIdUser(us.getUsuario());
 				ses.init();
+				if(us.getIngresado() == 0){
+					return new ModelAndView("redirect:/titulo/activar_cuenta");
+				}
 				if(us.getPerfilText().equals("postulante") && us.getEstado() == 1 && us.getEstado_curriculum() == 1){
 					return new ModelAndView("redirect:/titulo/perfil");
 				}
@@ -50,6 +55,7 @@ public class login extends HttpServlet {
 			}
 			else{
 				System.out.println("Incorrecto");
+
 				return new ModelAndView("login");
 			}
 		}catch(Exception ex){

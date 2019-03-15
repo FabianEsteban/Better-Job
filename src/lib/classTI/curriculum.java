@@ -20,9 +20,11 @@ public class curriculum {
 	public String telefono_recomendacion;
 	public String mail_recomendacion;
 	public String fecha_edit;
+	public int evaluacion;
 	List<antecedentes> antecedentes;
 	List<educacion> educacion;
-	
+	List<universidades> universidades;
+	List<carreras> carreras;
 	
 	
 	
@@ -144,7 +146,23 @@ public class curriculum {
 	public void setEducacion(List<educacion> educacion) {
 		this.educacion = educacion;
 	}
-	
-	
+	public List<universidades> getUniversidades() {
+		return universidades;
+	}
+	public void setUniversidades(List<universidades> universidades) {
+		this.universidades = universidades;
+	}
+	public List<carreras> getCarreras() {
+		return carreras;
+	}
+	public void setCarreras(List<carreras> carreras) {
+		this.carreras = carreras;
+	}
+	public int getEvaluacion() {
+		return evaluacion;
+	}
+	public void setEvaluacion(int evaluacion) {
+		this.evaluacion = evaluacion;
+	}
 	
 }

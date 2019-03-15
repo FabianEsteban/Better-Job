@@ -18,7 +18,7 @@
 <!--         		<div class="well"> -->
 					<div id="product" display="none" data-prodnumber="${sessionScope.estado_curriculum}" /></div>
 					<div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div>
-					<div class="col-md-12 col-md-offset-1 col-xs-12">
+<!-- 					<div class="col-md-12 col-md-offset-1 col-xs-12"> -->
 					<div id="curriculum">
 						<h2>Antecedentes Personales</h2>
 						<div class="col-md-6 com-xs-12">
@@ -472,7 +472,7 @@
 					
 					</form><!-- /form -->
 					
-					</div>
+<!-- 					</div> -->
 <!--         		</div> -->
 				<!-- page end-->
 			</section>
@@ -482,6 +482,8 @@
     	<script src="../resources/static/js/utils.js"></script>
     	
 		<script>
+		
+		
 		var currentTab = 0; // Current tab is set to be the first tab (0)
 		showTab(currentTab); // Display the crurrent tab
 
@@ -554,5 +556,7 @@
 			  //... and adds the "active" class on the current step:
 			  x[n].className += " active";
 			}
+			
+			
 		</script>
 </html>

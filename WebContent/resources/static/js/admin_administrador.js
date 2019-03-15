@@ -144,7 +144,7 @@ function addUsuario(){
 	var rut = "<input id='addRut' type='text' class='form-control input-md'>";
 	var correo = "<input id='addCorreo' type='text' class='form-control input-md'>";
 	var privilegio = "<select id='addPrivilegio' class='form-control input-md' style='float: right;'>" +
-						"<option value = 'empresa'>Empresa</option>" +
+//						"<option value = 'empresa'>Empresa</option>" +
 						"<option value = 'administrador'>Administrador</option>" +
 						"<option value = 'postulante'>Postulante</option>" +
 					"</select>";
@@ -161,8 +161,8 @@ function addUsuario(){
 
 	var estado = "<div>" +
 					"<select id='addEstado' class='form-control input-md' disabled>" +
-						"<option selected value = 1>Activo</option>" +
-						"<option value = 0>Bloqueado</option>" +
+						"<option selected value = 0>Activo</option>" +
+//						"<option value = 1>Bloqueado</option>" +
 					"</select>" +
 				"</div>";
 	var rowNode = table
@@ -178,14 +178,14 @@ function newGuardar(){
 	var datos = {
 			usuario: $("#addRut").val(),
 			correo: $("#addCorreo").val(),
-			pass: "123",
+			pass: $("#addRut").val(),
 			perfilText: $("#addPrivilegio").val(), 
 			estado: $("#addEstado").val(),
 			estado_curriculum: "0"
 		}
 //	console.log(datos)
 	$.ajax({
-		url : "/springapp/titulo/fabian/saveCuenta/",
+		url : "/springapp/titulo/fabian/saveCuentaxAdmin/",
 		type : "PUT",
 		data : JSON.stringify(datos),
 		beforeSend : function(xhr) {

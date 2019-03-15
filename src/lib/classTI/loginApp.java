@@ -10,6 +10,7 @@ public class loginApp {
 //	public String telefono;
 	public int estado;
 	public int estado_curriculum;
+	public int ingresado;
 	
 	public int getId(){
 		return id;
@@ -64,5 +65,11 @@ public class loginApp {
 	}
 	public void setEstado_curriculum(int estado_curriculum){
 		this.estado_curriculum = estado_curriculum;
+	}
+	public int getIngresado(){
+		return ingresado;
+	}
+	public void setIngresado(int ingresado){
+		this.ingresado = ingresado;
 	}
 }
