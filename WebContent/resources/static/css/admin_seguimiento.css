@@ -1,0 +1,46 @@
+#curriculum {
+  display: inline-block;
+  background-color: #ffffff;
+  margin-top: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 80%;
+  min-width: 300px;
+}
+#regForm {
+  display: inline-block;
+  background-color: #ffffff;
+  margin: 50px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 80%;
+  min-width: 300px;
+}
+.edit{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+h2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px; 
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: gold;
+}

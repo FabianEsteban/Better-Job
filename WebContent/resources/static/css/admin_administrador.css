@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #f1f1f1;
+}
+/* #curriculum { */
+/*   display: inline-block; */
+/*   background-color: #ffffff; */
+/*   margin-top: 100px auto; */
+/*   font-family: Raleway; */
+/*   padding: 40px; */
+/*   width: 80%; */
+/*   min-width: 300px; */
+/* } */
+h2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px; 
+}
+#regForm {
+  display: inline-block;
+  background-color: #ffffff;
+  margin: 50px auto;
+  font-family: Arial;
+  padding: 40px;
+  width: 80%;
+  min-width: 300px;
+}
+td{
+	text-align:center;
+}
