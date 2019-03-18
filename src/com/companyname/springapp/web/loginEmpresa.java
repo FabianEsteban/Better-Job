@@ -29,19 +29,22 @@ public class loginEmpresa extends HttpServlet {
 			String pass = new String(parameters.get("password")[0].getBytes("ISO-8859-1"), "UTF-8");
 			loginApp us = HelloDB.getLogin(username, pass);
 			if(us != null){
-				sesion.setAttribute("usuario", us);
-				sesion.setAttribute("perfil", us.perfilText);
-				sesion.setAttribute("estado", us.estado);
+//				sesion.setAttribute("usuario", us);
+//				sesion.setAttribute("perfil", us.perfilText);
+//				sesion.setAttribute("estado", us.estado);
 //				sesion.setAttribute("estado_curriculum", us.estado_curriculum);
-				sesion.setAttribute("usuario", us.getUsuario());
+//				sesion.setAttribute("usuario", us.getUsuario());
 				lib.security.session ses = new lib.security.session(httpSession);
-				ses.setIdUser(us.getUsuario());
+				ses.setNombre(us.perfilText);
 				ses.init();
 
 				if(us.getPerfilText().equals("empresa")){
 					return new ModelAndView("redirect:/titulo/admin_empresa");
 				}
-				return new ModelAndView("redirect:/titulo/perfil");	
+				else {
+					return new ModelAndView("loginEmpresa");
+				}
+//				return new ModelAndView("redirect:/titulo/perfil");	
 			}
 			else{
 				System.out.println("Incorrecto");

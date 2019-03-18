@@ -4,7 +4,7 @@
   margin-top: 100px auto;
   font-family: Raleway;
   padding: 40px;
-  width: 80%;
+  width: 100%;
   min-width: 300px;
 }
 #regForm {
@@ -24,23 +24,98 @@
     overflow: hidden;
     outline:none;
 }
+.btn-md{
+	margin-bottom:20px;
+}
 h2 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px; 
 }
-.rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
+
+#cover {
+/*   width: 400px; */
+  margin: 0px auto;
+/*   padding: 60px 0px; */
+  text-align: center;
 }
-.rating > span {
-  display: inline-block;
+
+#stars {
+/*   width: 250px; */
+  margin: 0 auto;
   position: relative;
-  width: 1.1em;
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-   color: gold;
+
+#stars:after {
+  content: "";
+  clear: both;
+  display: block;
+  height: 0px;
+  visibility: hidden;
 }
+
+.fa-star {
+  display: block;
+  float: right;
+  font-size: 30px;
+  color: #797979;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  transition: 0.2s ease color;
+}
+
+.rb {
+  width: 50px;
+  height: 50px;
+  margin: 0px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1
+}
+
+/* #_5 { */
+/*   right: 100px; */
+/* } */
+
+/* #_4 { */
+/*   right: 50px; */
+/* } */
+
+#_1 {
+  right: 40px;
+}
+
+#_2 {
+  right: 25px;
+}
+
+#_3 {
+  right: 0px;
+}
+
+.rb:checked ~ i {
+  color: #FFEB3B;
+}
+
+.rb:hover ~ i {
+  color: #F44336;
+}
+
+.rb:hover ~ .rb:checked ~ i {
+  color: #FFEB3B;
+}
+
+.rb:checked:hover ~ i {
+  color: #FFEB3B;
+}
+
+.rb:checked:hover {
+  cursor: default;
+}
+
+.rb:checked ~ .rb:hover ~ i {
+  color: #3b3;
+}
+

@@ -57,6 +57,9 @@ public class session {
 		boolean sw = true;
 		String login = (String) session.getAttribute("login");
 		if(login != null){
+			sw = true;
+		}
+		else {
 			sw = false;
 		}
 		return sw;

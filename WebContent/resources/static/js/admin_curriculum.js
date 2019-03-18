@@ -118,6 +118,8 @@ function loadTabla() {
 		$(function() {
 		    $('span.stars').stars();
 		});
+		
+		
 		tbl = [nombre, rut, carrera, universidad, disponibilidad+" dias", seguimiento, evaluacion];
 		var rowNode = table
 	    .row.add( tbl )

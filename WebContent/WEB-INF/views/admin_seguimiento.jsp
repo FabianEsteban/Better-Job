@@ -16,8 +16,23 @@
       		<section class="wrapper">
 <!--       			<div class="col-md-12 col-md-offset-1 col-xs-12"> -->
 					<div id="curriculum">
-						<div class="rating">
-							<span>&#9734</span><span>&#9734</span><span>&#9734</span>
+						<div id="cover">
+							  <div id="stars">
+							    <input type="radio" name="rating" class="rb" id="_3" onclick = "threestars()">
+							    <i class="fa fa-star" aria-hidden="true"></i>
+							
+							    <input type="radio" name="rating" class="rb" id="_2" onclick = "twostars()">
+							    <i class="fa fa-star" aria-hidden="true"></i>
+							
+							    <input type="radio" name="rating" class="rb" id="_1" onclick = "onestars()">
+							    <i class="fa fa-star" aria-hidden="true"></i>
+							
+<!-- 							    <input type="radio" name="rating" class="rb" id="_4"> -->
+<!-- 							    <i class="fa fa-star" aria-hidden="true"></i> -->
+							
+<!-- 							    <input type="radio" name="rating" class="rb" id="_5"> -->
+<!-- 							    <i class="fa fa-star" aria-hidden="true"></i> -->
+							  </div>
 						</div>
 						<h2>Antecedentes Personales</h2>
 						<div class="col-md-6 com-xs-12">
@@ -222,6 +237,7 @@
 					</div>
 <!-- 				</div> -->
 			</section>
+			<div style="float: right; margin-right:20px;"><button class="btn btn-md btn-primary btn-block btn-signin" type="submit" id="guardar" onclick="guardar()">Guardar</button></div>
 		</section>
 
 </body>

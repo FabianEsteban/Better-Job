@@ -3,7 +3,22 @@ $(document).ready(function(){
 });
 
 var arrayData = "";
+var rating = 0;
 
+function guardar(){
+	if (rating == 0){
+		alertaWarning("Recuerda calificar el curriculum.");
+	}
+}
+function onestars(){
+	rating = 1
+}
+function twostars(){
+	rating = 2
+}
+function threestars(){
+	rating = 3
+}
 
 function loadData(){
 	var rut = document.getElementById("rut").value;

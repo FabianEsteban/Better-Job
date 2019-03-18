@@ -36,34 +36,45 @@ public class HelloController {
     @RequestMapping("/perfil")
     public ModelAndView perfil(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
-    		return new ModelAndView("redirect:/titulo/login");
+    	if(ses.isValid() && ses.getNombre().equals("postulante")){
+    		
+    		model.addAttribute("active_perfil", "active");
+            model.addAttribute("javaScriptPage", "perfil");  
+            return new ModelAndView("perfil");
+    		
     	}
-    	model.addAttribute("active_perfil", "active");
-        model.addAttribute("javaScriptPage", "perfil");  
-        return new ModelAndView("perfil");
+    	else {
+    		return new ModelAndView("redirect:/titulo/exit");
+    	}
+    	
     }
     
     @RequestMapping("/activar_cuenta")
     public ModelAndView activar_cuenta(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
     	if(ses.isValid()){
+    		model.addAttribute("activar_cuenta", "active");
+            model.addAttribute("javaScriptPage", "activar_cuenta");    
+            return new ModelAndView("activar_cuenta");
+    		
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/activar_cuenta");
     	}
-    	model.addAttribute("activar_cuenta", "active");
-        model.addAttribute("javaScriptPage", "activar_cuenta");    
-        return new ModelAndView("activar_cuenta");
     }
     
     @RequestMapping("/curriculum")
     public ModelAndView curriculum(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
+    	if(ses.isValid() && ses.getNombre().equals("postulante")){
+    		model.addAttribute("active_curriculum", "active");
+            model.addAttribute("javaScriptPage", "curriculum");    
+            return new ModelAndView("curriculum");
+    		
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/login");
     	}
-    	model.addAttribute("active_curriculum", "active");
-        model.addAttribute("javaScriptPage", "curriculum");    
-        return new ModelAndView("curriculum");
     }
 
     @RequestMapping("/registrar")
@@ -76,52 +87,68 @@ public class HelloController {
     @RequestMapping("/admin_curriculum")
     public ModelAndView admin_curriculum(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
+    	if(ses.isValid() && ses.getNombre().equals("administrador")){
+    		model.addAttribute("active_curriculum", "active");
+            model.addAttribute("javaScriptPage", "admin_curriculum");    
+            return new ModelAndView("admin_curriculum");
+    		
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/login");
     	}
-    	model.addAttribute("active_curriculum", "active");
-        model.addAttribute("javaScriptPage", "admin_curriculum");    
-        return new ModelAndView("admin_curriculum");
+    	
     }
     @RequestMapping("/admin_administrador")
     public ModelAndView admin_administrador(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
+    	if(ses.isValid() && ses.getNombre().equals("administrador")){
+    		model.addAttribute("active_administrador", "active");
+            model.addAttribute("javaScriptPage", "admin_administrador"); 
+            return new ModelAndView("admin_administrador");
+    		
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/login");
     	}
-    	model.addAttribute("active_administrador", "active");
-        model.addAttribute("javaScriptPage", "admin_administrador"); 
-        return new ModelAndView("admin_administrador");
     }
     @RequestMapping("/admin_seguimiento")
     public ModelAndView admin_seguimiento(@RequestParam(name = "rut") String rut, Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
+    	if(ses.isValid() && ses.getNombre().equals("administrador")){
+    		model.addAttribute("active_seguimiento", "active");
+            model.addAttribute("javaScriptPage", "admin_seguimiento");   
+            model.addAttribute("rut", rut);
+            return new ModelAndView("admin_seguimiento");
+    		
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/login");
     	}
-    	model.addAttribute("active_seguimiento", "active");
-        model.addAttribute("javaScriptPage", "admin_seguimiento");   
-        model.addAttribute("rut", rut);
-        return new ModelAndView("admin_seguimiento");
+    	
     }
     @RequestMapping("/admin_empresa")
     public ModelAndView empresa(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
+    	if(ses.isValid() && ses.getNombre().equals("empresa")){
+    		model.addAttribute("active_empresa", "active");
+            model.addAttribute("javaScriptPage", "admin_empresa");    
+            return new ModelAndView("admin_empresa");
+    		
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/login");
     	}
-    	model.addAttribute("active_empresa", "active");
-        model.addAttribute("javaScriptPage", "admin_empresa");    
-        return new ModelAndView("admin_empresa");
     }
     @RequestMapping("/postulantes")
     public ModelAndView postulantes(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
-    	if(ses.isValid()){
+    	if(ses.isValid() && ses.getNombre().equals("empresa")){
+    		model.addAttribute("active_postulantes", "active");
+            model.addAttribute("javaScriptPage", "postulantes");    
+            return new ModelAndView("postulantes");	
+    	}
+    	else {
     		return new ModelAndView("redirect:/titulo/login");
     	}
-    	model.addAttribute("active_postulantes", "active");
-        model.addAttribute("javaScriptPage", "postulantes");    
-        return new ModelAndView("postulantes");
     }
 }
