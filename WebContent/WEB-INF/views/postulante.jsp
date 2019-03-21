@@ -1,8 +1,3 @@
-<%-- <%@ page session="false"%> --%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
-<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -50,7 +45,7 @@
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
-        <div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div>
+<%--         <div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div> --%>
           <!-- settings start -->
 <!--           <li class="dropdown"> -->
 <!--             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#"> -->
@@ -244,7 +239,8 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="perfil"><img src="../resources/static/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered" id="nombreUsuario"></h5>
+          <input style="display:none;" value = "${rut}" id = "rut">
+          <h5 class="centered" id="nombre"></h5>
           <li>
             <a class="${active_perfil}" href="perfil">
               <i class="fa fa-user"></i>
@@ -258,7 +254,7 @@
               </a>
           </li>
           <li>
-            <a href="#">
+            <a class="${active_seguimiento}" href="seguimiento">
               <i class="fa fa-dashboard"></i>
               <span>Seguimiento</span>
               </a>
@@ -282,6 +278,7 @@
     <!-- page-wrapper -->
 
  	<script src="../resources/static/js/jquery.min.js"></script>
+ 	<script src="../resources/static/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.10/sweetalert2.min.js"></script>	
     <script src="../resources/static/js/include.js" type="text/javascript"></script>

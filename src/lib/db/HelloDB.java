@@ -15,6 +15,7 @@ import lib.classTI.curriculum;
 import lib.classTI.educacion;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
+import lib.classTI.relacion;
 import lib.classTI.universidades;
 
 public class HelloDB {
@@ -224,6 +225,7 @@ public class HelloDB {
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs.next()){
 				us = new loginApp();
+				us.setId(rs.getInt("id"));
 				us.setUsuario(rs.getString("usuario"));
 				us.setPerfilText(rs.getString("perfilText"));
 				us.setEstado(rs.getInt("estado"));
@@ -270,6 +272,30 @@ public class HelloDB {
 		try{
 			sql = "INSERT into login (usuario, correo, pass, perfilText, estado, estado_curriculum, ingresado) "
 					+ "values ('"+data.getUsuario()+"', '"+data.getCorreo()+"', '"+data.getPass()+"', '"+data.getPerfilText()+"', 0, 0, 1)";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		}
+		catch(SQLException e){
+			System.out.println("Error: "+e.getMessage());
+		}
+		catch(Exception e){
+			System.out.println("Error: "+ e.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	public static boolean saveEnlace(relacion data) throws Exception{
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new ConnectionDB();
+		
+		try{
+			sql = "INSERT into relacion (empresa, postulante) "
+					+ "values ('"+data.getEmpresa()+"', '"+data.getPostulante()+"')";
 			ps = db.conn.prepareStatement(sql);
 			ps.execute();
 			return true;
@@ -480,6 +506,8 @@ public class HelloDB {
 		ArrayList<educacion> lista3 = new ArrayList<educacion>();
 		ArrayList<universidades> lista4 = new ArrayList<universidades>();
 		ArrayList<carreras> lista5 = new ArrayList<carreras>();
+		ArrayList<relacion> lista6 = new ArrayList<relacion>();
+		ArrayList<loginApp> lista7 = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try {
 			sql = "select * from titulo.curriculum\r\n" + 
@@ -491,6 +519,10 @@ public class HelloDB {
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
 					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" + 
+					"left join titulo.login\r\n" + 
+					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
+					"left join titulo.relacion\r\n" + 
+					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
 					"where rut = '"+rut+"'\r\n" +
 					"order by evaluacion desc";
 			
@@ -517,6 +549,7 @@ public class HelloDB {
 				pm.setMail_recomendacion(rs.getString("mail_recomendacion"));
 				pm.setDisponibilidad(rs.getString("disponibilidad"));
 				pm.setEvaluacion(rs.getInt("evaluacion"));
+				
 
 				antecedentes pm2 = new antecedentes();
 				pm2.setCargo(rs.getString("cargo"));
@@ -552,6 +585,20 @@ public class HelloDB {
 				pm.setCarreras(lista5);
 				
 				
+				relacion pm6 = new relacion();
+				pm6.setEmpresa(rs.getString("empresa"));
+				pm6.setPostulante(rs.getInt("postulante"));
+				lista6.add(pm6);
+				pm.setRelacion(lista6);
+				
+				
+				
+				loginApp pm7 = new loginApp();
+				pm7.setId(rs.getInt("id"));
+				lista7.add(pm7);
+				pm.setLoginApp(lista7);
+				
+				
 				lista.add(pm);
 			}
 			
@@ -578,6 +625,8 @@ public class HelloDB {
 		ArrayList<educacion> lista3 = new ArrayList<educacion>();
 		ArrayList<universidades> lista4 = new ArrayList<universidades>();
 		ArrayList<carreras> lista5 = new ArrayList<carreras>();
+		ArrayList<relacion> lista6 = new ArrayList<relacion>();
+		ArrayList<loginApp> lista7 = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try {
 			sql = "select * from titulo.curriculum\r\n" + 
@@ -588,7 +637,11 @@ public class HelloDB {
 					"left join titulo.universidades\r\n" + 
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
-					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" + 
+					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" +
+					"left join titulo.login\r\n" + 
+					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
+					"left join titulo.relacion\r\n" + 
+					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
 					"where nivel_edu = 2 and titulo.universidades.id_universidad = "+cod_universidad+"\r\n" +
 					"order by evaluacion desc";
 
@@ -648,6 +701,19 @@ public class HelloDB {
 					pm5.setCarrera(rs.getString("carrera"));
 					lista5.add(pm5);
 					pm.setCarreras(lista5);
+					
+					relacion pm6 = new relacion();
+					pm6.setEmpresa(rs.getString("empresa"));
+					pm6.setPostulante(rs.getInt("postulante"));
+					lista6.add(pm6);
+					pm.setRelacion(lista6);
+					
+					
+					
+					loginApp pm7 = new loginApp();
+					pm7.setId(rs.getInt("id"));
+					lista7.add(pm7);
+					pm.setLoginApp(lista7);
 				
 				
 				lista.add(pm);
@@ -676,6 +742,8 @@ public class HelloDB {
 		ArrayList<educacion> lista3 = new ArrayList<educacion>();
 		ArrayList<universidades> lista4 = new ArrayList<universidades>();
 		ArrayList<carreras> lista5 = new ArrayList<carreras>();
+		ArrayList<relacion> lista6 = new ArrayList<relacion>();
+		ArrayList<loginApp> lista7 = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try {
 			sql = "select * from titulo.curriculum\r\n" + 
@@ -687,6 +755,10 @@ public class HelloDB {
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
 					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" + 
+					"left join titulo.login\r\n" + 
+					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
+					"left join titulo.relacion\r\n" + 
+					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
 					"where nivel_edu = 2 and titulo.carreras.id_carrera = "+cod_carrera+"\r\n" +
 					"order by evaluacion desc";
 
@@ -746,6 +818,19 @@ public class HelloDB {
 					pm5.setCarrera(rs.getString("carrera"));
 					lista5.add(pm5);
 					pm.setCarreras(lista5);
+					
+					relacion pm6 = new relacion();
+					pm6.setEmpresa(rs.getString("empresa"));
+					pm6.setPostulante(rs.getInt("postulante"));
+					lista6.add(pm6);
+					pm.setRelacion(lista6);
+					
+					
+					
+					loginApp pm7 = new loginApp();
+					pm7.setId(rs.getInt("id"));
+					lista7.add(pm7);
+					pm.setLoginApp(lista7);
 				
 				
 				lista.add(pm);
@@ -774,6 +859,8 @@ public class HelloDB {
 		ArrayList<educacion> lista3 = new ArrayList<educacion>();
 		ArrayList<universidades> lista4 = new ArrayList<universidades>();
 		ArrayList<carreras> lista5 = new ArrayList<carreras>();
+		ArrayList<relacion> lista6 = new ArrayList<relacion>();
+		ArrayList<loginApp> lista7 = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try {
 			sql = "select * from titulo.curriculum\r\n" + 
@@ -784,14 +871,19 @@ public class HelloDB {
 					"left join titulo.universidades\r\n" + 
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
-					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera";
+					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" +
+					"left join titulo.login\r\n" + 
+					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
+					"left join titulo.relacion\r\n" + 
+					"on titulo.relacion.postulante = titulo.login.id\r\n" +
+					"order by evaluacion desc";
 			ps = db.conn.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				curriculum pm = new curriculum();
-				pm.setID(rs.getInt("ID"));
+				pm.setID_curriculum(rs.getInt("ID_curriculum"));
 				pm.setRut(rs.getString("rut"));
 				pm.setNombre(rs.getString("nombre"));
 				pm.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
@@ -847,6 +939,20 @@ public class HelloDB {
 				pm.setCarreras(lista5);
 				
 				
+				relacion pm6 = new relacion();
+				pm6.setEmpresa(rs.getString("empresa"));
+				pm6.setPostulante(rs.getInt("postulante"));
+				lista6.add(pm6);
+				pm.setRelacion(lista6);
+				
+				
+				
+				loginApp pm7 = new loginApp();
+				pm7.setId(rs.getInt("id"));
+				lista7.add(pm7);
+				pm.setLoginApp(lista7);
+				
+				
 				lista.add(pm);
 			}
 			
@@ -861,6 +967,38 @@ public class HelloDB {
 		}
 		return lista;
 
+	}
+	@SuppressWarnings("finally")
+	public static ArrayList<relacion> getRelacion(int postulante) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<relacion> data = new ArrayList<relacion>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select * from relacion where postulante = "+postulante+"";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				relacion c = new relacion();
+				c.setId_relacion(rs.getInt("id_relacion"));
+				c.setEmpresa(rs.getString("empresa"));
+				c.setPostulante(rs.getInt("postulante"));
+
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
 	}
 	public static boolean updateNombre (curriculum data) throws Exception{
 		

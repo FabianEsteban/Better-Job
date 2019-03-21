@@ -16,8 +16,10 @@
 <!--         		<h3><i class="fa fa-angle-right"></i> Curriculum</h3> -->
         		<!-- page start-->
 <!--         		<div class="well"> -->
-					<div id="product" display="none" data-prodnumber="${sessionScope.estado_curriculum}" /></div>
-					<div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div>
+<%-- 					<div id="product" display="none" data-prodnumber="${sessionScope.estado_curriculum}" /></div> --%>
+<%-- 					<div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div> --%>
+						<input style="display:none;" value = "${rut}" id = "rut">
+						<input style="display:none;" value = "${estado_curriculum}" id = "estado_curriculum">
 <!-- 					<div class="col-md-12 col-md-offset-1 col-xs-12"> -->
 					<div id="curriculum">
 						<h2>Antecedentes Personales</h2>

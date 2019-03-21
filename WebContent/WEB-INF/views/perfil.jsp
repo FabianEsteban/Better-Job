@@ -23,12 +23,12 @@
 	        			<div class="col-md-6 com-xs-12">
 	        				<label>
 								<span>Nombre:</span>
-								<span id="nombre"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarNombre()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+								<span id="nombredisplay"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarNombre()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
 							</label>
 							<br>
 							<label>
 								<span>Rut:</span>
-								<span id="rut"></span>
+								<span id="rutdisplay"></span>
 							</label>
 							<br>
 							<label>
@@ -41,7 +41,8 @@
 								<span id="pais"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarPais()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
 							</label>
 	        			</div>
-	        			<div id="product" display="none" data-prodnumber="${sessionScope.usuario}" /></div>
+<%-- 	        			<div id="product" display="none" data-prodnumber="${sessionScope.usuario}" /></div> --%>
+							<input style="display:none;" value = "${rut}" id = "rut">
         				<div class="col-md-6 com-xs-12">
         					<label>
 								<span>Estado Civil:</span>

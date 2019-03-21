@@ -69,19 +69,19 @@
         		<form class="login-form" action="javascript: saveEmpresa()">
 	                <span id="reauth-email" class="reauth-email"></span>
 	                <div class="form-group">
-	                	<input type="text" id="inputRut" class="form-control"  placeholder="RUT" name="username" required autofocus>
+	                	<input type="text" id="inputRutEmpresa" class="form-control"  placeholder="RUT" name="username" required autofocus>
 	                </div>
 	                <div class="form-group">
-	                	<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
+	                	<input type="password" id="inputPasswordEmpresa" class="form-control" placeholder="Contraseña" name="password" required>
 	                </div>
 					<div class="form-group">
-	                	<input type="password" id="inputPassword2" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
+	                	<input type="password" id="inputPassword2Empresa" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
 	                </div>
 	                <div class="form-group">
-	                	<input type="text" id="inputEmail" class="form-control" placeholder="Email" name="username" required autofocus>
+	                	<input type="text" id="inputEmailEmpresa" class="form-control" placeholder="Email" name="username" required autofocus>
 	                </div>
 	                <div class="form-group">
-	                	<input type="text" id="inputEmail2" class="form-control" placeholder="Confirmar email" name="username" required>
+	                	<input type="text" id="inputEmail2Empresa" class="form-control" placeholder="Confirmar email" name="username" required>
 	                </div>
 	<!--                 <div class="form-group"> -->
 	<!--                 	<input type="tel" id="inputTelefono" class="form-control" name="telefono" required autofocus> -->
@@ -91,11 +91,11 @@
 	                
 	                
 	                
-	                	<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()">Cancelar</button>
+	                	
 					
 	                
 	            </form><!-- /form -->
-	            
+	            <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()" style="margin-top:15px;">Cancelar</button>
 	            
         	
         	</div>     
@@ -125,11 +125,11 @@
 	                
 	                
 	               
-	                	<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()">Cancelar</button>
+	                	
 					
 	                
 	            </form><!-- /form -->
-	            
+	            <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()" style="margin-top:15px;">Cancelar</button>
 	            
 			</div>
         </div><!-- /card-container -->
@@ -138,7 +138,7 @@
     <script src="../resources/static/js/intlTelInput.min.js"></script>
     <script src="../resources/static/js/utils.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../resources/static/js/include.js" type="text/javascript"></script>
+<!--     <script src="../resources/static/js/include.js" type="text/javascript"></script> -->
     <script src="../resources/static/js/registrar.js" type="text/javascript"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="../resources/static/js/jquery.min.js"></script>

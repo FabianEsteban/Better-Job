@@ -1,10 +1,10 @@
 $(document).ready(function(){
 	var arrayData = "";
-	var product2 = document.getElementById("product2"), usuario;
-	usuario = product2.getAttribute("data-prodnumber");
 
+	var rut = document.getElementById("rut").value;
+//	console.log(rut)
 	$.ajax({
-		url: "/springapp/titulo/fabian/getCurriculum/"+usuario,
+		url: "/springapp/titulo/fabian/getCurriculum/"+rut,
 		type:	"GET",
 		dataType: 'json',
 		async: false,
@@ -13,7 +13,8 @@ $(document).ready(function(){
 	    }
 	})
 	$.each(arrayData, function(k, v) {
-		$("#nombreUsuario").html(v.nombre);
+//		console.log(arrayData)
+		$("#nombre").html(v.nombre);
 	});
 });
 

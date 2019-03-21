@@ -6,30 +6,34 @@ public class session {
 	
 	private HttpSession session;
 	
-	private int idUser;
-	private int idPerfil;
-	private String nombre;
 	
-	public int getIdUser(){
-		int value = (Integer) session.getAttribute("idUser");
+	public int getId(){
+		int value = (Integer) session.getAttribute("id");
 		return value;
 	}
-	public void setIdUser(String value){
-		session.setAttribute("idUser", value);
+	public void setId(int value){
+		session.setAttribute("id", value);
 	}
-	public int getIdPerfil(){
-		int value = (Integer) session.getAttribute("idPerfil");
+	public String getRut(){
+		String value = (String) session.getAttribute("rut");
 		return value;
 	}
-	public void setIdPerfil(int value){
-		session.setAttribute("idPerfil", value);
+	public void setRut(String value){
+		session.setAttribute("rut", value);
 	}
-	public String getNombre(){
-		String value = (String) session.getAttribute("nombre");
+	public int getEstado_Curriculum(){
+		int value = (Integer) session.getAttribute("estado_curriculum");
 		return value;
 	}
-	public void setNombre(String value){
-		session.setAttribute("nombre", value);
+	public void setEstado_Curriculum(int value){
+		session.setAttribute("estado_curriculum", value);
+	}
+	public String getPrivilegio(){
+		String value = (String) session.getAttribute("privilegio");
+		return value;
+	}
+	public void setPrivilegio(String value){
+		session.setAttribute("privilegio", value);
 	}
 	
 	

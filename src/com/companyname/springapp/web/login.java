@@ -31,14 +31,16 @@ public class login extends HttpServlet {
 			loginApp us = HelloDB.getLogin(username, pass);
 			if(us != null){
 //				sesion.setAttribute("usuario", us);
-				
 //				sesion.setAttribute("estado", us.estado);
 //				sesion.setAttribute("ingresado", us.ingresado);
 //				sesion.setAttribute("estado_curriculum", us.estado_curriculum);
 //				sesion.setAttribute("usuario", us.getUsuario());
 				lib.security.session ses = new lib.security.session(httpSession);
 //				ses.setIdUser(us.getUsuario());
-				ses.setNombre(us.perfilText);
+				ses.setPrivilegio(us.perfilText);
+				ses.setRut(us.usuario);
+				ses.setId(us.id);
+				ses.setEstado_Curriculum(us.estado_curriculum);
 				ses.init();
 				if(us.getIngresado() == 0){
 					return new ModelAndView("redirect:/titulo/activar_cuenta");

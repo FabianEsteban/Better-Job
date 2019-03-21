@@ -46,7 +46,7 @@
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
-        <div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div>
+<%--         <div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div> --%>
           <!-- settings start -->
 
           <!-- notification dropdown end -->
@@ -64,7 +64,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="perfil"><img src="../resources/static/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered" id="nombreUsuario"></h5>
+          <h5 class="centered" id="nombreUsuario">${rut}</h5>
           <li>
             <a class="${active_empresa}" href="admin_empresa">
               <i class="fa fa-user"></i>

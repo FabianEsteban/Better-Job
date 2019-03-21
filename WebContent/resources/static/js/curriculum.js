@@ -1,8 +1,12 @@
 $(document).ready(function(){
-	var product = document.getElementById("product"), estado_curriculum;
-	var product2 = document.getElementById("product2"), usuario;
-	usuario = product2.getAttribute("data-prodnumber");
-    estado_curriculum = product.getAttribute("data-prodnumber");
+//	var product = document.getElementById("product"), estado_curriculum;
+//	var product2 = document.getElementById("product2"), usuario;
+//	usuario = product2.getAttribute("data-prodnumber");
+//    estado_curriculum = product.getAttribute("data-prodnumber");
+	usuario = document.getElementById("rut").value;
+	estado_curriculum = document.getElementById("estado_curriculum").value;
+
+	
     var x = document.getElementById("regForm");
     var y = document.getElementById("curriculum");
     if (estado_curriculum == 1) {

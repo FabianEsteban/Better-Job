@@ -15,8 +15,9 @@ $(document).ready(function() {
 //      });
 //
 //      return false;
-	var product = document.getElementById("product"), usuario;
-	usuario = product.getAttribute("data-prodnumber");
+//	var product = document.getElementById("product"), usuario;
+//	usuario = product.getAttribute("data-prodnumber");
+	var usuario = document.getElementById("rut").value;
 	loadData(usuario);
     });
 var arrayData = "";
@@ -53,8 +54,8 @@ function Mostrar(){
 
 		
 		var diff = fechaFin - fechaInicio;
-    	$("#nombre").html(v.nombre);
-    	$("#rut").html(v.rut);
+    	$("#nombredisplay").html(v.nombre);
+    	$("#rutdisplay").html(v.rut);
     	$("#fecha_nacimiento").html(v.fecha_nacimiento);
     	$("#pais").html(v.pais);
     	$("#estado_civil").html(v.estado_civil);

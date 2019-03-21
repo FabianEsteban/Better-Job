@@ -3,7 +3,7 @@ package lib.classTI;
 import java.util.List;
 
 public class curriculum {
-	public int ID;
+	public int ID_curriculum;
 	public String rut;
 	public String nombre;
 	public String fecha_nacimiento;
@@ -21,22 +21,32 @@ public class curriculum {
 	public String mail_recomendacion;
 	public String fecha_edit;
 	public int evaluacion;
+
+	
 	List<antecedentes> antecedentes;
 	List<educacion> educacion;
 	List<universidades> universidades;
 	List<carreras> carreras;
+	List<relacion> relacion;
+	List<loginApp> loginApp;
 	
 	
 	
 	
 	
 	
-	
-	public int getID() {
-		return ID;
+	public List<loginApp> getLoginApp() {
+		return loginApp;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setLoginApp(List<loginApp> loginApp) {
+		this.loginApp = loginApp;
+	}
+
+	public int getID_curriculum() {
+		return ID_curriculum;
+	}
+	public void setID_curriculum(int iD_curriculum) {
+		ID_curriculum = iD_curriculum;
 	}
 	public String getRut() {
 		return rut;
@@ -164,5 +174,10 @@ public class curriculum {
 	public void setEvaluacion(int evaluacion) {
 		this.evaluacion = evaluacion;
 	}
-	
+	public List<relacion> getRelacion() {
+		return relacion;
+	}
+	public void setRelacion(List<relacion> relacion) {
+		this.relacion = relacion;
+	}
 }

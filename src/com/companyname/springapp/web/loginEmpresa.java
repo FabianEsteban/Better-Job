@@ -35,7 +35,8 @@ public class loginEmpresa extends HttpServlet {
 //				sesion.setAttribute("estado_curriculum", us.estado_curriculum);
 //				sesion.setAttribute("usuario", us.getUsuario());
 				lib.security.session ses = new lib.security.session(httpSession);
-				ses.setNombre(us.perfilText);
+				ses.setPrivilegio(us.perfilText);
+				ses.setRut(us.usuario);
 				ses.init();
 
 				if(us.getPerfilText().equals("empresa")){
