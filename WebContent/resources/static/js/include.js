@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var rut = document.getElementById("rut").value;
 //	console.log(rut)
 	$.ajax({
-		url: "/springapp/titulo/fabian/getCurriculum/"+rut,
+		url: "/springapp/titulo/fabian/getCurriculumxRut/"+rut,
 		type:	"GET",
 		dataType: 'json',
 		async: false,

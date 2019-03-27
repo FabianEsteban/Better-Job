@@ -63,6 +63,7 @@ public class HelloController {
     	session ses = new session(httpSession);
     	if(ses.isValid() && ses.getPrivilegio().equals("postulante")){
     		model.addAttribute("rut", ses.getRut());
+    		model.addAttribute("correo", ses.getCorreo());
     		model.addAttribute("estado_curriculum", ses.getEstado_Curriculum());
     		model.addAttribute("active_curriculum", "active");
             model.addAttribute("javaScriptPage", "curriculum");    
@@ -79,7 +80,7 @@ public class HelloController {
     	session ses = new session(httpSession);
     	if(ses.isValid() && ses.getPrivilegio().equals("postulante")){
     		model.addAttribute("id", ses.getId());
-    		model.addAttribute("estado_curriculum", ses.getEstado_Curriculum());
+//    		model.addAttribute("estado_curriculum", ses.getEstado_Curriculum());
     		model.addAttribute("active_seguimiento", "active");
             model.addAttribute("javaScriptPage", "seguimiento");    
             return new ModelAndView("seguimiento");

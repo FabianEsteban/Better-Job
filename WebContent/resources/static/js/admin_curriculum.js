@@ -7,16 +7,6 @@ $(document).ready(function() {
 var arrayFormAplic;
 var rut = "";
 
-//var datos;
-//var insertabla;
-//var tablaFormaA = $("#Div_Table_FormaAplicacion").html();
-
-
-//$("#filtro2").change(function(){
-//	insertabla = $("#filtro2").val();
-//	loadInfo($("#filtro").val(), $("#filtro2").val());
-//});
-//
 
 function loadFiltroUniversidad(){
 	$.ajax({
@@ -76,13 +66,15 @@ function loadCarrera(){
 	})
 }
 function loadTabla() {
-
 	var tbl = "";
-	
+	var contUniversidades = 0;
+	var contCarreras = 0;
+	var cont = 0;
 	table.clear().draw();
+
 	
 	$.each(arrayFormAplic,function(k, v) {
-//		var seguimiento = "<button onclick='javascript: seguimiento("+v.ID+")'><span class='glyphicon glyphicon-link'></span></button>"
+		cont++;
 		var url = 'admin_seguimiento';
 		var seguimiento = '<form action="' + url + '" method="post">' +
 				  '<input type="hidden" name="rut" value="' + v.rut + '" />' +
@@ -93,15 +85,23 @@ function loadTabla() {
 		var disponibilidad = v.disponibilidad;
 		var evaluacion = "<span class='stars'>v.evaluacion</span>";
 		var universidad = "";
+		var universidad2 = "";
 		var carrera = "";
-		
-		$.each(v.universidades,function(k2, v2) {
-			universidad = v2.universidad
+		contUniversidades = 1;
+		$.each(v.universidades,function(k2, v2) {		
+			if(cont == contUniversidades){
+				universidad = v2.universidad;
+			}
+			contUniversidades++;
 		})
+		contCarreras = 1;
 		$.each(v.carreras,function(k2, v2) {
-			carrera = v2.carrera
-			
+			if(cont == contCarreras){
+				carrera = v2.carrera;
+			}
+			contCarreras++;
 		})
+		
 		$.fn.stars = function() {
 		    return $(this).each(function() {
 		        // Get the value
@@ -119,40 +119,22 @@ function loadTabla() {
 		    $('span.stars').stars();
 		});
 		
+
 		
 		tbl = [nombre, rut, carrera, universidad, disponibilidad+" dias", seguimiento, evaluacion];
 		var rowNode = table
 	    .row.add( tbl )
 	    .draw()
 	    .node();
-	})
-	
-	
 		
-//	
-//	var tbl = "";
-//	$.each(data,function(k, v) {
-////		var editar = "<div class='dropdown dropleft' style='float: left;'><button class='btn btn-circle yellow btn-outline btn-sm dropdown-toggle' title='Modificar' onclick='javascript: addFormAP("+v.codigo+")' type='button' data-toggle='dropdown'><span class='fa fa-pencil-square-o fa-lg'></span></button>";
-////		var eliminar = "<div class='dropdown dropleft' style='float: left;'><button id='CambioEstado' class='btn btn-circle red btn-outline btn-sm dropdown-toggle' title='Eliminar' onclick='javascript: CambioEstado("+v.codigo+")' type='button' data-toggle='dropdown'><span class='fa fa-trash fa-2x'></span></button>";
-//		var tbl = [v.nombre];
-//		var rowNode = dataTable
-//	    .row.add( tbl )
-//	    .draw()
-//	    .node();
-//	})
+		
+
+	})
 
 }
 
 
-//function loadInfo(especie, tabla) {
-//	if (tabla != ""){
-//		$.getJSON("/simpleWeb/json/AGRO/getMantenedorEspecie/"+especie+"/"+tabla+"/", function(data) {
-//			arrayFormAplic = data;
-//			loadTabla(data);
-//		});
-//		$("#loading").hide();
-//	}
-//}
+
 function loadData(){
 	$.ajax({
 		url: "/springapp/titulo/fabian/getAllCurriculum/",
@@ -166,16 +148,10 @@ function loadData(){
 	    }
 	})
 }
-//function seguimiento(ID){
-//
-////	$('#ID').html(ID); 
-//	window.location.href = '<path to admin_seguimiento.jsp>' + '#' + ID;
-////	window.location.assign("http://localhost:8080/springapp/titulo/admin_seguimiento")
-//
-//}
+
 function loadRut(){
 	$.ajax({
-		url: "/springapp/titulo/fabian/getCurriculum/"+rut,
+		url: "/springapp/titulo/fabian/getCurriculumxRut/"+rut,
 		type:	"GET",
 		dataType: 'json',
 		async: false,
@@ -186,51 +162,4 @@ function loadRut(){
 	    }
 	})
 }
-//function cambioCampo(campo) {
-//	codigo = campo.value;
-////	LimpiarTabla();
-//	loadCampo2();
-//}
-//function loadCampo2(){
-//	var filtro2 = "<option value=''>Seleccionar</option>";
-//	$.ajax({
-//		url: "/simpleWeb/json/AGRO/getTabla/formacion",
-//		type:	"GET",
-//		dataType: 'json',
-//		async: false,
-//		success: function (data) { 
-//	        $.each(data, function(k, v) {
-//	        	filtro2 += '<option value="'+v.tabla+'">'+v.tabla+'</option>';
-//	        });
-//	        $('#filtro2').html(filtro2);
-//	        
-//	    }
-//	})
-//}
-//
-//function cambioCampo2(tabla) {
-//	insertabla = tabla.value;
-//	loadInfo($("#filtro").val(), $("#filtro2").val());
-//}
-//function cargarRegistro(descripcion) {
-////	LimpiarTabla();
-//	var descripc = {
-//		descripcion : descripcion,
-//		especie : codigo,
-//		tabla : insertabla
-//	}
-//	$.ajax({
-//		url : "/simpleWeb/json/AGRO/ADDMANTENEDORESP/",
-//		async: false,
-//		type : "PUT",
-//		data : JSON.stringify(descripc),
-//		beforeSend : function(xhr) {
-//			xhr.setRequestHeader("Accept", "application/json");
-//			xhr.setRequestHeader("Content-Type", "application/json");
-//		},success: function() {
-//			closeModal();
-//			alerta("Registrado Correctamente" + " " + $('#descripcionFormaAp').val());
-//			loadInfo($("#filtro").val(), $("#filtro2").val());
-//		}
-//	})
-//}
+

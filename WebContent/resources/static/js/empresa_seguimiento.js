@@ -1,24 +1,6 @@
 $(document).ready(function(){	
 	loadData();
 });
-
-var arrayData = "";
-var rating = 0;
-
-function guardar(){
-	if (rating == 0){
-		alertaWarning("Recuerda calificar el curriculum.");
-	}
-}
-function onestars(){
-	rating = 1
-}
-function twostars(){
-	rating = 2
-}
-function threestars(){
-	rating = 3
-}
 var arrayData = "";
 var dataBasica = "";
 var dataMedia = "";
@@ -303,27 +285,4 @@ function Mostrar(){
 
 	
     
-}
-function editarInstitucion_basica(){
-	$.each(arrayData, function(k,v){
-		$.each(v.educacion, function(k2,v2){
-			if(v2.nivel_edu == 1){
-				var pop = '<div class="col-xs-12 col-sm-12 col-md-12">'
-					+ '<div class="box-datos-generales" style="width: 100%">'
-					+ '<div class="col-xs-12 col-md-12 col-lg-12">'
-					+ '<div class="col-xs-12 col-md-12 col-lg-12 portlet light bordered">'
-					+ '<input type="text" class="form-control" id="newNombre_edu" value="'+v2.nombre_edu+'">'
-					+ '</div>'
-					+ '</div>'
-					+ '</div>'
-					+ '<div class="col-sm-12 col-md-12">'
-					+ '<div class="btn btn-circle blue btn-outline" onclick="guardarInstitucion_basica('+v2.ID_edu+')">Registrar</div>'
-					+ "&nbsp;&nbsp;&nbsp;"
-					+ '<div class="btn btn-circle red btn-outline" onclick="closeModal()">Cancelar</div>'
-					+ '</div>'
-					+ '</div>';
-				popUpPerfil("Institución: ", pop, "700px");
-			}
-		})
-	})
 }

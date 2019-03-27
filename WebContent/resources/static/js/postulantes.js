@@ -68,11 +68,16 @@ function loadCarrera(){
 function loadTabla() {
 
 	var tbl = "";
-	
+	var contUniversidades = 0;
+	var contCarreras = 0;
+	var cont = 0;
+	var contRelacion = 0;
+	var contId = 0;
 	table.clear().draw();
-	
+	console.log(arrayFormAplic)
 	$.each(arrayFormAplic,function(k, v) {
-
+		
+		cont++;
 		var url = 'empresa_seguimiento';
 		var seguimiento = '<form action="' + url + '" method="post">' +
 				  '<input type="hidden" name="rut" value="' + v.rut + '" />' +
@@ -86,29 +91,42 @@ function loadTabla() {
 		var carrera = "";
 		var seleccionar = "";
 		var id;
+		
+		contId = 1;
 		$.each(v.loginApp,function(k2, v2) {
-			id = v2.id;
+			if(cont == contId){
+				id = v2.id;
+			}
+			contId++;
 		})
+		contRelacion = 1;
 		$.each(v.relacion,function(k2, v2) {
 			var empresa = document.getElementById("empresa").value;
-			console.log("ads: "+v2.postulante)
-			console.log(id)
-			if(v2.empresa == empresa && v2.postulante == id){
-				seleccionar = '<div>Ya seleccionado</div>';
+			if(cont == contRelacion){
+				if(v2.empresa == empresa && v2.postulante == id){
+					seleccionar = '<div>Ya seleccionado</div>';
+				}
+				else{
+					seleccionar = '<div><button onclick="javascript: enlazar('+id+')" type="submit"><span class="glyphicon glyphicon-check"></span></button></div>';
+				}
 			}
-			else{
-				seleccionar = '<div><button onclick="javascript: enlazar('+id+')" type="submit"><span class="glyphicon glyphicon-check"></span></button></div>';
+			contRelacion++;
+		})	
+		contUniversidades = 1;
+		$.each(v.universidades,function(k2, v2) {		
+			if(cont == contUniversidades){
+				universidad = v2.universidad;
 			}
+			contUniversidades++;
 		})
-		
-		
-		$.each(v.universidades,function(k2, v2) {
-			universidad = v2.universidad
-		})
+		contCarreras = 1;
 		$.each(v.carreras,function(k2, v2) {
-			carrera = v2.carrera
-			
+			if(cont == contCarreras){
+				carrera = v2.carrera;
+			}
+			contCarreras++;
 		})
+		
 		$.fn.stars = function() {
 		    return $(this).each(function() {
 		        // Get the value
@@ -126,12 +144,14 @@ function loadTabla() {
 		    $('span.stars').stars();
 		});
 		
-		
 		tbl = [nombre, rut, carrera, universidad, disponibilidad+" dias", seguimiento, evaluacion, seleccionar];
 		var rowNode = table
 	    .row.add( tbl )
 	    .draw()
 	    .node();
+		
+		
+		
 	})
 
 }
@@ -174,7 +194,7 @@ function loadData(){
 
 function loadRut(){
 	$.ajax({
-		url: "/springapp/titulo/fabian/getCurriculum/"+rut,
+		url: "/springapp/titulo/fabian/getCurriculumxRut/"+rut,
 		type:	"GET",
 		dataType: 'json',
 		async: false,

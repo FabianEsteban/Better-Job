@@ -39,22 +39,26 @@ public class login extends HttpServlet {
 //				ses.setIdUser(us.getUsuario());
 				ses.setPrivilegio(us.perfilText);
 				ses.setRut(us.usuario);
+				ses.setCorreo(us.correo);
 				ses.setId(us.id);
 				ses.setEstado_Curriculum(us.estado_curriculum);
 				ses.init();
-				if(us.getIngresado() == 0){
+
+				if(us.getIngresado() == 0 && us.getEstado() == 0){
 					return new ModelAndView("redirect:/titulo/activar_cuenta");
 				}
-				if(us.getPerfilText().equals("postulante") && us.getEstado() == 1 && us.getEstado_curriculum() == 1){
+				if(us.getPerfilText().equals("postulante") && us.getEstado() == 0 && us.getEstado_curriculum() == 1){
 					return new ModelAndView("redirect:/titulo/perfil");
 				}
-				if(us.getPerfilText().equals("postulante") && us.getEstado() == 1 && us.getEstado_curriculum() == 0){
+				if(us.getPerfilText().equals("postulante") && us.getEstado() == 0 && us.getEstado_curriculum() == 0){
+					
 					return new ModelAndView("redirect:/titulo/curriculum");
 				}
-				if(us.getPerfilText().equals("administrador")){
+				if(us.getPerfilText().equals("administrador") && us.getEstado() == 0){
 					return new ModelAndView("redirect:/titulo/admin_curriculum");
 				}
-				return new ModelAndView("redirect:/titulo/perfil");	
+
+				return new ModelAndView("redirect:/titulo/login");	
 			}
 			else{
 				System.out.println("Incorrecto");

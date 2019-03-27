@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lib.classTI.antecedentes;
 import lib.classTI.carreras;
 import lib.classTI.curriculum;
 import lib.classTI.educacion;
@@ -96,12 +97,72 @@ public class HelloJson {
 		}
 		return false;
 	}
-	@RequestMapping(value = "/fabian/getCurriculum/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody ArrayList<curriculum> getParametros(@PathVariable String rut, HttpSession httpSession) throws Exception{
+	@RequestMapping(value = "/fabian/getCurriculumxRut/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<curriculum> getCurriculumxRut(@PathVariable String rut, HttpSession httpSession) throws Exception{
 		session ses = new session(httpSession);
 		ArrayList<curriculum> pm = new ArrayList<curriculum>();
 		if(ses.isValid()){
-			pm = HelloDB.getCurriculum(rut);
+			pm = HelloDB.getCurriculumxRut(rut);
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxRutBasica/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<educacion> getCurriculumxRutBasica(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<educacion> pm = new ArrayList<educacion>();
+		if(ses.isValid()){
+			pm = HelloDB.getCurriculumxRutBasica(rut);
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxRutMedia/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<educacion> getCurriculumxRutMedia(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<educacion> pm = new ArrayList<educacion>();
+		if(ses.isValid()){
+			pm = HelloDB.getCurriculumxRutMedia(rut);
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxRutUniversitaria/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<educacion> getCurriculumxRutUniversitaria(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<educacion> pm = new ArrayList<educacion>();
+		if(ses.isValid()){
+			pm = HelloDB.getCurriculumxRutUniversitaria(rut);
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxRutPostgrado/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<educacion> getCurriculumxRutPostgrado(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<educacion> pm = new ArrayList<educacion>();
+		if(ses.isValid()){
+			pm = HelloDB.getCurriculumxRutPostgrado(rut);
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxRutCursos/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<educacion> getCurriculumxRutCursos(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<educacion> pm = new ArrayList<educacion>();
+		if(ses.isValid()){
+			pm = HelloDB.getCurriculumxRutCursos(rut);
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getCurriculumxRutAntecedentes/{rut}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<antecedentes> getCurriculumxRutAntecedentes(@PathVariable String rut, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<antecedentes> pm = new ArrayList<antecedentes>();
+		if(ses.isValid()){
+			pm = HelloDB.getCurriculumxRutAntecedentes(rut);
 			return pm;
 		}
 		return pm;

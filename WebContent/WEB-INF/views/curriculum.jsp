@@ -13,25 +13,21 @@
 	<body>
 		<section id="main-content">
       		<section class="wrapper">
-<!--         		<h3><i class="fa fa-angle-right"></i> Curriculum</h3> -->
-        		<!-- page start-->
-<!--         		<div class="well"> -->
-<%-- 					<div id="product" display="none" data-prodnumber="${sessionScope.estado_curriculum}" /></div> --%>
-<%-- 					<div id="product2" display="none" data-prodnumber="${sessionScope.usuario}" /></div> --%>
-						<input style="display:none;" value = "${rut}" id = "rut">
-						<input style="display:none;" value = "${estado_curriculum}" id = "estado_curriculum">
-<!-- 					<div class="col-md-12 col-md-offset-1 col-xs-12"> -->
+
+					<input style="display:none;" value = "${rut}" id = "rut">
+<%-- 					<input style="display:none;" value = "${estado_curriculum}" id = "estado_curriculum"> --%>
+
 					<div id="curriculum">
 						<h2>Antecedentes Personales</h2>
 						<div class="col-md-6 com-xs-12">
 							<label>
 								<span>Nombre:</span>
-								<span id="nombre"></span>
+								<span id="nombreAP"></span>
 							</label>
 							<br>
 							<label>
 								<span>Rut:</span>
-								<span id="rut"></span>
+								<span id="rutAP"></span>
 							</label>
 							<br>
 							<label>
@@ -90,6 +86,42 @@
 								<span id="anos_basica"></span>
 							</label>
 						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="basica2">
+							<h3>Educación Básica 2</h3>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_basica2"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarInstitucion_basica2()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_basica2"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="basica3">
+							<h3>Educación Básica 3</h3>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_basica3"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarInstitucion_basica3()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_basica3"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="basica4">
+							<h3>Educación Básica 4</h3>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_basica4"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarInstitucion_basica4()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_basica4"></span>
+							</label>
+						</div>
 						<div class="col-md-6 com-xs-12">
 							<h3>Educación Media</h3>
 							<label>
@@ -100,6 +132,42 @@
 							<label>
 								<span>Años inicio/término:</span>
 								<span id="anos_media"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="media2">
+							<h3>Educación Media 2</h3>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_media2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_media2"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="media3">
+							<h3>Educación Media 3</h3>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_media3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_media3"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="media4">
+							<h3>Educación Media 4</h3>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_media4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_media4"></span>
 							</label>
 						</div>
 						<div class="col-md-6 com-xs-12">
@@ -124,6 +192,72 @@
 								<span id="titulo_pregrado"></span>
 							</label>
 						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="universitaria2">
+							<h3>Estudios superiores - Pregrado 2</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_pregrado2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Carrera:</span>
+								<span id="carrera_pregrado2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_pregrado2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Título:</span>
+								<span id="titulo_pregrado2"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="universitaria3">
+							<h3>Estudios superiores - Pregrado 3</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_pregrado3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Carrera:</span>
+								<span id="carrera_pregrado3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_pregrado3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Título:</span>
+								<span id="titulo_pregrado3"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="universitaria4">
+							<h3>Estudios superiores - Pregrado 4</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_pregrado4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Carrera:</span>
+								<span id="carrera_pregrado4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_pregrado4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Título:</span>
+								<span id="titulo_pregrado4"></span>
+							</label>
+						</div>
 						<div class="col-md-6 com-xs-12">
 							<h3>Estudios superiores - Postgrado</h3>
 							<label>
@@ -146,6 +280,72 @@
 								<span id="titulo_postgrado"></span>
 							</label>
 						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="postgrado2">
+							<h3>Estudios superiores - Postgrado 2</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_postgrado2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Programa:</span>
+								<span id="programa_postgrado2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_postgrado2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Título:</span>
+								<span id="titulo_postgrado2"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="postgrado3">
+							<h3>Estudios superiores - Postgrado 3</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_postgrado3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Programa:</span>
+								<span id="programa_postgrado3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_postgrado3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Título:</span>
+								<span id="titulo_postgrado3"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none;" id="postgrado4">
+							<h3>Estudios superiores - Postgrado 4</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_postgrado4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Programa:</span>
+								<span id="programa_postgrado4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_postgrado4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Título:</span>
+								<span id="titulo_postgrado4"></span>
+							</label>
+						</div>
 						<div class="col-md-6 com-xs-12">
 							<h3>Cursos</h3>
 							<label>
@@ -166,6 +366,72 @@
 							<label>
 								<span>Años inicio/término:</span>
 								<span id="anos_curso"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display: none;" id="cursos2">
+							<h3>Cursos 2</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_curso2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Nombre curso:</span>
+								<span id="nombre_curso2"></span>
+							</label>
+							<br>
+							<label>
+								<span>N° de horas:</span>
+								<span id="horas_curso2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_curso2"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display: none;" id="cursos3">
+							<h3>Cursos 3</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_curso3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Nombre curso:</span>
+								<span id="nombre_curso3"></span>
+							</label>
+							<br>
+							<label>
+								<span>N° de horas:</span>
+								<span id="horas_curso3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_curso3"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display: none;" id="cursos4">
+							<h3>Cursos 4</h3>
+							<label>
+								<span>Universidad:</span>
+								<span id="institucion_curso4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Nombre curso:</span>
+								<span id="nombre_curso4"></span>
+							</label>
+							<br>
+							<label>
+								<span>N° de horas:</span>
+								<span id="horas_curso4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_curso4"></span>
 							</label>
 						</div>
 						<div class="col-md-12 com-xs-12">
@@ -191,6 +457,72 @@
 							<label>
 								<span>Descripción general del cargo:</span>
 								<span id="descripcion_laboral"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none" id="antecedentes2">
+							<h3>Experiencia 2</h3>
+							<label>
+								<span>Cargo:</span>
+								<span id="cargo2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_laboral2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_laboral2"></span>
+							</label>
+							<br>
+							<label>
+								<span>Descripción general del cargo:</span>
+								<span id="descripcion_laboral2"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none" id="antecedentes3">
+							<h3>Experiencia 3</h3>
+							<label>
+								<span>Cargo:</span>
+								<span id="cargo3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_laboral3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_laboral3"></span>
+							</label>
+							<br>
+							<label>
+								<span>Descripción general del cargo:</span>
+								<span id="descripcion_laboral3"></span>
+							</label>
+						</div>
+						<div class="col-md-6 com-xs-12" style="display:none" id="antecedentes4">
+							<h3>Experiencia 4</h3>
+							<label>
+								<span>Cargo:</span>
+								<span id="cargo4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Institución:</span>
+								<span id="institucion_laboral4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Años inicio/término:</span>
+								<span id="anos_laboral4"></span>
+							</label>
+							<br>
+							<label>
+								<span>Descripción general del cargo:</span>
+								<span id="descripcion_laboral4"></span>
 							</label>
 						</div>
 						<div class="col-md-6 com-xs-12">
@@ -234,11 +566,12 @@
 				                </div>
 				                <div class="form-group" style="width: 100%;">
 				                	<label>Rut:</label>
-				                	<input type="text" autocomplete="off" oninput="this.className='form-control obligatorio'" id="inputRut" class="form-control obligatorio" onchange="checkRut(this)" required autofocus>
+				                	<label type="text" id="inputRut" class="form-control">${rut}</label>
+<!-- 				                	<input type="text" autocomplete="off" oninput="this.className='form-control obligatorio'" id="inputRut" class="form-control obligatorio" onchange="checkRut(this)" required autofocus> -->
 				                </div>
 			            		<div class="form-group" style="width: 100%;">
 				                	<label>Fecha de Nacimiento:</label>
-				                	<input type="date" autocomplete="off" oninput="this.className='form-control'" id="inputNacimiento" class="form-control" required autofocus>
+				                	<input type="date" autocomplete="off" oninput="this.className='form-control obligatorio'" id="inputNacimiento" class="form-control obligatorio" required autofocus>
 			                	</div>
 			                	<div class="form-group" style="width: 100%;">
 				                	<label>Pais:</label>
@@ -270,7 +603,8 @@
 				                </div>  
 				                <div class="form-group" style="width: 100%;">
 				                	<label>Email:</label>
-					                <input type="text" autocomplete="off" oninput="this.className='form-control'" id="inputEmail" class="form-control" required autofocus>
+				                	<label type="text" id="inputEmail" class="form-control">${correo}</label>
+<!-- 					                <input type="text" autocomplete="off" oninput="this.className='form-control'" id="inputEmail" class="form-control" required autofocus> -->
 					            </div>
 	            			</div>
 						</div>
@@ -439,7 +773,7 @@
 						      	<h3>Disponibilidad</h3>
 								<div class="form-group" style="width: 100%;">
 				                	<label>N° de Días:</label>
-				                	<input type="number" autocomplete="off" oninput="this.className='form-control'" id="inputDias_disponibilidad" class="form-control" required autofocus>
+				                	<input type="number" autocomplete="off" oninput="this.className='form-control obligatorio'" id="inputDias_disponibilidad" class="form-control obligatorio" required autofocus>
 					           	</div>
 					      	</div>
 					      	<div class="col-md-6 col-md-offset-6 col-xs-12">

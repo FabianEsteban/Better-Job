@@ -21,6 +21,13 @@ public class session {
 	public void setRut(String value){
 		session.setAttribute("rut", value);
 	}
+	public String getCorreo(){
+		String value = (String) session.getAttribute("correo");
+		return value;
+	}
+	public void setCorreo(String value){
+		session.setAttribute("correo", value);
+	}
 	public int getEstado_Curriculum(){
 		int value = (Integer) session.getAttribute("estado_curriculum");
 		return value;

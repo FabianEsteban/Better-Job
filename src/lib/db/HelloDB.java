@@ -61,13 +61,14 @@ public class HelloDB {
 		ArrayList<loginApp> data = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select pass from login where usuario = '"+rut+"'";
+			sql = "select pass, estado_curriculum from login where usuario = '"+rut+"'";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				loginApp c = new loginApp();
 				c.setPass(rs.getString("pass"));
+				c.setEstado_curriculum(rs.getInt("estado_curriculum"));
 				data.add(c);
 			}
 			rs.close();
@@ -227,6 +228,7 @@ public class HelloDB {
 				us = new loginApp();
 				us.setId(rs.getInt("id"));
 				us.setUsuario(rs.getString("usuario"));
+				us.setCorreo(rs.getString("correo"));
 				us.setPerfilText(rs.getString("perfilText"));
 				us.setEstado(rs.getInt("estado"));
 				us.setEstado_curriculum(rs.getInt("estado_curriculum"));
@@ -344,9 +346,11 @@ public class HelloDB {
 		PreparedStatement ps6 = null;
 		PreparedStatement ps7 = null;
 		PreparedStatement ps8 = null;
+		PreparedStatement ps19 = null;
 		String sql = "";
 		String sql2 = "";
 		String sql3 = "";
+		String sql19 = "";
 		String sql4 = "";
 		String sql6 = "";
 		String sql7 = "";
@@ -357,21 +361,29 @@ public class HelloDB {
 		Date date = new Date();
 		
 		try{
+//			******************************* CURRICULUM ************************
 			sql = "INSERT into curriculum (rut, nombre, fecha_nacimiento, pais, estado_civil, direccion, region, comuna,"
 					+ " telefono, correo, disponibilidad, nombre_recomendacion, empresa_recomendacion, telefono_recomendacion,"
-					+ " mail_recomendacion, fecha_edit) values ('"+data.getRut()+"', '"+data.getNombre()+"',"
+					+ " mail_recomendacion, fecha_edit, evaluacion) values ('"+data.getRut()+"', '"+data.getNombre()+"',"
 					+ " '"+data.getFecha_nacimiento()+"', '"+data.getPais()+"', '"+data.getEstado_civil()+"',"
 					+ " '"+data.getDireccion()+"', '"+data.getRegion()+"', '"+data.getComuna()+"', '"+data.getTelefono()+"',"
 					+ " '"+data.getCorreo()+"', '"+data.getDisponibilidad()+"', '"+data.getNombre_recomendacion()+"',"
 					+ " '"+data.getEmpresa_recomendacion()+"', '"+data.getTelefono_recomendacion()+"',"
-					+ " '"+data.getMail_recomendacion()+"', '"+dateFormat.format(date)+"')";
+					+ " '"+data.getMail_recomendacion()+"', '"+dateFormat.format(date)+"', 0)";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			
+			
+//			******************************* BASICA ************************
 			sql2 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
 					+ " values ('"+data.getRut()+"', '1', '"+data.getInstitucion_basica()+"', "
 					+ "'', '"+data.getAno_basica()+"', '"+data.getAno_basica()+"', "
 					+ "'')";
 			ps2 = db.conn.prepareStatement(sql2);
 			ps2.execute();
-			if(data.getInstitucion_basica1() != ""){
+			
+			if(data.getInstitucion_basica1() != null){
+				System.out.println("entra");
 				String sql5 = "";
 				PreparedStatement ps5 = null;
 				sql5 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -381,7 +393,7 @@ public class HelloDB {
 				ps5 = db.conn.prepareStatement(sql5);
 				ps5.execute();
 			}
-			if(data.getInstitucion_basica2() != ""){
+			if(data.getInstitucion_basica2() != null){
 				String sql10 = "";
 				PreparedStatement ps10 = null;
 				sql10 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -391,11 +403,16 @@ public class HelloDB {
 				ps10 = db.conn.prepareStatement(sql10);
 				ps10.execute();
 			}
+			
+//			******************************* MEDIA ************************
 			sql4 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
 					+ " values ('"+data.getRut()+"', '2', '"+data.getInstitucion_media()+"', "
 					+ "'', '"+data.getAno_media()+"', '"+data.getAno_media()+"', "
 					+ "'')";
-			if(data.getInstitucion_media1() != ""){
+			ps4 = db.conn.prepareStatement(sql4);
+			ps4.execute();
+
+			if(data.getInstitucion_media1() != null){
 				String sql9 = "";
 				PreparedStatement ps9 = null;
 				sql9 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -405,7 +422,7 @@ public class HelloDB {
 				ps9 = db.conn.prepareStatement(sql9);
 				ps9.execute();
 			}
-			if(data.getInstitucion_media2() != ""){
+			if(data.getInstitucion_media2() != null){
 				String sql11 = "";
 				PreparedStatement ps11 = null;
 				sql11 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -415,11 +432,16 @@ public class HelloDB {
 				ps11 = db.conn.prepareStatement(sql11);
 				ps11.execute();
 			}
+			
+//			******************************* UNIVERSIDAD ************************
 			sql6 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
 					+ " values ('"+data.getRut()+"', '3', '"+data.getUniversidad()+"', "
 					+ "'"+data.getCarrera()+"', '"+data.getAno_universidad()+"', '"+data.getAno_universidad()+"', "
 					+ "'')";
-			if(data.getUniversidad1() != ""){
+			ps6 = db.conn.prepareStatement(sql6);
+			ps6.execute();
+			
+			if(data.getUniversidad1() != null){
 				String sql12 = "";
 				PreparedStatement ps12 = null;
 				sql12 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -429,11 +451,16 @@ public class HelloDB {
 				ps12 = db.conn.prepareStatement(sql12);
 				ps12.execute();
 			}
+			
+//			******************************* POSTGRADO ************************
 			sql7 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
 					+ " values ('"+data.getRut()+"', '4', '"+data.getUniversidad_postgrado()+"', "
 					+ "'"+data.getPrograma_postgrado()+"', '"+data.getAno_postgrado()+"', '"+data.getAno_postgrado()+"', "
 					+ "'')";
-			if(data.getAno_postgrado1() != ""){
+			ps7 = db.conn.prepareStatement(sql7);
+			ps7.execute();
+			
+			if(data.getAno_postgrado1() != null){
 				String sql13 = "";
 				PreparedStatement ps13 = null;
 				sql13 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -443,11 +470,16 @@ public class HelloDB {
 				ps13 = db.conn.prepareStatement(sql13);
 				ps13.execute();
 			}
+			
+//			******************************* CURSO ************************		
 			sql8 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
 					+ " values ('"+data.getRut()+"', '5', '"+data.getUniversidad_curso()+"', "
 					+ "'"+data.getNombre_curso()+"', '"+data.getAno_curso()+"', '"+data.getAno_curso()+"', "
 					+ "'"+data.getHoras_curso()+"')";
-			if(data.getUniversidad_curso1() != ""){
+			ps8 = db.conn.prepareStatement(sql8);
+			ps8.execute();
+			
+			if(data.getUniversidad_curso1() != null){
 				String sql14 = "";
 				PreparedStatement ps14 = null;
 				sql14 = "INSERT into educacion (rut_usuario, nivel_edu, nombre_edu, carrera_edu, fecha_ini, fecha_final, horas_edu)"
@@ -457,24 +489,21 @@ public class HelloDB {
 				ps14 = db.conn.prepareStatement(sql14);
 				ps14.execute();
 			}
+			
+//			******************************* ANTECEDENTES ************************	
 			sql3 = "INSERT into antecedentes (rut_usuario_ante, cargo, institucion, anos, descripcion) values "
 					+ "('"+data.getRut()+"', '"+data.getCargo()+"', '"+data.getInstitucion()+"', '"+data.getAnos()+"', "
 					+ "'"+data.getDescripcion()+"')";
-			sql4 = "update titulo.login set estado_curriculum = 1 where usuario = '"+data.getRut()+"'";
-			ps = db.conn.prepareStatement(sql);
-			
 			ps3 = db.conn.prepareStatement(sql3);
-			ps4 = db.conn.prepareStatement(sql4);
-			ps6 = db.conn.prepareStatement(sql6);
-			ps7 = db.conn.prepareStatement(sql7);
-			ps8 = db.conn.prepareStatement(sql8);
-			ps.execute();
-			
 			ps3.execute();
-			ps4.execute();
-			ps6.execute();
-			ps7.execute();
-			ps8.execute();
+			
+//			***********************************************************************
+			
+			sql19 = "update titulo.login set estado_curriculum = 1 where usuario = '"+data.getRut()+"'";
+			ps19 = db.conn.prepareStatement(sql19);
+			ps19.execute();
+		
+			
 			return true;
 		}
 		catch(SQLException e){
@@ -496,7 +525,7 @@ public class HelloDB {
 		}
 		return false;
 	}
-	public static ArrayList<curriculum> getCurriculum(String rut) throws Exception{
+	public static ArrayList<curriculum> getCurriculumxRut(String rut) throws Exception{
 		PreparedStatement ps = null;
 
 		String sql = "";
@@ -511,10 +540,8 @@ public class HelloDB {
 		ConnectionDB db = new ConnectionDB();
 		try {
 			sql = "select * from titulo.curriculum\r\n" + 
-					"left join titulo.educacion\r\n" + 
+					"left join titulo.educacion \r\n" + 
 					"on titulo.curriculum.rut = titulo.educacion.rut_usuario\r\n" + 
-					"left join titulo.antecedentes\r\n" + 
-					"on titulo.curriculum.rut =  titulo.antecedentes.rut_usuario_ante\r\n" + 
 					"left join titulo.universidades\r\n" + 
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
@@ -523,7 +550,7 @@ public class HelloDB {
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
 					"left join titulo.relacion\r\n" + 
 					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
-					"where rut = '"+rut+"'\r\n" +
+					"where nivel_edu = 3 and titulo.login.usuario = '"+rut+"'\r\n" + 
 					"order by evaluacion desc";
 			
 			ps = db.conn.prepareStatement(sql);
@@ -551,13 +578,13 @@ public class HelloDB {
 				pm.setEvaluacion(rs.getInt("evaluacion"));
 				
 
-				antecedentes pm2 = new antecedentes();
-				pm2.setCargo(rs.getString("cargo"));
-				pm2.setInstitucion(rs.getString("institucion"));
-				pm2.setAnos(rs.getString("anos"));
-				pm2.setDescripcion(rs.getString("descripcion"));
-				lista2.add(pm2);
-				pm.setAntecedentes(lista2);
+//				antecedentes pm2 = new antecedentes();
+//				pm2.setCargo(rs.getString("cargo"));
+//				pm2.setInstitucion(rs.getString("institucion"));
+//				pm2.setAnos(rs.getString("anos"));
+//				pm2.setDescripcion(rs.getString("descripcion"));
+//				lista2.add(pm2);
+//				pm.setAntecedentes(lista2);
 			
 
 				educacion pm3 = new educacion();
@@ -615,6 +642,231 @@ public class HelloDB {
 		return lista;
 
 	}
+	public static ArrayList<educacion> getCurriculumxRutMedia(String rut) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ArrayList<educacion> lista = new ArrayList<educacion>();
+
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "select nombre_edu, fecha_ini, fecha_final from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 2";
+			
+			ps = db.conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				educacion pm = new educacion();
+				pm.setNombre_edu(rs.getString("nombre_edu"));
+				pm.setFecha_ini(rs.getString("fecha_ini"));
+				pm.setFecha_final(rs.getString("fecha_final"));
+							
+				lista.add(pm);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			db.close();
+		}
+		return lista;
+
+	}
+	public static ArrayList<educacion> getCurriculumxRutBasica(String rut) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ArrayList<educacion> lista = new ArrayList<educacion>();
+
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "select nombre_edu, fecha_ini, fecha_final from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 1";
+			
+			ps = db.conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				educacion pm = new educacion();
+				pm.setNombre_edu(rs.getString("nombre_edu"));
+				pm.setFecha_ini(rs.getString("fecha_ini"));
+				pm.setFecha_final(rs.getString("fecha_final"));
+							
+				lista.add(pm);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			db.close();
+		}
+		return lista;
+
+	}
+	public static ArrayList<educacion> getCurriculumxRutUniversitaria(String rut) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ArrayList<educacion> lista = new ArrayList<educacion>();
+
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "select nombre_edu, fecha_ini, fecha_final, carrera_edu from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 3";
+			
+			ps = db.conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				educacion pm = new educacion();
+				pm.setNombre_edu(rs.getString("nombre_edu"));
+				pm.setFecha_ini(rs.getString("fecha_ini"));
+				pm.setFecha_final(rs.getString("fecha_final"));
+				pm.setCarrera_edu(rs.getString("carrera_edu"));
+							
+				lista.add(pm);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			db.close();
+		}
+		return lista;
+
+	}
+	public static ArrayList<educacion> getCurriculumxRutPostgrado(String rut) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ArrayList<educacion> lista = new ArrayList<educacion>();
+
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "select nombre_edu, fecha_ini, fecha_final, carrera_edu from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 4";
+			
+			ps = db.conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				educacion pm = new educacion();
+				pm.setNombre_edu(rs.getString("nombre_edu"));
+				pm.setFecha_ini(rs.getString("fecha_ini"));
+				pm.setFecha_final(rs.getString("fecha_final"));
+				pm.setCarrera_edu(rs.getString("carrera_edu"));
+							
+				lista.add(pm);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			db.close();
+		}
+		return lista;
+
+	}
+	public static ArrayList<educacion> getCurriculumxRutCursos(String rut) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ArrayList<educacion> lista = new ArrayList<educacion>();
+
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "select nombre_edu, carrera_edu, horas_edu from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 5";
+			
+			ps = db.conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				educacion pm = new educacion();
+				pm.setNombre_edu(rs.getString("nombre_edu"));
+				pm.setCarrera_edu(rs.getString("carrera_edu"));
+				pm.setHoras_edu(rs.getString("horas_edu"));
+							
+				lista.add(pm);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			db.close();
+		}
+		return lista;
+
+	}
+	public static ArrayList<antecedentes> getCurriculumxRutAntecedentes(String rut) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ArrayList<antecedentes> lista = new ArrayList<antecedentes>();
+
+		ConnectionDB db = new ConnectionDB();
+		try {
+			sql = "select cargo, institucion, anos, descripcion from titulo.antecedentes where rut_usuario_ante = '"+rut+"'";
+			
+			ps = db.conn.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				antecedentes pm = new antecedentes();
+				pm.setCargo(rs.getString("cargo"));
+				pm.setInstitucion(rs.getString("institucion"));
+				pm.setAnos(rs.getString("anos"));
+				pm.setDescripcion(rs.getString("descripcion"));
+							
+				lista.add(pm);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		} finally {
+			ps.close();
+			db.close();
+		}
+		return lista;
+
+	}
 	public static ArrayList<curriculum> getCurriculumxUniversidad(int cod_universidad) throws Exception{
 		PreparedStatement ps = null;
 
@@ -632,8 +884,6 @@ public class HelloDB {
 			sql = "select * from titulo.curriculum\r\n" + 
 					"left join titulo.educacion\r\n" + 
 					"on titulo.curriculum.rut = titulo.educacion.rut_usuario\r\n" + 
-					"left join titulo.antecedentes\r\n" + 
-					"on titulo.curriculum.rut =  titulo.antecedentes.rut_usuario_ante\r\n" + 
 					"left join titulo.universidades\r\n" + 
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
@@ -642,7 +892,7 @@ public class HelloDB {
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
 					"left join titulo.relacion\r\n" + 
 					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
-					"where nivel_edu = 2 and titulo.universidades.id_universidad = "+cod_universidad+"\r\n" +
+					"where nivel_edu = 3 and titulo.universidades.id_universidad = "+cod_universidad+"\r\n" +
 					"order by evaluacion desc";
 
 			ps = db.conn.prepareStatement(sql);
@@ -669,13 +919,13 @@ public class HelloDB {
 				pm.setDisponibilidad(rs.getString("disponibilidad"));
 				pm.setEvaluacion(rs.getInt("evaluacion"));
 
-					antecedentes pm2 = new antecedentes();
-					pm2.setCargo(rs.getString("cargo"));
-					pm2.setInstitucion(rs.getString("institucion"));
-					pm2.setAnos(rs.getString("anos"));
-					pm2.setDescripcion(rs.getString("descripcion"));
-					lista2.add(pm2);
-					pm.setAntecedentes(lista2);
+//					antecedentes pm2 = new antecedentes();
+//					pm2.setCargo(rs.getString("cargo"));
+//					pm2.setInstitucion(rs.getString("institucion"));
+//					pm2.setAnos(rs.getString("anos"));
+//					pm2.setDescripcion(rs.getString("descripcion"));
+//					lista2.add(pm2);
+//					pm.setAntecedentes(lista2);
 				
 
 					educacion pm3 = new educacion();
@@ -749,8 +999,6 @@ public class HelloDB {
 			sql = "select * from titulo.curriculum\r\n" + 
 					"left join titulo.educacion\r\n" + 
 					"on titulo.curriculum.rut = titulo.educacion.rut_usuario\r\n" + 
-					"left join titulo.antecedentes\r\n" + 
-					"on titulo.curriculum.rut =  titulo.antecedentes.rut_usuario_ante\r\n" + 
 					"left join titulo.universidades\r\n" + 
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
@@ -759,7 +1007,7 @@ public class HelloDB {
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
 					"left join titulo.relacion\r\n" + 
 					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
-					"where nivel_edu = 2 and titulo.carreras.id_carrera = "+cod_carrera+"\r\n" +
+					"where nivel_edu = 3 and titulo.carreras.id_carrera = "+cod_carrera+"\r\n" +
 					"order by evaluacion desc";
 
 			ps = db.conn.prepareStatement(sql);
@@ -786,13 +1034,13 @@ public class HelloDB {
 				pm.setDisponibilidad(rs.getString("disponibilidad"));
 				pm.setEvaluacion(rs.getInt("evaluacion"));
 
-					antecedentes pm2 = new antecedentes();
-					pm2.setCargo(rs.getString("cargo"));
-					pm2.setInstitucion(rs.getString("institucion"));
-					pm2.setAnos(rs.getString("anos"));
-					pm2.setDescripcion(rs.getString("descripcion"));
-					lista2.add(pm2);
-					pm.setAntecedentes(lista2);
+//					antecedentes pm2 = new antecedentes();
+//					pm2.setCargo(rs.getString("cargo"));
+//					pm2.setInstitucion(rs.getString("institucion"));
+//					pm2.setAnos(rs.getString("anos"));
+//					pm2.setDescripcion(rs.getString("descripcion"));
+//					lista2.add(pm2);
+//					pm.setAntecedentes(lista2);
 				
 
 					educacion pm3 = new educacion();
@@ -866,8 +1114,6 @@ public class HelloDB {
 			sql = "select * from titulo.curriculum\r\n" + 
 					"left join titulo.educacion\r\n" + 
 					"on titulo.curriculum.rut = titulo.educacion.rut_usuario\r\n" + 
-					"left join titulo.antecedentes\r\n" + 
-					"on titulo.curriculum.rut =  titulo.antecedentes.rut_usuario_ante\r\n" + 
 					"left join titulo.universidades\r\n" + 
 					"on titulo.educacion.nombre_edu = titulo.universidades.id_universidad\r\n" + 
 					"left join titulo.carreras\r\n" + 
@@ -876,6 +1122,7 @@ public class HelloDB {
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
 					"left join titulo.relacion\r\n" + 
 					"on titulo.relacion.postulante = titulo.login.id\r\n" +
+					"where nivel_edu = 3\r\n" +
 					"order by evaluacion desc";
 			ps = db.conn.prepareStatement(sql);
 
@@ -902,13 +1149,13 @@ public class HelloDB {
 				pm.setDisponibilidad(rs.getString("disponibilidad"));
 				pm.setEvaluacion(rs.getInt("evaluacion"));
 
-				antecedentes pm2 = new antecedentes();
-				pm2.setCargo(rs.getString("cargo"));
-				pm2.setInstitucion(rs.getString("institucion"));
-				pm2.setAnos(rs.getString("anos"));
-				pm2.setDescripcion(rs.getString("descripcion"));
-				lista2.add(pm2);
-				pm.setAntecedentes(lista2);
+//				antecedentes pm2 = new antecedentes();
+//				pm2.setCargo(rs.getString("cargo"));
+//				pm2.setInstitucion(rs.getString("institucion"));
+//				pm2.setAnos(rs.getString("anos"));
+//				pm2.setDescripcion(rs.getString("descripcion"));
+//				lista2.add(pm2);
+//				pm.setAntecedentes(lista2);
 			
 
 				educacion pm3 = new educacion();
@@ -954,6 +1201,7 @@ public class HelloDB {
 				
 				
 				lista.add(pm);
+				
 			}
 			
 		} catch (SQLException e) {

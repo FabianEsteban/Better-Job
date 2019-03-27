@@ -15,15 +15,14 @@ $(document).ready(function() {
 //      });
 //
 //      return false;
-//	var product = document.getElementById("product"), usuario;
-//	usuario = product.getAttribute("data-prodnumber");
+
 	var usuario = document.getElementById("rut").value;
 	loadData(usuario);
-    });
+});
 var arrayData = "";
 function loadData(usuario){
 	$.ajax({
-		url: "/springapp/titulo/fabian/getCurriculum/"+usuario,
+		url: "/springapp/titulo/fabian/getCurriculumxRut/"+usuario,
 		type:	"GET",
 		dataType: 'json',
 		async: false,

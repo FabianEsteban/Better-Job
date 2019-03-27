@@ -55,16 +55,16 @@ function loadTabla() {
 	var tbl = "";
 	table.clear().draw();
 	$.each(arrayFormAplic,function(k, v) {
-		if(v.estado == 1){
+		if(v.estado == 0){
 			estado = "<div><select id='estado"+v.id+"' class='form-control input-md' disabled>" +
-			"<option selected value = 1>Activo</option>" +
-			"<option value = 0>Bloqueado</option>" +
+			"<option selected value = 0>Activo</option>" +
+			"<option value = 1>Bloqueado</option>" +
 			"</select></div>";
 		}
 		else{
 			estado = "<div><select id='estado"+v.id+"' class='form-control input-md' disabled>" +
-			"<option value = 1>Activo</option>" +
-			"<option selected value = 0>Bloqueado</option>" +
+			"<option value = 0>Activo</option>" +
+			"<option selected value = 1>Bloqueado</option>" +
 			"</select></div>";
 		}
 		var editar = "<div id='editar"+v.id+"' class='dropdown dropleft' style='float: left;'>" +
