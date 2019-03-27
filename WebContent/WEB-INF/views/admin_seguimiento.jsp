@@ -14,7 +14,25 @@
 	
 		<section id="main-content">
       		<section class="wrapper">
-<div id="curriculum">
+					<div id="curriculum">
+						<div id="cover">
+							  <div id="stars">
+							    <input type="radio" name="rating" class="rb" id="_3" onclick = "threestars()">
+							    <i class="fa fa-star" aria-hidden="true"></i>
+							
+							    <input type="radio" name="rating" class="rb" id="_2" onclick = "twostars()">
+							    <i class="fa fa-star" aria-hidden="true"></i>
+							
+							    <input type="radio" name="rating" class="rb" id="_1" onclick = "onestars()">
+							    <i class="fa fa-star" aria-hidden="true"></i>
+							
+<!-- 							    <input type="radio" name="rating" class="rb" id="_4"> -->
+<!-- 							    <i class="fa fa-star" aria-hidden="true"></i> -->
+							
+<!-- 							    <input type="radio" name="rating" class="rb" id="_5"> -->
+<!-- 							    <i class="fa fa-star" aria-hidden="true"></i> -->
+							  </div>
+						</div>
 						<h2>Antecedentes Personales</h2>
 						<div class="col-md-6 com-xs-12">
 							<label>

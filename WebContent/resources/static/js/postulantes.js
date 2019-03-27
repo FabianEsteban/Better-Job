@@ -73,8 +73,9 @@ function loadTabla() {
 	var cont = 0;
 	var contRelacion = 0;
 	var contId = 0;
+
 	table.clear().draw();
-	console.log(arrayFormAplic)
+
 	$.each(arrayFormAplic,function(k, v) {
 		
 		cont++;
@@ -127,9 +128,10 @@ function loadTabla() {
 			contCarreras++;
 		})
 		
+		
 		$.fn.stars = function() {
 		    return $(this).each(function() {
-		        // Get the value
+	    		// Get the value
 		        var val = v.evaluacion;
 		        // Make sure that the value is in 0 - 5 range, multiply to get width
 		        var size = Math.max(0, (Math.min(5, val))) * 16;
@@ -137,6 +139,7 @@ function loadTabla() {
 		        var $span = $('<span />').width(size);
 		        // Replace the numerical value with stars
 		        $(this).html($span);
+		        
 		    });
 		}
 
