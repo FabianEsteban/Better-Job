@@ -83,7 +83,7 @@ function loadTabla() {
 		var nombre = v.nombre;
 		var rut = v.rut;
 		var disponibilidad = v.disponibilidad;
-		var evaluacion = "<span class='stars'>v.evaluacion</span>";
+
 		var universidad = "";
 		var universidad2 = "";
 		var carrera = "";
@@ -102,23 +102,14 @@ function loadTabla() {
 			contCarreras++;
 		})
 		
-		$.fn.stars = function() {
-		    return $(this).each(function() {
-		        // Get the value
-		        var val = v.evaluacion;
-		        // Make sure that the value is in 0 - 5 range, multiply to get width
-		        var size = Math.max(0, (Math.min(5, val))) * 16;
-		        // Create stars holder
-		        var $span = $('<span />').width(size);
-		        // Replace the numerical value with stars
-		        $(this).html($span);
-		    });
-		}
 
-		$(function() {
-		    $('span.stars').stars();
-		});
-		
+
+
+
+		if(carrera != null){
+			idCarrera = carrera.replace(/\s/g, '');
+		}
+		var evaluacion = "<span class='stars' id='star"+v.rut+idCarrera+"'></span>";
 
 		
 		tbl = [nombre, rut, carrera, universidad, disponibilidad+" dias", seguimiento, evaluacion];
@@ -127,6 +118,15 @@ function loadTabla() {
 	    .draw()
 	    .node();
 		
+		
+		// Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, v.evaluacion))) * 16;
+
+        // Create stars holder
+        var $span = $('<span />').width(size);
+
+        // Replace the numerical value with stars
+        $('#star'+rut+idCarrera).html($span);
 		
 
 	})
