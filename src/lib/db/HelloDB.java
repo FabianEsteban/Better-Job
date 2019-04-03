@@ -11,10 +11,12 @@ import java.util.Date;
 
 import lib.classTI.antecedentes;
 import lib.classTI.carreras;
+import lib.classTI.comuna;
 import lib.classTI.curriculum;
 import lib.classTI.educacion;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
+import lib.classTI.region;
 import lib.classTI.relacion;
 import lib.classTI.universidades;
 
@@ -146,7 +148,67 @@ public class HelloDB {
 		return data;
 		}
 	}
-	
+	@SuppressWarnings("finally")
+	public static ArrayList<region> getRegiones() throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<region> data = new ArrayList<region>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select * from regiones";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				region c = new region();
+				c.setIdregiones(rs.getInt("idregiones"));
+				c.setRegion(rs.getString("region"));
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
+	@SuppressWarnings("finally")
+	public static ArrayList<comuna> getComunas(int region) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<comuna> data = new ArrayList<comuna>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select * from titulo.comunas where region = "+region+"";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				comuna c = new comuna();
+				c.setIdcomunas(rs.getInt("idcomunas"));
+				c.setRegion(rs.getInt("region"));
+				c.setComuna(rs.getString("comuna"));
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
 	@SuppressWarnings("finally")
 	public static ArrayList<loginApp> getDatosxPrivilegio(String privilegio) throws Exception {
 		PreparedStatement ps = null;
@@ -292,15 +354,31 @@ public class HelloDB {
 	}
 	public static boolean saveEnlace(relacion data) throws Exception{
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		PreparedStatement ps3 = null;
 		String sql = "";
+		String sql2 = "";
+		String sql3 = "";
 		ConnectionDB db = new ConnectionDB();
 		
 		try{
-			sql = "INSERT into relacion (empresa, postulante) "
-					+ "values ('"+data.getEmpresa()+"', '"+data.getPostulante()+"')";
-			ps = db.conn.prepareStatement(sql);
-			ps.execute();
-			return true;
+			sql2 = "select * from relacion where empresa = '"+data.getEmpresa()+"' and postulante = '"+data.getPostulante()+"'";
+			ps2 = db.conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			if(!rs2.isBeforeFirst()){
+				sql = "INSERT into relacion (empresa, postulante, estado_relacion) "
+						+ "values ('"+data.getEmpresa()+"', '"+data.getPostulante()+"', 1)";
+				ps = db.conn.prepareStatement(sql);
+				ps.execute();
+				return true;
+			}
+			else {
+				sql3 = "update relacion set estado_relacion = 1 where empresa = '"+data.getEmpresa()+"' and postulante = '"+data.getPostulante()+"'";
+				ps3 = db.conn.prepareStatement(sql3);
+				ps3.execute();
+				return true;
+			}
+			
 		}
 		catch(SQLException e){
 			System.out.println("Error: "+e.getMessage());
@@ -309,7 +387,7 @@ public class HelloDB {
 			System.out.println("Error: "+ e.getMessage());
 		}
 		finally{
-			ps.close();
+//			ps.close();
 			db.close();
 		}
 		return false;
@@ -615,6 +693,7 @@ public class HelloDB {
 				relacion pm6 = new relacion();
 				pm6.setEmpresa(rs.getString("empresa"));
 				pm6.setPostulante(rs.getInt("postulante"));
+				pm6.setEstado(rs.getInt("estado_relacion"));
 				lista6.add(pm6);
 				pm.setRelacion(lista6);
 				
@@ -725,7 +804,13 @@ public class HelloDB {
 
 		ConnectionDB db = new ConnectionDB();
 		try {
-			sql = "select nombre_edu, fecha_ini, fecha_final, carrera_edu from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 3";
+			sql = "select nombre_edu, fecha_ini, fecha_final, carrera_edu, universidad, carrera\r\n" + 
+					"from titulo.educacion \r\n" + 
+					"left join titulo.universidades\r\n" + 
+					"on nombre_edu = id_universidad\r\n" + 
+					"left join titulo.carreras\r\n" + 
+					"on carrera_edu = id_carrera\r\n" + 
+					"where rut_usuario = '"+rut+"' and nivel_edu = 3";
 			
 			ps = db.conn.prepareStatement(sql);
 
@@ -737,6 +822,8 @@ public class HelloDB {
 				pm.setFecha_ini(rs.getString("fecha_ini"));
 				pm.setFecha_final(rs.getString("fecha_final"));
 				pm.setCarrera_edu(rs.getString("carrera_edu"));
+				pm.setUniversidad(rs.getString("universidad"));
+				pm.setCarrera(rs.getString("carrera"));
 							
 				lista.add(pm);
 			}
@@ -763,7 +850,11 @@ public class HelloDB {
 
 		ConnectionDB db = new ConnectionDB();
 		try {
-			sql = "select nombre_edu, fecha_ini, fecha_final, carrera_edu from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 4";
+			sql = "select nombre_edu, fecha_ini, fecha_final, carrera_edu, universidad \r\n" + 
+					"from titulo.educacion \r\n" + 
+					"left join titulo.universidades\r\n" + 
+					"on nombre_edu = id_universidad\r\n" + 
+					"where rut_usuario = '"+rut+"' and nivel_edu = 4";
 			
 			ps = db.conn.prepareStatement(sql);
 
@@ -775,6 +866,7 @@ public class HelloDB {
 				pm.setFecha_ini(rs.getString("fecha_ini"));
 				pm.setFecha_final(rs.getString("fecha_final"));
 				pm.setCarrera_edu(rs.getString("carrera_edu"));
+				pm.setUniversidad(rs.getString("universidad"));
 							
 				lista.add(pm);
 			}
@@ -801,7 +893,11 @@ public class HelloDB {
 
 		ConnectionDB db = new ConnectionDB();
 		try {
-			sql = "select nombre_edu, carrera_edu, horas_edu from titulo.educacion where rut_usuario = '"+rut+"' and nivel_edu = 5";
+			sql = "select nombre_edu, carrera_edu, horas_edu, universidad\r\n" + 
+					"from titulo.educacion \r\n" + 
+					"left join titulo.universidades\r\n" + 
+					"on nombre_edu = id_universidad\r\n" + 
+					"where rut_usuario = '"+rut+"' and nivel_edu = 5";
 			
 			ps = db.conn.prepareStatement(sql);
 
@@ -812,6 +908,7 @@ public class HelloDB {
 				pm.setNombre_edu(rs.getString("nombre_edu"));
 				pm.setCarrera_edu(rs.getString("carrera_edu"));
 				pm.setHoras_edu(rs.getString("horas_edu"));
+				pm.setUniversidad(rs.getString("universidad"));
 							
 				lista.add(pm);
 			}
@@ -955,6 +1052,7 @@ public class HelloDB {
 					relacion pm6 = new relacion();
 					pm6.setEmpresa(rs.getString("empresa"));
 					pm6.setPostulante(rs.getInt("postulante"));
+					pm6.setEstado(rs.getInt("estado_relacion"));
 					lista6.add(pm6);
 					pm.setRelacion(lista6);
 					
@@ -1070,6 +1168,7 @@ public class HelloDB {
 					relacion pm6 = new relacion();
 					pm6.setEmpresa(rs.getString("empresa"));
 					pm6.setPostulante(rs.getInt("postulante"));
+					pm6.setEstado(rs.getInt("estado_relacion"));
 					lista6.add(pm6);
 					pm.setRelacion(lista6);
 					
@@ -1189,6 +1288,7 @@ public class HelloDB {
 				relacion pm6 = new relacion();
 				pm6.setEmpresa(rs.getString("empresa"));
 				pm6.setPostulante(rs.getInt("postulante"));
+				pm6.setEstado(rs.getInt("estado_relacion"));
 				lista6.add(pm6);
 				pm.setRelacion(lista6);
 				
@@ -1223,7 +1323,7 @@ public class HelloDB {
 		ArrayList<relacion> data = new ArrayList<relacion>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select * from relacion where postulante = "+postulante+"";
+			sql = "select * from relacion where postulante = "+postulante+" and estado_relacion = 1";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -1247,6 +1347,29 @@ public class HelloDB {
 
 		return data;
 		}
+	}
+	public static boolean updateEvaluacion (curriculum data) throws Exception{
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();
+		
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			sql = "UPDATE titulo.curriculum set evaluacion = "+data.evaluacion+" where rut='"+data.rut+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
+			db.close();
+		}
+		return false;
 	}
 	public static boolean updateNombre (curriculum data) throws Exception{
 		

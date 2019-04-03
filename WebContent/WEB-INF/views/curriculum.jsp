@@ -585,18 +585,18 @@
 				                </div>
 					    	</div>
 					    	<div class="col-md-6 col-xs-12">
-				                <div class="form-group" style="width: 100%;">
-				                	<label>Dirección:</label>
-				                	<input type="text" autocomplete="off" oninput="this.className='form-control'" id="inputDireccion" class="form-control" required autofocus>
-				                </div> 
-				                <div class="form-group" style="width: 100%;">
+					    		<div class="form-group" style="width: 100%;">
 				                	<label>Region:</label>
-				                	<input type="text" autocomplete="off" oninput="this.className='form-control'" id="inputRegion" class="form-control" required autofocus>
+				                	<select  id="inputRegion" class="form-control"></select>
 				                </div> 
 				                <div class="form-group" style="width: 100%;">
 				                	<label>Comuna:</label>
-				                	<input type="text" autocomplete="off" oninput="this.className='form-control'" id="inputComuna" class="form-control" required autofocus>
+				                	<select id="inputComuna" class="form-control"></select>
 				                </div>
+				                <div class="form-group" style="width: 100%;">
+				                	<label>Dirección:</label>
+				                	<input type="text" autocomplete="off" oninput="this.className='form-control'" id="inputDireccion" class="form-control" required autofocus>
+				                </div>  
 				                <div class="form-group" style="width: 100%;">
 				                	<label>Celular:</label><br>
 				                	<input type="tel" autocomplete="off" oninput="this.className='form-control'" id="inputTelefono" class="form-control" required autofocus>
@@ -654,7 +654,7 @@
    	 								<div class="controls controls-row">
 										<div class="form-group" style="width: 100%;">
 						                	<label>Universidad:</label>
-						                	<input name="universidad" type="text" autocomplete="off" oninput="this.className='form-control'" id="inputUniversidad" class="form-control" required autofocus>
+						                	<select name="universidad" type="text" autocomplete="off" oninput="this.className='form-control'" id="inputUniversidad" class="form-control" required autofocus></select>
 							           	</div>
 							           	<div class="form-group" style="width: 100%;">
 						                	<label>Carrera:</label>
@@ -680,7 +680,7 @@
    	 								<div class="controls controls-row">
 										<div class="form-group" style="width: 100%;">
 						                	<label>Universidad:</label>
-						                	<input name="universidad_postgrado" type="text" autocomplete="off" oninput="this.className='form-control'" id="inputUniversidad_postgrado" class="form-control" required autofocus>
+						                	<select name="universidad_postgrado" type="text" autocomplete="off" oninput="this.className='form-control'" id="inputUniversidad_postgrado" class="form-control" required autofocus></select>
 							           	</div>
 							           	<div class="form-group" style="width: 100%;">
 						                	<label>Programa:</label>
@@ -707,7 +707,7 @@
    	 								<div class="controls controls-row">
 										<div class="form-group" style="width: 100%;">
 						                	<label>Universidad:</label>
-						                	<input name="universidad_curso" type="text" autocomplete="off" oninput="this.className='form-control'" id="inputUniversidad_curso" class="form-control" required autofocus>
+						                	<select name="universidad_curso" type="text" autocomplete="off" oninput="this.className='form-control'" id="inputUniversidad_curso" class="form-control" required autofocus></select>
 							           	</div>
 							           	<div class="form-group" style="width: 100%;">
 						                	<label>Nombre curso:</label>
@@ -819,6 +819,9 @@
     	
 		<script>
 		
+		$("#inputRegion").change(function(){
+			loadComunas($("#inputRegion").val());
+		});
 		
 		var currentTab = 0; // Current tab is set to be the first tab (0)
 		showTab(currentTab); // Display the crurrent tab

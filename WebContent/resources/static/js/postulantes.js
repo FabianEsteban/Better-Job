@@ -104,7 +104,8 @@ function loadTabla() {
 		$.each(v.relacion,function(k2, v2) {
 			var empresa = document.getElementById("empresa").value;
 			if(cont == contRelacion){
-				if(v2.empresa == empresa && v2.postulante == id){
+//				console.log(v2)
+				if(v2.empresa == empresa && v2.postulante == id && v2.estado == 1){
 					seleccionar = '<div>Ya seleccionado</div>';
 				}
 				else{
@@ -130,6 +131,9 @@ function loadTabla() {
 		
 		if(carrera != null){
 			idCarrera = carrera.replace(/\s/g, '');
+		}
+		else{
+			idCarrera = carrera;
 		}
 		var evaluacion = "<span class='stars' id='star"+v.rut+idCarrera+"'></span>";
 

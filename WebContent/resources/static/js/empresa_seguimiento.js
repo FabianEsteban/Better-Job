@@ -153,32 +153,32 @@ function Mostrar(){
 	$.each(dataUniversitaria, function(k, v) {
 		contUniversitaria++;
 		if(contUniversitaria == 1){
-			$("#institucion_pregrado").html(v.nombre_edu);
-			$("#carrera_pregrado").html(v.carrera_edu);
+			$("#institucion_pregrado").html(v.universidad);
+			$("#carrera_pregrado").html(v.carrera);
 			$("#anos_pregrado").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_pregrado").html(v.carrera_edu);
 		}
 		if(contUniversitaria == 2){
 			var x = document.getElementById("universitaria2");
 	        x.style.display = "block";
-			$("#institucion_pregrado2").html(v.nombre_edu);
-			$("#carrera_pregrado2").html(v.carrera_edu);
+			$("#institucion_pregrado2").html(v.universidad);
+			$("#carrera_pregrado2").html(v.carrera);
 			$("#anos_pregrado2").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_pregrado2").html(v.carrera_edu);
 		}
 		if(contUniversitaria == 3){
 			var x = document.getElementById("universitaria3");
 	        x.style.display = "block";
-			$("#institucion_pregrado3").html(v.nombre_edu);
-			$("#carrera_pregrado3").html(v.carrera_edu);
+			$("#institucion_pregrado3").html(v.universidad);
+			$("#carrera_pregrado3").html(v.carrera);
 			$("#anos_pregrado3").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_pregrado3").html(v.carrera_edu);
 		}
 		if(contUniversitaria == 4){
 			var x = document.getElementById("universitaria4");
 	        x.style.display = "block";
-			$("#institucion_pregrado4").html(v.nombre_edu);
-			$("#carrera_pregrado4").html(v.carrera_edu);
+			$("#institucion_pregrado4").html(v.universidad);
+			$("#carrera_pregrado4").html(v.carrera);
 			$("#anos_pregrado4").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_pregrado4").html(v.carrera_edu);
 		}
@@ -186,7 +186,7 @@ function Mostrar(){
 	$.each(dataPostgrado, function(k, v) {
 		contPostgrado++;
 		if(contPostgrado == 1){
-			$("#institucion_postgrado").html(v.nombre_edu);
+			$("#institucion_postgrado").html(v.universidad);
 			$("#programa_postgrado").html(v.carrera_edu);
 			$("#anos_postgrado").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_postgrado").html(v.carrera_edu);
@@ -194,7 +194,7 @@ function Mostrar(){
 		if(contPostgrado == 2){
 			var x = document.getElementById("postgrado2");
 	        x.style.display = "block";
-	        $("#institucion_postgrado2").html(v.nombre_edu);
+	        $("#institucion_postgrado2").html(v.universidad);
 			$("#programa_postgrado2").html(v.carrera_edu);
 			$("#anos_postgrado2").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_postgrado2").html(v.carrera_edu);
@@ -202,7 +202,7 @@ function Mostrar(){
 		if(contPostgrado == 3){
 			var x = document.getElementById("postgrado3");
 	        x.style.display = "block";
-	        $("#institucion_postgrado3").html(v.nombre_edu);
+	        $("#institucion_postgrado3").html(v.universidad);
 			$("#programa_postgrado3").html(v.carrera_edu);
 			$("#anos_postgrado3").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_postgrado3").html(v.carrera_edu);
@@ -210,7 +210,7 @@ function Mostrar(){
 		if(contPostgrado == 4){
 			var x = document.getElementById("postgrado4");
 	        x.style.display = "block";
-	        $("#institucion_postgrado4").html(v.nombre_edu);
+	        $("#institucion_postgrado4").html(v.universidad);
 			$("#programa_postgrado4").html(v.carrera_edu);
 			$("#anos_postgrado4").html(v.fecha_ini + "-" + v.fecha_final);
 			$("#titulo_postgrado4").html(v.carrera_edu);
@@ -219,7 +219,7 @@ function Mostrar(){
 	$.each(dataCursos, function(k, v) {
 		contCursos++;
 		if(contCursos == 1){
-			$("#institucion_curso").html(v.nombre_edu);
+			$("#institucion_curso").html(v.universidad);
 			$("#nombre_curso").html(v.carrera_edu);
 			$("#horas_curso").html(v.horas_edu);
 			$("#anos_curso").html(v.carrera_edu);
@@ -227,7 +227,7 @@ function Mostrar(){
 		if(contCursos == 2){
 			var x = document.getElementById("cursos2");
 	        x.style.display = "block";
-			$("#institucion_curso2").html(v.nombre_edu);
+			$("#institucion_curso2").html(v.universidad);
 			$("#nombre_curso2").html(v.carrera_edu);
 			$("#horas_curso2").html(v.horas_edu);
 			$("#anos_curso2").html(v.carrera_edu);
@@ -235,7 +235,7 @@ function Mostrar(){
 		if(contCursos == 3){
 			var x = document.getElementById("cursos3");
 	        x.style.display = "block";
-			$("#institucion_curso3").html(v.nombre_edu);
+			$("#institucion_curso3").html(v.universidad);
 			$("#nombre_curso3").html(v.carrera_edu);
 			$("#horas_curso3").html(v.horas_edu);
 			$("#anos_curso3").html(v.carrera_edu);
@@ -243,7 +243,7 @@ function Mostrar(){
 		if(contCursos == 4){
 			var x = document.getElementById("cursos4");
 	        x.style.display = "block";
-			$("#institucion_curso4").html(v.nombre_edu);
+			$("#institucion_curso4").html(v.universidad);
 			$("#nombre_curso4").html(v.carrera_edu);
 			$("#horas_curso4").html(v.horas_edu);
 			$("#anos_curso4").html(v.carrera_edu);

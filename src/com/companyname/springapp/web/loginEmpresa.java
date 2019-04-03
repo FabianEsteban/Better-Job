@@ -39,7 +39,7 @@ public class loginEmpresa extends HttpServlet {
 				ses.setRut(us.usuario);
 				ses.init();
 
-				if(us.getPerfilText().equals("empresa")){
+				if(us.getPerfilText().equals("empresa") && us.getEstado() == 0){
 					return new ModelAndView("redirect:/titulo/admin_empresa");
 				}
 				else {

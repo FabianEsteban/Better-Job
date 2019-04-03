@@ -39,6 +39,9 @@
 							</select>
 						</div>
 					</div>
+					<div class="col-xs-3 col-sm-3 col-md-3">
+						<button class="btn btn-md btn-primary btn-block btn-signin" style="margin-top: 35px;" onclick="loadData()">Todos</button>
+					</div>
 				</div>
 
 

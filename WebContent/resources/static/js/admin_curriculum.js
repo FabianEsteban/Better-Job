@@ -109,6 +109,9 @@ function loadTabla() {
 		if(carrera != null){
 			idCarrera = carrera.replace(/\s/g, '');
 		}
+		else{
+			idCarrera = carrera;
+		}
 		var evaluacion = "<span class='stars' id='star"+v.rut+idCarrera+"'></span>";
 
 		

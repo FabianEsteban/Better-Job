@@ -11,8 +11,22 @@ public class educacion {
 	public String fecha_ini;
 	public String fecha_final;
 	public String horas_edu;
+	public String universidad;
+	public String carrera;
 	
 	
+	public String getCarrera() {
+		return carrera;
+	}
+	public void setCarrera(String carrera) {
+		this.carrera = carrera;
+	}
+	public String getUniversidad() {
+		return universidad;
+	}
+	public void setUniversidad(String universidad) {
+		this.universidad = universidad;
+	}
 	public int getID_edu() {
 		return ID_edu;
 	}

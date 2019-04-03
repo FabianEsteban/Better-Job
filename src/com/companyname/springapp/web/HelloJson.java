@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lib.classTI.antecedentes;
 import lib.classTI.carreras;
+import lib.classTI.comuna;
 import lib.classTI.curriculum;
 import lib.classTI.educacion;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
+import lib.classTI.region;
 import lib.classTI.relacion;
 import lib.classTI.universidades;
 import lib.db.HelloDB;
@@ -53,6 +55,26 @@ public class HelloJson {
 		ArrayList<carreras> cl = new ArrayList<carreras>();
 		cl = HelloDB.getCarreras();
 		return cl;
+	}
+	@RequestMapping(value = "/fabian/getRegiones/", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<region> getRegiones(HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<region> pm = new ArrayList<region>();
+		if(ses.isValid()){
+			pm = HelloDB.getRegiones();
+			return pm;
+		}
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getComunas/{region}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<comuna> getComunas(@PathVariable int region, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<comuna> pm = new ArrayList<comuna>();
+		if(ses.isValid()){
+			pm = HelloDB.getComunas(region);
+			return pm;
+		}
+		return pm;
 	}
 	@RequestMapping(value="/fabian/getDatosxPrivilegio/{privilegio}", method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ArrayList<loginApp>getDatosxPrivilegio(@PathVariable String privilegio, HttpSession httpSession) throws Exception{
@@ -210,6 +232,15 @@ public class HelloJson {
 		}
 		
 		return pm;
+	}
+	@RequestMapping(value = "/fabian/updateEvaluacion/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean updateEvaluacion(@RequestBody curriculum data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.updateEvaluacion(data);
+			
+		}
+		return false;
 	}
 	@RequestMapping(value = "/fabian/updateNombre/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean updateNombre(@RequestBody curriculum data, HttpSession httpSession) throws Exception{

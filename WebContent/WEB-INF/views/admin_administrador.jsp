@@ -38,13 +38,11 @@
 						</div>
 					</div>
 					<div class="col-xs-3 col-sm-3 col-md-3">
-
-					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3">
 						<div style="width: 100%;">
-							<button id="addUsuario" onclick='javascript: addUsuario()'><span class="fa fa-plus"></span></button>
+							<button id="addUsuario" style="margin-top: 40px;" onclick='javascript: addUsuario()'><span class="fa fa-plus"></span></button>
 						</div>
 					</div>
+					
 				</div>
 				
 

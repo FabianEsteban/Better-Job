@@ -4,11 +4,34 @@ $(document).ready(function(){
 
 var arrayData = "";
 var rating = 0;
+var rut;
 
 function guardar(){
 	if (rating == 0){
 		alertaWarning("Recuerda calificar el curriculum.");
 	}
+	else{
+		var datos = {
+				rut: rut,
+				evaluacion: rating
+		}
+		
+		$.ajax({
+			url: "/springapp/titulo/fabian/updateEvaluacion/",
+			type:	"PUT",
+			data: JSON.stringify(datos),
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+			success: function (data) {
+				alertaSuccess("Curriculum actualizado exitosamente");
+				location.href = 'admin_curriculum';
+		    }
+		})
+	}
+	
+	
 }
 function onestars(){
 	rating = 1
@@ -27,7 +50,7 @@ var dataPostgrado = "";
 var dataCursos = "";
 var dataAntecedentes = "";
 function loadData(){
-	var rut = document.getElementById("rut").value;
+	rut = document.getElementById("rut").value;
 	$.ajax({
 		url: "/springapp/titulo/fabian/getCurriculumxRut/"+rut,
 		type:	"GET",

@@ -4,8 +4,15 @@ public class relacion {
 	public int id_relacion;
 	public String empresa;
 	public int postulante;
+	public int estado;
 	
 	
+	public int getEstado() {
+		return estado;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
 	public int getId_relacion() {
 		return id_relacion;
 	}

@@ -13,7 +13,7 @@
 	
 		<section id="main-content">
       		<section class="wrapper">
-<div id="curriculum">
+				<div id="curriculum">
 						<h2>Antecedentes Personales</h2>
 						<div class="col-md-6 com-xs-12">
 							<label>
