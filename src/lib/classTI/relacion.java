@@ -5,8 +5,15 @@ public class relacion {
 	public String empresa;
 	public int postulante;
 	public int estado;
+	public String fecha;
 	
 	
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 	public int getEstado() {
 		return estado;
 	}

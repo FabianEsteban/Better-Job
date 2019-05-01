@@ -324,7 +324,7 @@ function Mostrar(){
 		}
 	});
 
-	
+	$('body').loading('stop');
     
 }
 function editarInstitucion_basica(){

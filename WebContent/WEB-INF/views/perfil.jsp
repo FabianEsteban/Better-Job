@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link href="../resources/static/css/loading.css" rel="stylesheet">
+
 <link href="../resources/static/css/perfil.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
@@ -70,5 +73,18 @@
 			</section>
       	<!-- /wrapper -->
     	</section>
+    	<div id="custom-overlay">
+      		<div class="loading-spinner">
+        
+      		</div>
+    	</div>
+		<script type="text/javascript">
+	
+			$('body').loading({
+				  stoppable: false,
+				  overlay: $("#custom-overlay")
+			});
+		
+		</script>
 	</body>
 </html>

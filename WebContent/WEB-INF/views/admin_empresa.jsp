@@ -6,12 +6,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../resources/static/css/admin_empresa.css" rel="stylesheet">
+<link href="../resources/static/css/loading.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
 	<section id="main-content">
       		<section class="wrapper">
 <!--         		<h3><i class="fa fa-angle-right"></i> Perfil</h3> -->
+				<input style="display:none;" value = "${rut}" id = "rut">
         		<!-- page start-->
         		<div class="col-md-10 col-md-offset-2 col-xs-12">
         			<label id ="fechaEdit">
@@ -41,7 +43,6 @@
 								<span id="pais"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarPais()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
 							</label>
 	        			</div>
-	        			<div id="product" display="none" data-prodnumber="${sessionScope.usuario}" /></div>
         				<div class="col-md-6 com-xs-12">
         					<label>
 								<span>Estado Civil:</span>
@@ -69,5 +70,18 @@
 			</section>
       	<!-- /wrapper -->
     	</section>
+    	<div id="custom-overlay">
+      		<div class="loading-spinner">
+        
+      		</div>
+    	</div>
+		<script type="text/javascript">
+	
+			$('body').loading({
+				  stoppable: false,
+				  overlay: $("#custom-overlay")
+			});
+		
+		</script>
 </body>
 </html>

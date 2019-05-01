@@ -391,7 +391,7 @@ function Mostrar(){
 		}
 	});
 
-	
+	$('body').loading('stop');
     
 }
 function loadRegiones(){

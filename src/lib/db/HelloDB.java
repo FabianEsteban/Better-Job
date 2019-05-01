@@ -14,6 +14,7 @@ import lib.classTI.carreras;
 import lib.classTI.comuna;
 import lib.classTI.curriculum;
 import lib.classTI.educacion;
+import lib.classTI.empresa;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
 import lib.classTI.region;
@@ -94,7 +95,7 @@ public class HelloDB {
 		ArrayList<universidades> data = new ArrayList<universidades>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select * from universidades";
+			sql = "select * from universidades where estado = 1 order by universidad";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -125,7 +126,7 @@ public class HelloDB {
 		ArrayList<carreras> data = new ArrayList<carreras>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select * from carreras";
+			sql = "select * from carreras where estado = 1";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -352,6 +353,30 @@ public class HelloDB {
 		}
 		return false;
 	}
+	public static boolean saveEmpresa(empresa data) throws Exception{
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new ConnectionDB();
+		
+		try{
+			sql = "insert into empresas (rut, razsoc, giro, direccion, comuna, correo, contacto) "+
+					"values ('"+data.getRut()+"', '"+data.getRazsoc()+"', '"+data.getGiro()+"', '"+data.getDireccion()+"', '"+data.getComuna()+"', '"+data.getCorreo()+"', '"+data.getContacto()+"')";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		}
+		catch(SQLException e){
+			System.out.println("Error: "+e.getMessage());
+		}
+		catch(Exception e){
+			System.out.println("Error: "+ e.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
 	public static boolean saveEnlace(relacion data) throws Exception{
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
@@ -366,14 +391,14 @@ public class HelloDB {
 			ps2 = db.conn.prepareStatement(sql2);
 			ResultSet rs2 = ps2.executeQuery();
 			if(!rs2.isBeforeFirst()){
-				sql = "INSERT into relacion (empresa, postulante, estado_relacion) "
-						+ "values ('"+data.getEmpresa()+"', '"+data.getPostulante()+"', 1)";
+				sql = "INSERT into relacion (empresa, postulante, estado_relacion, fecha) "
+						+ "values ('"+data.getEmpresa()+"', '"+data.getPostulante()+"', 1, curdate())";
 				ps = db.conn.prepareStatement(sql);
 				ps.execute();
 				return true;
 			}
 			else {
-				sql3 = "update relacion set estado_relacion = 1 where empresa = '"+data.getEmpresa()+"' and postulante = '"+data.getPostulante()+"'";
+				sql3 = "update relacion set estado_relacion = 1, fecha = curdate() where empresa = '"+data.getEmpresa()+"' and postulante = '"+data.getPostulante()+"'";
 				ps3 = db.conn.prepareStatement(sql3);
 				ps3.execute();
 				return true;
@@ -626,8 +651,8 @@ public class HelloDB {
 					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" + 
 					"left join titulo.login\r\n" + 
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
-					"left join titulo.relacion\r\n" + 
-					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
+//					"left join titulo.relacion\r\n" + 
+//					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
 					"where nivel_edu = 3 and titulo.login.usuario = '"+rut+"'\r\n" + 
 					"order by evaluacion desc";
 			
@@ -690,12 +715,12 @@ public class HelloDB {
 				pm.setCarreras(lista5);
 				
 				
-				relacion pm6 = new relacion();
-				pm6.setEmpresa(rs.getString("empresa"));
-				pm6.setPostulante(rs.getInt("postulante"));
-				pm6.setEstado(rs.getInt("estado_relacion"));
-				lista6.add(pm6);
-				pm.setRelacion(lista6);
+//				relacion pm6 = new relacion();
+//				pm6.setEmpresa(rs.getString("empresa"));
+//				pm6.setPostulante(rs.getInt("postulante"));
+//				pm6.setEstado(rs.getInt("estado_relacion"));
+//				lista6.add(pm6);
+//				pm.setRelacion(lista6);
 				
 				
 				
@@ -987,8 +1012,8 @@ public class HelloDB {
 					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" +
 					"left join titulo.login\r\n" + 
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
-					"left join titulo.relacion\r\n" + 
-					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
+//					"left join titulo.relacion\r\n" + 
+//					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
 					"where nivel_edu = 3 and titulo.universidades.id_universidad = "+cod_universidad+"\r\n" +
 					"order by evaluacion desc";
 
@@ -1049,12 +1074,12 @@ public class HelloDB {
 					lista5.add(pm5);
 					pm.setCarreras(lista5);
 					
-					relacion pm6 = new relacion();
-					pm6.setEmpresa(rs.getString("empresa"));
-					pm6.setPostulante(rs.getInt("postulante"));
-					pm6.setEstado(rs.getInt("estado_relacion"));
-					lista6.add(pm6);
-					pm.setRelacion(lista6);
+//					relacion pm6 = new relacion();
+//					pm6.setEmpresa(rs.getString("empresa"));
+//					pm6.setPostulante(rs.getInt("postulante"));
+//					pm6.setEstado(rs.getInt("estado_relacion"));
+//					lista6.add(pm6);
+//					pm.setRelacion(lista6);
 					
 					
 					
@@ -1103,8 +1128,8 @@ public class HelloDB {
 					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" + 
 					"left join titulo.login\r\n" + 
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
-					"left join titulo.relacion\r\n" + 
-					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
+//					"left join titulo.relacion\r\n" + 
+//					"on titulo.relacion.postulante = titulo.login.id\r\n" + 
 					"where nivel_edu = 3 and titulo.carreras.id_carrera = "+cod_carrera+"\r\n" +
 					"order by evaluacion desc";
 
@@ -1165,12 +1190,12 @@ public class HelloDB {
 					lista5.add(pm5);
 					pm.setCarreras(lista5);
 					
-					relacion pm6 = new relacion();
-					pm6.setEmpresa(rs.getString("empresa"));
-					pm6.setPostulante(rs.getInt("postulante"));
-					pm6.setEstado(rs.getInt("estado_relacion"));
-					lista6.add(pm6);
-					pm.setRelacion(lista6);
+//					relacion pm6 = new relacion();
+//					pm6.setEmpresa(rs.getString("empresa"));
+//					pm6.setPostulante(rs.getInt("postulante"));
+//					pm6.setEstado(rs.getInt("estado_relacion"));
+//					lista6.add(pm6);
+//					pm.setRelacion(lista6);
 					
 					
 					
@@ -1219,8 +1244,8 @@ public class HelloDB {
 					"on titulo.educacion.carrera_edu = titulo.carreras.id_carrera\r\n" +
 					"left join titulo.login\r\n" + 
 					"on titulo.login.usuario = titulo.curriculum.rut\r\n" + 
-					"left join titulo.relacion\r\n" + 
-					"on titulo.relacion.postulante = titulo.login.id\r\n" +
+//					"left join titulo.relacion\r\n" + 
+//					"on titulo.relacion.postulante = titulo.login.id\r\n" +
 					"where nivel_edu = 3\r\n" +
 					"order by evaluacion desc";
 			ps = db.conn.prepareStatement(sql);
@@ -1285,12 +1310,12 @@ public class HelloDB {
 				pm.setCarreras(lista5);
 				
 				
-				relacion pm6 = new relacion();
-				pm6.setEmpresa(rs.getString("empresa"));
-				pm6.setPostulante(rs.getInt("postulante"));
-				pm6.setEstado(rs.getInt("estado_relacion"));
-				lista6.add(pm6);
-				pm.setRelacion(lista6);
+//				relacion pm6 = new relacion();
+//				pm6.setEmpresa(rs.getString("empresa"));
+//				pm6.setPostulante(rs.getInt("postulante"));
+//				pm6.setEstado(rs.getInt("estado_relacion"));
+//				lista6.add(pm6);
+//				pm.setRelacion(lista6);
 				
 				
 				
@@ -1332,7 +1357,78 @@ public class HelloDB {
 				c.setId_relacion(rs.getInt("id_relacion"));
 				c.setEmpresa(rs.getString("empresa"));
 				c.setPostulante(rs.getInt("postulante"));
+				c.setEstado(rs.getInt("estado_relacion"));
+				c.setFecha(rs.getString("fecha"));
 
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
+	@SuppressWarnings("finally")
+	public static ArrayList<relacion> getAllRelaciones() throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<relacion> data = new ArrayList<relacion>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select * from relacion where estado_relacion = 1";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				relacion c = new relacion();
+				c.setId_relacion(rs.getInt("id_relacion"));
+				c.setEmpresa(rs.getString("empresa"));
+				c.setPostulante(rs.getInt("postulante"));
+				c.setEstado(rs.getInt("estado_relacion"));
+
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
+	@SuppressWarnings("finally")
+	public static ArrayList<empresa> getEmpresas(String empresa) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<empresa> data = new ArrayList<empresa>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select * from empresas where rut = '"+empresa+"'";
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				empresa c = new empresa();
+				c.setId_empresa(rs.getInt("id_empresa"));
+				c.setRut(rs.getString("rut"));
+				c.setRazsoc(rs.getString("razsoc"));
+				c.setGiro(rs.getString("giro"));
+				c.setDireccion(rs.getString("direccion"));
+				c.setComuna(rs.getString("comuna"));
+				c.setCorreo(rs.getString("correo"));
+				c.setContacto(rs.getString("contacto"));
+				
 				data.add(c);
 			}
 			rs.close();
@@ -1462,6 +1558,86 @@ public static boolean updateEstadoLogin (loginApp data) throws Exception{
 		return false;
 	}
 
+	public static boolean updateUniversidad (universidades data) throws Exception{
+
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			sql = " UPDATE universidades set universidad = '"+data.universidad+"' where id_universidad='"+data.id_universidad+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	public static boolean updateCarrera (carreras data) throws Exception{
+
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			sql = " UPDATE carreras set carrera = '"+data.carrera+"' where id_carrera='"+data.id_carrera+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	public static boolean deleteUniversidad (universidades data) throws Exception{
+
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			sql = " UPDATE universidades set estado = 0 where id_universidad='"+data.id_universidad+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	public static boolean deleteCarrera (carreras data) throws Exception{
+
+		PreparedStatement ps = null;
+		String sql = "";
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			sql = " UPDATE carreras set estado = 0 where id_carrera='"+data.id_carrera+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
+			db.close();
+		}
+		return false;
+	}
 	public static boolean updatePais (curriculum data) throws Exception{
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -1600,6 +1776,44 @@ public static boolean updatePass (loginApp data) throws Exception{
 			System.out.println("Error:" + e.getMessage());
 		}finally {
 			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	public static boolean addUniversidad (universidades data) throws Exception{
+		ConnectionDB db = new ConnectionDB();
+		PreparedStatement ps = null;
+		String sql = "";
+		try{
+	
+			sql = "INSERT universidades (universidad) VALUES ('"+data.universidad+"')";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			ps.close();
+			db.conn.close();
+			
+		}catch(Exception ex){
+			System.out.println("Error: "+ ex.getMessage());
+		}finally{
+			db.close();
+		}
+		return false;
+	}
+	public static boolean addCarrera (carreras data) throws Exception{
+		ConnectionDB db = new ConnectionDB();
+		PreparedStatement ps = null;
+		String sql = "";
+		try{
+	
+			sql = "INSERT into carreras (carrera) VALUES ('"+data.carrera+"')";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			ps.close();
+			db.conn.close();
+			
+		}catch(Exception ex){
+			System.out.println("Error: "+ ex.getMessage());
+		}finally{
 			db.close();
 		}
 		return false;

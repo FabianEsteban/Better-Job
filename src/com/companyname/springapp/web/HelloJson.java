@@ -17,6 +17,7 @@ import lib.classTI.carreras;
 import lib.classTI.comuna;
 import lib.classTI.curriculum;
 import lib.classTI.educacion;
+import lib.classTI.empresa;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
 import lib.classTI.region;
@@ -101,6 +102,10 @@ public class HelloJson {
 	@RequestMapping(value="/fabian/saveCuenta/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean saveCuenta(@RequestBody loginApp data) throws Exception{
 		return HelloDB.saveCuenta(data);
+	}
+	@RequestMapping(value="/fabian/saveEmpresa/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean saveEmpresa(@RequestBody empresa data) throws Exception{
+		return HelloDB.saveEmpresa(data);
 	}
 	@RequestMapping(value="/fabian/saveEnlace/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean saveEnlace(@RequestBody relacion data) throws Exception{
@@ -233,6 +238,28 @@ public class HelloJson {
 		
 		return pm;
 	}
+	@RequestMapping(value = "/fabian/getAllRelaciones/", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<relacion> getAllRelaciones(HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<relacion> pm = new ArrayList<relacion>();
+		if(ses.isValid()){
+			pm = HelloDB.getAllRelaciones();
+			return pm;
+		}
+		
+		return pm;
+	}
+	@RequestMapping(value = "/fabian/getEmpresas/{empresa}", method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ArrayList<empresa> getEmpresas(@PathVariable String empresa,HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		ArrayList<empresa> pm = new ArrayList<empresa>();
+		if(ses.isValid()){
+			pm = HelloDB.getEmpresas(empresa);
+			return pm;
+		}
+		
+		return pm;
+	}
 	@RequestMapping(value = "/fabian/updateEvaluacion/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody boolean updateEvaluacion(@RequestBody curriculum data, HttpSession httpSession) throws Exception{
 		session ses = new session(httpSession);
@@ -274,6 +301,60 @@ public class HelloJson {
 		session ses = new session(httpSession);
 		if (ses.isValid()) {
 			return HelloDB.updateEstadoLogin(data);
+			
+		}
+		return false;
+	}
+	@RequestMapping(value = "/fabian/updateUniversidad/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean updateUniversidad(@RequestBody universidades data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.updateUniversidad(data);
+			
+		}
+		return false;
+	}
+	@RequestMapping(value = "/fabian/updateCarrera/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean updateCarrera(@RequestBody carreras data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.updateCarrera(data);
+			
+		}
+		return false;
+	}
+	@RequestMapping(value = "/fabian/deleteUniversidad/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean deleteUniversidad(@RequestBody universidades data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.deleteUniversidad(data);
+			
+		}
+		return false;
+	}
+	@RequestMapping(value = "/fabian/deleteCarrera/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean deleteCarrera(@RequestBody carreras data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.deleteCarrera(data);
+			
+		}
+		return false;
+	}
+	@RequestMapping(value="/fabian/addUniversidad/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean addUniversidad(@RequestBody universidades data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.addUniversidad(data);
+			
+		}
+		return false;
+	}
+	@RequestMapping(value="/fabian/addCarrera/", method = {RequestMethod.PUT}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody boolean addCarrera(@RequestBody carreras data, HttpSession httpSession) throws Exception{
+		session ses = new session(httpSession);
+		if (ses.isValid()) {
+			return HelloDB.addCarrera(data);
 			
 		}
 		return false;

@@ -3,8 +3,16 @@ package lib.classTI;
 public class universidades {
 	public int id_universidad;
 	public String universidad;
+	public int estado;
 	
-	
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
 
 	public int getId_universidad() {
 		return id_universidad;

@@ -18,6 +18,7 @@ function loadData(){
 			success: function (data) { 
 				arrayFormAplic = data;
 //				console.log(data)
+				document.getElementById('filtroRut').value = '';
 				loadTabla();
 		    }
 		})
@@ -73,12 +74,12 @@ function loadTabla() {
 						"</button>" +
 					"</div>" +
 					"<div id='guardar"+v.id+"' class='dropdown dropleft' style='float: left; display:none;'>" +
-						"<button class='btn btn-circle yellow btn-outline btn-sm dropdown-toggle' title='Modificar' onclick='javascript: Guardar("+v.id+")' type='button'data-toggle='dropdown'>" +
+						"<button class='btn btn-circle yellow btn-outline btn-sm dropdown-toggle' title='Guardar' onclick='javascript: Guardar("+v.id+")' type='button'data-toggle='dropdown'>" +
 							"<span class='fa fa-cloud'></span>" +
 							"</button>" +
 							"</div>" +
 					"<div id='cancelar"+v.id+"' class='dropdown dropleft' style='float: right; display:none;'>" +
-						"<button class='btn btn-circle red btn-outline btn-sm dropdown-toggle' title='Modificar' onclick='javascript: Cancelar("+v.id+")' type='button'data-toggle='dropdown'>" +
+						"<button class='btn btn-circle red btn-outline btn-sm dropdown-toggle' title='Cancelar' onclick='javascript: Cancelar("+v.id+")' type='button'data-toggle='dropdown'>" +
 							"<i class='fa fa-times' aria-hidden='true'></i>" +
 						"</button>" +
 					"</div>";
@@ -92,7 +93,7 @@ function loadTabla() {
 		
 		
 	})
-
+	$('body').loading('stop');
 }
 function Editar(id){
 	$.each(arrayFormAplic,function(k, v) {
@@ -149,12 +150,12 @@ function addUsuario(){
 						"<option value = 'postulante'>Postulante</option>" +
 					"</select>";
 	var guardar = "<div id='addGuardar' class='dropdown dropleft' style='float: left;'>" +
-					"<button class='btn btn-circle yellow btn-outline btn-sm dropdown-toggle' title='Modificar' onclick='javascript: newGuardar(this)' type='button'data-toggle='dropdown'>" +
+					"<button class='btn btn-circle yellow btn-outline btn-sm dropdown-toggle' title='Guardar' onclick='javascript: newGuardar(this)' type='button'data-toggle='dropdown'>" +
 						"<span class='fa fa-cloud'></span>" +
 					"</button>" +
 				"</div>" +
 				"<div id='addCancelar' class='dropdown dropleft' style='float: right;'>" +
-					"<button class='btn btn-circle red btn-outline btn-sm dropdown-toggle' title='Modificar' onclick='javascript: newCancelar(this)' type='button'data-toggle='dropdown'>" +
+					"<button class='btn btn-circle red btn-outline btn-sm dropdown-toggle' title='Cancelar' onclick='javascript: newCancelar(this)' type='button'data-toggle='dropdown'>" +
 						"<i class='fa fa-times' aria-hidden='true'></i>" +
 					"</button>" +
 				"</div>";

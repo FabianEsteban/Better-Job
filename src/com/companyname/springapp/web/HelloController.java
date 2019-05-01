@@ -140,6 +140,34 @@ public class HelloController {
     	}
     	
     }
+    @RequestMapping("/mantenedor_universidades")
+    public ModelAndView mantenedor_universidades(Model model, HttpSession httpSession){
+    	session ses = new session(httpSession);
+    	if(ses.isValid() && ses.getPrivilegio().equals("administrador")){
+    		model.addAttribute("active_mantenedor_universidades", "active");
+            model.addAttribute("javaScriptPage", "mantenedor_universidades");   
+            return new ModelAndView("mantenedor_universidades");
+    		
+    	}
+    	else {
+    		return new ModelAndView("redirect:/titulo/login");
+    	}
+    	
+    }
+    @RequestMapping("/mantenedor_carreras")
+    public ModelAndView mantenedor_carreras(Model model, HttpSession httpSession){
+    	session ses = new session(httpSession);
+    	if(ses.isValid() && ses.getPrivilegio().equals("administrador")){
+    		model.addAttribute("active_mantenedor_carreras", "active");
+            model.addAttribute("javaScriptPage", "mantenedor_carreras");   
+            return new ModelAndView("mantenedor_carreras");
+    		
+    	}
+    	else {
+    		return new ModelAndView("redirect:/titulo/login");
+    	}
+    	
+    }
     @RequestMapping("/empresa_seguimiento")
     public ModelAndView empresa_seguimiento(@RequestParam(name = "rut") String rut, Model model, HttpSession httpSession){
     	session ses = new session(httpSession);

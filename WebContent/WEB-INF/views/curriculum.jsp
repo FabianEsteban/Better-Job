@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<link href="../resources/static/css/loading.css" rel="stylesheet">
 <link rel="stylesheet" href="../resources/static/css/intlTelInput.css">
 <link href="../resources/static/css/curriculum.css" rel="stylesheet">
 <title>Insert title here</title>
@@ -816,7 +816,19 @@
     	</section>
     	<script src="../resources/static/js/intlTelInput.min.js"></script>
     	<script src="../resources/static/js/utils.js"></script>
-    	
+    	<div id="custom-overlay">
+      		<div class="loading-spinner">
+        
+      		</div>
+    	</div>
+		<script type="text/javascript">
+	
+			$('body').loading({
+				  stoppable: false,
+				  overlay: $("#custom-overlay")
+			});
+		
+		</script>
 		<script>
 		
 		$("#inputRegion").change(function(){

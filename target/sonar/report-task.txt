@@ -1,0 +1,6 @@
+projectKey=com.companyname:springapp
+serverUrl=http://localhost:9000
+serverVersion=7.7.0.23042
+dashboardUrl=http://localhost:9000/dashboard?id=com.companyname%3Aspringapp
+ceTaskId=AWpVFqMSiYTZG7Wc0qyf
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWpVFqMSiYTZG7Wc0qyf

@@ -30,8 +30,6 @@
 
 	
 	
-	
-	
 
 </head>
 
@@ -78,22 +76,33 @@
               </a>
           </li>
 <!--           <li> -->
+<%--             <a class="${active_mantenedor_universidades}" href="mantenedor_universidades"> --%>
+<!--               <i class="fa fa-book"></i> -->
+<!--               <span>Mantenedor Universidades</span> -->
+<!--               </a> -->
+<!--           </li> -->
+<!--           <li> -->
+<%--             <a class="${active_mantenedor_carreras}" href="mantenedor_carreras"> --%>
+<!--               <i class="fa fa-book"></i> -->
+<!--               <span>Mantenedor Carreras</span> -->
+<!--               </a> -->
+<!--           </li> -->
+<!--           <li> -->
 <%--            <a class="${active_seguimiento}" href="admin_seguimiento"> --%>
 <!--               <i class="fa fa-dashboard"></i> -->
 <!--               <span>Seguimiento de Usuarios</span> -->
 <!--               </a> -->
 <!--           </li> -->
-<!--           <li class="sub-menu"> -->
-<!--             <a href="javascript:;"> -->
-<!--               <i class="fa fa-tasks"></i> -->
-<!--               <span>Red</span> -->
-<!--               </a> -->
-<!--             <ul class="sub"> -->
-<!--               <li><a href="#">Form Components</a></li> -->
-<!--               <li><a href="#">Advanced Components</a></li> -->
-<!--               <li><a href="#">Form Validation</a></li> -->
-<!--             </ul> -->
-<!--           </li> -->
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-tasks"></i>
+              <span>Mantenedores</span>
+              </a>
+            <ul class="sub">
+              <li><a class="${active_mantenedor_universidades}" href="mantenedor_universidades">Mantenedor Universidades</a></li>
+              <li><a class="${active_mantenedor_carreras}" href="mantenedor_carreras">Mantenedor Carreras</a></li>
+            </ul>
+          </li>
           
         </ul>
         <!-- sidebar menu end-->
@@ -102,12 +111,17 @@
     <!-- page-wrapper -->
 
  	<script src="../resources/static/js/jquery.min.js"></script>
+<!--  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
  	<script src="../resources/static/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.10/sweetalert2.min.js"></script>	
     <script src="../resources/static/js/include.js" type="text/javascript"></script>
     <script src="../resources/static/js/${javaScriptPage}.js" type="text/javascript"></script>
     
+    <!-- 	Loading -->
+	<script src="../resources/static/js/jquery.loading.js"></script>
+<!-- 	<link href="../resources/static/css/loading.css" rel="stylesheet"> -->
+<!-- 	<script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script> -->
     
     <script src="../resources/static/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript" src="../resources/static/js/jquery.dcjqaccordion.2.7.js"></script>

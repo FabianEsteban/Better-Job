@@ -133,7 +133,7 @@ function loadTabla() {
 		
 
 	})
-
+	$('body').loading('stop');
 }
 
 
@@ -147,6 +147,9 @@ function loadData(){
 		success: function (data) { 
 			arrayFormAplic = data;
 //			console.log(data)
+			document.getElementById('filtroCarrera').value = 0;
+			document.getElementById('filtroRut').value = '';
+			document.getElementById('filtroUniversidad').value = 0;
 			loadTabla();
 	    }
 	})

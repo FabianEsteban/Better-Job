@@ -10,6 +10,10 @@
 <link href="../resources/static/css/jquery.dataTables.min.css" rel="stylesheet">
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
 
+<!-- 	Loading -->
+<!-- <script src="../resources/static/js/jquery.loading.js"></script> -->
+<link href="../resources/static/css/loading.css" rel="stylesheet">
+
 
 <title>Insert title here</title>
 </head>
@@ -37,6 +41,9 @@
 							<input id="filtroRut" type="text" class="form-control input-md" style="float: right;">
 						</div>
 					</div>
+<!-- 					<div class="col-xs-3 col-sm-3 col-md-3"> -->
+<!-- 						<button class="btn btn-md btn-primary btn-block btn-signin" style="margin-top: 35px;" onclick="loadData()">Todos</button> -->
+<!-- 					</div> -->
 					<div class="col-xs-3 col-sm-3 col-md-3">
 						<div style="width: 100%;">
 							<button id="addUsuario" style="margin-top: 40px;" onclick='javascript: addUsuario()'><span class="fa fa-plus"></span></button>
@@ -51,7 +58,18 @@
 			</div>
 		</section>
 	</section>
+	<div id="custom-overlay">
+      <div class="loading-spinner">
+        
+      </div>
+    </div>
 	<script type="text/javascript">
+	
+	$('body').loading({
+		  stoppable: false,
+		  overlay: $("#custom-overlay")
+	});
+	
 	var table = $('#Table_cuentas').DataTable({
 //		data: tbl,
 		scrollY: "200px",

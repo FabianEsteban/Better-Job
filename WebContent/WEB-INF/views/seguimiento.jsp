@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../resources/static/css/seguimiento.css" rel="stylesheet">
+<link href="../resources/static/css/loading.css" rel="stylesheet">
 <link href="../resources/static/css/jquery.dataTables.min.css" rel="stylesheet">
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
 <title>Insert title here</title>
@@ -20,7 +21,19 @@
 			</div>
 		</section>
 	</section>
+	<div id="custom-overlay">
+   		<div class="loading-spinner">
+     
+   		</div>
+   	</div>
 	<script type="text/javascript">
+
+		$('body').loading({
+			  stoppable: false,
+			  overlay: $("#custom-overlay")
+		});
+	
+
 	
 	var table = $('#Table_seguimiento').DataTable({
 		scrollY: "200px",
@@ -29,8 +42,11 @@
 		sPaginationType: "full_numbers", 
 		columns: [
 			{ title: "Empresa" },
-			{ title: "Cargo" },
+			{ title: "Giro" },
 			{ title: "Dirección" },
+			{ title: "Comuna" },
+			{ title: "Correo" },
+			{ title: "Contacto" },
 			{ title: "Fecha" },
 		],
 		"filter": false

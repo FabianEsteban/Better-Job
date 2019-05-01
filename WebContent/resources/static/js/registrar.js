@@ -117,7 +117,83 @@ function savePostulante(){
 }
 
 function saveEmpresa(){
-	
+	var email = $("#inputEmailEmpresa").val();
+
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( !expr.test(email) ){
+        alertaWarning('El email "' + email + '" es incorrecto.');
+    }
+    else{
+    	if($("#inputPasswordEmpresa").val()!=$("#inputPassword2Empresa").val()){
+    		alertaWarning("La password no coincide.");
+    	}
+    	else{
+    		if($("#inputEmailEmpresa").val()!=$("#inputEmail2Empresa").val()){
+        		alertaWarning("Los correos no coinciden.");
+        	}
+    		else{
+    			$.each(cuentas, function(k, v){
+    	    			if(v.usuario == $("#inputRutEmpresa").val()){
+    	    				repite = true;
+    	    			}
+    	    		})
+    	    		if(repite==true){
+    	    			alertaWarning("Cuenta ya existente");
+    	    			repite = false;
+    	    		}
+    	    		else{
+    	    			
+    	    			var datos = {
+    	    					rut: $("#inputRutEmpresa").val(),
+    	        				correo: $("#inputEmailEmpresa").val(),
+    	        				razsoc: $("#inputRazsoc").val(),
+    	        				giro: $("#inputGiro").val(),
+    	        				direccion: $("#inputDireccion").val(),
+    	        				comuna: $("#inputComuna").val(),
+    	        				contacto: $("#inputTelefono").val(),
+//    	        				pass: $("#inputPasswordEmpresa").val(),
+//    	        				telefono: "+56" + $("#inputTelefono").val()
+    	        		}
+    	    			var datos2 = {
+    	    					usuario: $("#inputRutEmpresa").val(),
+    	        				correo: $("#inputEmailEmpresa").val(),
+    	        				pass: $("#inputPasswordEmpresa").val(),
+    	        				perfilText: "empresa",
+    	        		}
+    	    			
+
+    	    			
+    	        		$.ajax({
+    	        		url: "/springapp/titulo/fabian/saveEmpresa/",
+    	        		type:	"PUT",
+    	        		data: JSON.stringify(datos),
+    	        		beforeSend: function(xhr){
+    	        			xhr.setRequestHeader("Accept", "application/json");
+    	        			xhr.setRequestHeader("Content-Type", "application/json");
+    	        		},
+    	        		success: function (data) {
+    	        	    }
+    	        		})
+    	        		
+    	        		$.ajax({
+    	        		url: "/springapp/titulo/fabian/saveCuenta/",
+    	        		type:	"PUT",
+    	        		data: JSON.stringify(datos2),
+    	        		beforeSend: function(xhr){
+    	        			xhr.setRequestHeader("Accept", "application/json");
+    	        			xhr.setRequestHeader("Content-Type", "application/json");
+    	        		},
+    	        		success: function (data) {
+    	        	        alertaSuccess("Registro completado correctamente");
+    	        	        location.href = 'inicio';
+
+    	        	    }
+    	        		})
+    	        		
+    	    	}
+    		}
+    	}
+    }
 }
 
 function checkRut(rut) {

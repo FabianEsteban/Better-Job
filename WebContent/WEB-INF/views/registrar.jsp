@@ -57,49 +57,16 @@
     </nav>
     
 	<div class="container">
-        <div class="card card-container">      
-        	<div id="inicio">
-        	
+		
+       	<div id="inicio">
+        	<div class="card card-container"> 
         		<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="postulante()">Postulante</button>
         		<button class="btn btn-lg btn-primary btn-block btn-signin" onclick="empresa()">Empresa</button>
         	
         	</div>
-        	<div id="empresa">
-        	
-        		<form class="login-form" action="javascript: saveEmpresa()">
-	                <span id="reauth-email" class="reauth-email"></span>
-	                <div class="form-group">
-	                	<input type="text" id="inputRutEmpresa" class="form-control"  placeholder="RUT" name="username" required autofocus>
-	                </div>
-	                <div class="form-group">
-	                	<input type="password" id="inputPasswordEmpresa" class="form-control" placeholder="Contraseña" name="password" required>
-	                </div>
-					<div class="form-group">
-	                	<input type="password" id="inputPassword2Empresa" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
-	                </div>
-	                <div class="form-group">
-	                	<input type="text" id="inputEmailEmpresa" class="form-control" placeholder="Email" name="username" required autofocus>
-	                </div>
-	                <div class="form-group">
-	                	<input type="text" id="inputEmail2Empresa" class="form-control" placeholder="Confirmar email" name="username" required>
-	                </div>
-	<!--                 <div class="form-group"> -->
-	<!--                 	<input type="tel" id="inputTelefono" class="form-control" name="telefono" required autofocus> -->
-	<!--                 </div> -->   
-	                
-	                	<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrar</button>
-	                
-	                
-	                
-	                	
-					
-	                
-	            </form><!-- /form -->
-	            <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()" style="margin-top:15px;">Cancelar</button>
-	            
-        	
-        	</div>     
-            <div id="postulante">
+        </div>     
+		<div id="postulante">
+            <div class="card card-container"> 
 	            <form class="login-form" action="javascript: savePostulante()">
 	                <span id="reauth-email" class="reauth-email"></span>
 	                <div class="form-group">
@@ -130,9 +97,68 @@
 	                
 	            </form><!-- /form -->
 	            <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()" style="margin-top:15px;">Cancelar</button>
+			</div><!-- /card-container -->
+		</div>
+		
+		 
+		<div id="empresa">
+       		<div class="card card-containerempresa">
+        		<form class="login-form" action="javascript: saveEmpresa()">
+<!-- 	                <span id="reauth-email" class="reauth-email"></span> -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+				                	<input type="text" id="inputRutEmpresa" class="form-control"  placeholder="RUT" name="username" required autofocus>
+				                </div>
+				                <div class="form-group">
+				                	<input type="text" id="inputRazsoc" class="form-control"  placeholder="Razón Social" name="username" required autofocus>
+				                </div>
+				                <div class="form-group">
+				                	<input type="text" id="inputGiro" class="form-control"  placeholder="Giro" name="username" required autofocus>
+				                </div>
+				                <div class="form-group">
+				                	<input type="text" id="inputDireccion" class="form-control"  placeholder="Dirección" name="username" required autofocus>
+				                </div>
+				                <div class="form-group">
+				                	<input type="text" id="inputComuna" class="form-control"  placeholder="Comuna" name="username" required autofocus>
+				                </div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+				                	<input type="password" id="inputPasswordEmpresa" class="form-control" placeholder="Contraseña" name="password" required>
+				                </div>
+								<div class="form-group">
+				                	<input type="password" id="inputPassword2Empresa" class="form-control" placeholder="Confirmar contraseña" name="password2" required>
+				                </div>
+				                <div class="form-group">
+				                	<input type="text" id="inputEmailEmpresa" class="form-control" placeholder="Email" name="username" required autofocus>
+				                </div>
+				                <div class="form-group">
+				                	<input type="text" id="inputEmail2Empresa" class="form-control" placeholder="Confirmar email" name="username" required>
+				                </div>
+				                <div class="form-group">
+				                	<input type="tel" id="inputTelefono" class="form-control" placeholder="Teléfono" name="telefono" required autofocus>
+				                </div>   
+							</div>
+						</div>
+					</div>
+	                
+	                
+	                
+	                	<button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrar</button>
+	                
+	                
+	                
+	                	
+					
+	                
+	            </form><!-- /form -->
+	            <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="volver()" style="margin-top:15px;">Cancelar</button>
 	            
-			</div>
-        </div><!-- /card-container -->
+        	</div><!-- /card-container -->
+       	</div>
+        
     </div><!-- /container -->
     
     <script src="../resources/static/js/intlTelInput.min.js"></script>

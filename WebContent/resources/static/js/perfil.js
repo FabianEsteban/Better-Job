@@ -63,6 +63,7 @@ function Mostrar(){
     	$("#correo").html(v.correo);
     	$("#fecha_edit").html(diff/(1000*60*60*24));
     });
+	$('body').loading('stop');
 }
 function editarNombre(){
 	$.each(arrayData, function(k,v){
@@ -92,7 +93,7 @@ function guardarNombre(){
 		nombre: $("#newNombre").val(),
 	}
 	
-	console.log(datos)
+//	console.log(datos)
 	
 	$.ajax({
 		url : "/springapp/titulo/fabian/updateNombre/",

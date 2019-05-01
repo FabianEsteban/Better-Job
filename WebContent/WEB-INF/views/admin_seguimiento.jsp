@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- <script src="../resources/static/js/admin_seguimiento.js" type="text/javascript"></script> -->
 <link href="../resources/static/css/admin_seguimiento.css" rel="stylesheet">
+<link href="../resources/static/css/loading.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
@@ -573,6 +574,18 @@
 			</section>
 			<div style="float: right; margin-right:20px;"><button class="btn btn-md btn-primary btn-block btn-signin" type="submit" id="guardar" onclick="guardar()">Guardar</button></div>
 		</section>
-
+		<div id="custom-overlay">
+	      <div class="loading-spinner">
+	        
+	      </div>
+	    </div>
+		<script type="text/javascript">
+		
+		$('body').loading({
+			  stoppable: false,
+			  overlay: $("#custom-overlay")
+		});
+		
+		</script>
 </body>
 </html>

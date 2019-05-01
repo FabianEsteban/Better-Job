@@ -1,12 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.companyname</groupId>
   <artifactId>springapp</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>springapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
   <dependencies>
     <dependency>
    		<groupId>junit</groupId>
@@ -69,7 +71,7 @@
 	<dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>2.9.1</version>
+        <version>2.9.8</version>
     </dependency>
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -92,8 +94,27 @@
 	    <version>1.8.2</version>
 	</dependency>
   </dependencies>
+<!--   mvn clean install sonar:sonar -Dsonar.host.url=http://localhost:9000 -->
+<!-- C:\sonarqube\bin\windows-x86-xx\StartSonar.bat -->
   <build>
+  	<sourceDirectory>src</sourceDirectory>
     <finalName>springapp</finalName>
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+            <plugin>            
+			 <groupId>org.apache.maven.plugins</groupId>
+			 <artifactId>maven-war-plugin</artifactId>
+			 <configuration>
+			   <webXml>WebContent\WEB-INF\web.xml</webXml>
+			 </configuration>
+			</plugin>
+        </plugins>
+    </pluginManagement>
   </build>
   
 </project>

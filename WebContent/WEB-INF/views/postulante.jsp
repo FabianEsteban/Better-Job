@@ -284,6 +284,7 @@
     <script src="../resources/static/js/include.js" type="text/javascript"></script>
     <script src="../resources/static/js/${javaScriptPage}.js" type="text/javascript"></script>
     
+    <script src="../resources/static/js/jquery.loading.js"></script>
     
     <script src="../resources/static/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript" src="../resources/static/js/jquery.dcjqaccordion.2.7.js"></script>

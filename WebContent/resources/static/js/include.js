@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	var arrayData = "";
 
 	var rut = document.getElementById("rut").value;

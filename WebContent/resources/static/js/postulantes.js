@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	loadRelaciones();
 	loadUniversidad();
 	loadCarrera();
 	loadData();
@@ -6,7 +7,7 @@ $(document).ready(function() {
 
 var arrayFormAplic;
 var rut = "";
-
+var arrayRelacion;
 
 function loadFiltroUniversidad(){
 	$.ajax({
@@ -67,6 +68,7 @@ function loadCarrera(){
 }
 function loadTabla() {
 
+	var enlazado = false;
 	var tbl = "";
 	var contUniversidades = 0;
 	var contCarreras = 0;
@@ -101,19 +103,22 @@ function loadTabla() {
 			contId++;
 		})
 		contRelacion = 1;
-		$.each(v.relacion,function(k2, v2) {
+		
+		
+
+		$.each(arrayRelacion,function(k2, v2) {
 			var empresa = document.getElementById("empresa").value;
-			if(cont == contRelacion){
-//				console.log(v2)
+
 				if(v2.empresa == empresa && v2.postulante == id && v2.estado == 1){
-					seleccionar = '<div>Ya seleccionado</div>';
+					enlazado = true;
 				}
-				else{
-					seleccionar = '<div><button onclick="javascript: enlazar('+id+')" type="submit"><span class="glyphicon glyphicon-check"></span></button></div>';
-				}
-			}
-			contRelacion++;
-		})	
+		})
+		if (enlazado == true){
+			seleccionar = '<div>Ya seleccionado</div>';
+		}
+		else{
+			seleccionar = '<div><button onclick="javascript: enlazar('+id+')" type="submit"><span class="glyphicon glyphicon-check"></span></button></div>';
+		}
 		contUniversidades = 1;
 		$.each(v.universidades,function(k2, v2) {		
 			if(cont == contUniversidades){
@@ -152,12 +157,14 @@ function loadTabla() {
 
         // Replace the numerical value with stars
         $('#star'+rut+idCarrera).html($span);
+        enlazado = false;
 	})
-
+	$('body').loading('stop');
 }
 
 
-function enlazar(id){
+function enlazar(id){	
+	
 	var empresa = document.getElementById("empresa").value;
 	var datos = {
 			empresa: empresa,
@@ -206,4 +213,14 @@ function loadRut(){
 	    }
 	})
 }
-
+function loadRelaciones(){
+	$.ajax({
+		url: "/springapp/titulo/fabian/getAllRelaciones/",
+		type:	"GET",
+		dataType: 'json',
+		async: false,
+		success: function (data) { 
+			arrayRelacion = data;
+	    }
+	})
+}
