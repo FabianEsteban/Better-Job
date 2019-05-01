@@ -32,19 +32,20 @@ function Mostrar(){
 	} 
 
 	today = yyyy + '-' + mm + '-' + dd;
+
 	$.each(arrayData, function(k, v) {
 		var fechaInicio = new Date(v.fecha_edit).getTime();
 		var fechaFin    = new Date(today).getTime();
 
 		
 		var diff = fechaFin - fechaInicio;
-    	$("#nombredisplay").html(v.nombre);
-    	$("#rutdisplay").html(v.rut);
-    	$("#fecha_nacimiento").html(v.fecha_nacimiento);
+    	$("#razsoc").html(v.razsoc);
+    	$("#rutDisplay").html(v.rut);
+    	$("#giro").html(v.giro);
     	$("#pais").html(v.pais);
-    	$("#estado_civil").html(v.estado_civil);
+    	$("#comuna").html(v.comuna);
     	$("#direccion").html(v.direccion);
-    	$("#telefono").html(v.telefono);
+    	$("#telefono").html(v.contacto);
     	$("#correo").html(v.correo);
     	$("#fecha_edit").html(diff/(1000*60*60*24));
     });

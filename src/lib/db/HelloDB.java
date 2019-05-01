@@ -1760,7 +1760,7 @@ public static boolean updateEstadoLogin (loginApp data) throws Exception{
 		}
 		return false;
 	}
-public static boolean updatePass (loginApp data) throws Exception{
+	public static boolean updatePass (loginApp data) throws Exception{
 		
 		PreparedStatement ps = null;
 		String sql = "";
@@ -1814,6 +1814,29 @@ public static boolean updatePass (loginApp data) throws Exception{
 		}catch(Exception ex){
 			System.out.println("Error: "+ ex.getMessage());
 		}finally{
+			db.close();
+		}
+		return false;
+	}
+	public static boolean updateLastLogin (String rut) throws Exception{
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();
+		
+		PreparedStatement ps = null;
+		
+		ConnectionDB db = new  ConnectionDB();
+		try {			
+			String sql = "UPDATE login set last_login = '"+dateFormat.format(date)+"' where usuario = '"+rut+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error:" + e.getMessage());
+		}finally {
+			ps.close();
 			db.close();
 		}
 		return false;

@@ -2,6 +2,8 @@ package lib.security;
 
 import javax.servlet.http.HttpSession;
 
+import lib.db.HelloDB;
+
 public class session {
 	
 	private HttpSession session;
@@ -75,7 +77,12 @@ public class session {
 		}
 		return sw;
 	}
-	public void close(){
+	public void close(String rut){
+		try {
+			HelloDB.updateLastLogin(rut);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		session.invalidate();
 	}
 }

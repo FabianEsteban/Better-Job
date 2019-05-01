@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../resources/static/css/empresa_seguimiento.css" rel="stylesheet">
+<link href="../resources/static/css/loading.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
@@ -554,5 +555,17 @@
 			</section>
 			<div style="float: right; margin-right:20px;"><a href="postulantes"><button class="btn btn-md btn-primary btn-block btn-signin" id="guardar">Volver</button></a></div>
 		</section>
+		<div id="custom-overlay">
+	  		<div class="loading-spinner">
+	    
+	  		</div>
+	  	</div>
+		<script type="text/javascript">
+		
+			$('body').loading({
+				  stoppable: false,
+				  overlay: $("#custom-overlay")
+			});
+		</script>
 </body>
 </html>

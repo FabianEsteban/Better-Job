@@ -195,6 +195,8 @@ function loadData(){
 		success: function (data) { 
 			arrayFormAplic = data;
 //			console.log(data)
+			document.getElementById('filtroCarrera').value = 0;
+			document.getElementById('filtroUniversidad').value = 0;
 			loadTabla();
 	    }
 	})

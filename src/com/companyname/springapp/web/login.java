@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lib.classTI.loginApp;
 import lib.db.HelloDB;
+import lib.security.session;
 
 @Controller
 public class login extends HttpServlet {
@@ -66,14 +67,30 @@ public class login extends HttpServlet {
 				return new ModelAndView("login");
 			}
 		}catch(Exception ex){
-			return new ModelAndView("login");
+			session ses = new session(httpSession);
+			if(ses.isValid() && ses.getPrivilegio().equals("postulante")){
+				model.addAttribute("rut", ses.getRut());
+	    		model.addAttribute("estado_curriculum", ses.getEstado_Curriculum());
+	    		model.addAttribute("active_perfil", "active");
+	            model.addAttribute("javaScriptPage", "perfil");  
+	            return new ModelAndView("perfil");
+			}
+			else if(ses.isValid() && ses.getPrivilegio().equals("administrador")){
+				model.addAttribute("active_curriculum", "active");
+	            model.addAttribute("javaScriptPage", "admin_curriculum");    
+	            return new ModelAndView("admin_curriculum");
+			}
+			else if(ses.isValid() && ses.getPrivilegio().equals("empresa")){
+	    		model.addAttribute("rut", ses.getRut());
+	    		model.addAttribute("active_empresa", "active");
+	            model.addAttribute("javaScriptPage", "admin_empresa");    
+	            return new ModelAndView("admin_empresa");
+			}
+			else {
+				return new ModelAndView("login");
+			}
 		}
 		
 	}
-	@RequestMapping("/exit")
-	public ModelAndView exit(Model model, HttpSession httpSession){
-		lib.security.session ses = new lib.security.session(httpSession);
-		ses.close();
-		return new ModelAndView("redirect:/titulo/inicio");
-	}
+
 }

@@ -283,6 +283,6 @@ function Mostrar(){
 		}
 	});
 
-	
+	$('body').loading('stop');
     
 }

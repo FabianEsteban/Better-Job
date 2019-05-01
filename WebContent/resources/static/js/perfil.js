@@ -141,7 +141,7 @@ function guardarFecha(){
 		fecha_nacimiento: $("#newFecha").val(),
 	}
 	
-	console.log(datos)
+//	console.log(datos)
 	
 	$.ajax({
 		url : "/springapp/titulo/fabian/updateFecha/",
@@ -185,7 +185,7 @@ function guardarEstado(){
 		estado_civil: $("#newEstado").val(),
 	}
 	
-	console.log(datos)
+//	console.log(datos)
 	
 	$.ajax({
 		url : "/springapp/titulo/fabian/updateEstado/",

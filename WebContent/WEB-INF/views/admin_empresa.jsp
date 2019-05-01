@@ -24,31 +24,26 @@
         			<div id="carnet">
 	        			<div class="col-md-6 com-xs-12">
 	        				<label>
-								<span>Nombre:</span>
-								<span id="nombre"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarNombre()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+								<span>Razón Social:</span>
+								<span id="razsoc"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarRazsoc()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
 							</label>
 							<br>
 							<label>
 								<span>Rut:</span>
-								<span id="rut"></span>
+								<span id="rutDisplay"></span>
 							</label>
 							<br>
 							<label>
-								<span>Fecha de Nacimiento:</span>
-								<span id="fecha_nacimiento"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarFecha()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+								<span>Giro:</span>
+								<span id="giro"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarGiro()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
 							</label>
 							<br>
 							<label>
-								<span>Pais:</span>
-								<span id="pais"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarPais()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
+								<span>Comuna:</span>
+								<span id="comuna"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarComuna()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
 							</label>
 	        			</div>
         				<div class="col-md-6 com-xs-12">
-        					<label>
-								<span>Estado Civil:</span>
-								<span id="estado_civil"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarEstado()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>
-							</label>
-							<br>
 							<label>
 								<span>Dirección:</span>
 								<span id="direccion"></span>&nbsp&nbsp&nbsp<button onclick="javascript: editarDireccion()" class="btn btn-info btn-xs edit"><span class="glyphicon glyphicon-edit"></span></button>

@@ -22,6 +22,10 @@ body {
   padding: 40px;
   width: 80%;
   min-width: 300px;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px; 
 }
 .glyphicon {
     font-size: 10px;

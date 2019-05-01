@@ -61,7 +61,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="perfil"><img src="../resources/static/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="admin_administrador"><img src="../resources/static/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered" id="nombre">${rut}</h5>
           <li>
             <a class="${active_administrador}" href="admin_administrador">

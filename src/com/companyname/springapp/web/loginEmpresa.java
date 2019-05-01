@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lib.classTI.loginApp;
 import lib.db.HelloDB;
+import lib.security.session;
 
 @Controller
 public class loginEmpresa extends HttpServlet {
@@ -52,7 +53,28 @@ public class loginEmpresa extends HttpServlet {
 				return new ModelAndView("loginEmpresa");
 			}
 		}catch(Exception ex){
-			return new ModelAndView("loginEmpresa");
+			session ses = new session(httpSession);
+			if(ses.isValid() && ses.getPrivilegio().equals("postulante")){
+				model.addAttribute("rut", ses.getRut());
+	    		model.addAttribute("estado_curriculum", ses.getEstado_Curriculum());
+	    		model.addAttribute("active_perfil", "active");
+	            model.addAttribute("javaScriptPage", "perfil");  
+	            return new ModelAndView("perfil");
+			}
+			else if(ses.isValid() && ses.getPrivilegio().equals("administrador")){
+				model.addAttribute("active_curriculum", "active");
+	            model.addAttribute("javaScriptPage", "admin_curriculum");    
+	            return new ModelAndView("admin_curriculum");
+			}
+			else if(ses.isValid() && ses.getPrivilegio().equals("empresa")){
+	    		model.addAttribute("rut", ses.getRut());
+	    		model.addAttribute("active_empresa", "active");
+	            model.addAttribute("javaScriptPage", "admin_empresa");    
+	            return new ModelAndView("admin_empresa");
+			}
+			else {
+				return new ModelAndView("loginEmpresa");
+			}
 		}
 		
 	}
