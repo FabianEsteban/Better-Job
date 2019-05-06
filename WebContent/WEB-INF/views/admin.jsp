@@ -26,7 +26,7 @@
 	<!-- Custom styles for this template -->
 	<link href="../resources/static/css/style.css" rel="stylesheet">
 	<link href="../resources/static/css/style-responsive.css" rel="stylesheet">
-	<script src="../resources/static/js/Chart.js"></script>
+	<script src="../resources/static/js/Chart.min.js"></script>
 
 	
 	
@@ -39,7 +39,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index" class="logo"><b><span>Be</span>tter Job</b></a>
+      <a href="admin_administrador" class="logo"><b><span>Be</span>tter Job</b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -53,6 +53,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
+          <li id="lastLogin" style="margin-top:21px; margin-right: 15px; color:white; font-size: 13px; font-family: 'Ruda', sans-serif;"></li>
           <li><a class="logout" href="exit">Cerrar Sesión</a></li>
         </ul>
       </div>
@@ -60,9 +61,16 @@
     <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
+        <input style="display:none;" value = "${rut}" id = "rut">
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="admin_administrador"><img src="../resources/static/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered" id="nombre">${rut}</h5>
+          <li>
+            <a class="${active_dashboards}" href="dashboards">
+              <i class="fa fa-user"></i>
+              <span>Inicio</span>
+              </a>
+          </li>
           <li>
             <a class="${active_administrador}" href="admin_administrador">
               <i class="fa fa-user"></i>

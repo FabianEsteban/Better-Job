@@ -60,6 +60,7 @@
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
             
+            <div style="color: red; font-size: 12px; padding-bottom: 10px;">${error}</div>
             
             <form class="login-form" method="post">
 <!--                 <span id="reauth-email" class="reauth-email"></span> -->

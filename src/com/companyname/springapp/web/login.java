@@ -6,27 +6,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
+//import javax.servlet.http.HttpSessionEvent;
 
+//import javax.servlet.http.HttpSessionEvent;
+//import javax.swing.JOptionPane;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lib.classTI.loginApp;
 import lib.db.HelloDB;
 import lib.security.session;
 
+
+
 @Controller
 public class login extends HttpServlet {
-	public HttpSession sesion;
+//	public HttpSession sesion;
+	
+	
 	@RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView loginPage(Model model, HttpServletRequest request, HttpSession httpSession, HttpServletResponse response){
 		Map<String, String[]> parameters = request.getParameterMap();
-
+		
 		try{
-			sesion = request.getSession();
+//			HttpSession sesion = request.getSession();
+//			httpSession.invalidate();
 			String username = new String(parameters.get("username")[0].getBytes("ISO-8859-1"), "UTF-8");
 			String pass = new String(parameters.get("password")[0].getBytes("ISO-8859-1"), "UTF-8");
 			loginApp us = HelloDB.getLogin(username, pass);
@@ -36,34 +47,41 @@ public class login extends HttpServlet {
 //				sesion.setAttribute("ingresado", us.ingresado);
 //				sesion.setAttribute("estado_curriculum", us.estado_curriculum);
 //				sesion.setAttribute("usuario", us.getUsuario());
+//				httpSession = request.getSession();
 				lib.security.session ses = new lib.security.session(httpSession);
+//				lib.security.SessionCounter ses2 = new lib.security.SessionCounter(httpSession);
 //				ses.setIdUser(us.getUsuario());
 				ses.setPrivilegio(us.perfilText);
 				ses.setRut(us.usuario);
 				ses.setCorreo(us.correo);
 				ses.setId(us.id);
 				ses.setEstado_Curriculum(us.estado_curriculum);
-				ses.init();
+				
 
-				if(us.getIngresado() == 0 && us.getEstado() == 0){
+				if(us.getIngresado() == 0 && us.getEstado() == 0){	
+//					ses2.sessionCreated(sesion);
+					ses.init();
 					return new ModelAndView("redirect:/titulo/activar_cuenta");
 				}
 				if(us.getPerfilText().equals("postulante") && us.getEstado() == 0 && us.getEstado_curriculum() == 1){
+//					ses2.sessionCreated(sesion);
+					ses.init();
 					return new ModelAndView("redirect:/titulo/perfil");
 				}
 				if(us.getPerfilText().equals("postulante") && us.getEstado() == 0 && us.getEstado_curriculum() == 0){
-					
+//					ses2.sessionCreated(sesion);
+					ses.init();
 					return new ModelAndView("redirect:/titulo/curriculum");
 				}
 				if(us.getPerfilText().equals("administrador") && us.getEstado() == 0){
-					return new ModelAndView("redirect:/titulo/admin_curriculum");
+					ses.init();
+					return new ModelAndView("redirect:/titulo/dashboards");
 				}
 
 				return new ModelAndView("redirect:/titulo/login");	
 			}
 			else{
-				System.out.println("Incorrecto");
-
+				model.addAttribute("error", "*Datos incorrectos");
 				return new ModelAndView("login");
 			}
 		}catch(Exception ex){

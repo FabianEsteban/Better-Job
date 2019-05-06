@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     // DOM ready
-
+	
     // Test data
     /*
      * To test the script you should discomment the function
@@ -12,6 +12,7 @@ $( document ).ready(function() {
     // Load profile if it exits
     loadProfile();
 });
+
 
 /**
  * Function that gets the data of the profile in case

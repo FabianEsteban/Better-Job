@@ -25,7 +25,7 @@ public class loginEmpresa extends HttpServlet {
 		Map<String, String[]> parameters = request.getParameterMap();
 
 		try{
-			sesion = request.getSession();
+//			sesion = request.getSession();
 			String username = new String(parameters.get("username")[0].getBytes("ISO-8859-1"), "UTF-8");
 			String pass = new String(parameters.get("password")[0].getBytes("ISO-8859-1"), "UTF-8");
 			loginApp us = HelloDB.getLogin(username, pass);
@@ -36,11 +36,14 @@ public class loginEmpresa extends HttpServlet {
 //				sesion.setAttribute("estado_curriculum", us.estado_curriculum);
 //				sesion.setAttribute("usuario", us.getUsuario());
 				lib.security.session ses = new lib.security.session(httpSession);
+//				lib.security.SessionCounter ses2 = new lib.security.SessionCounter(httpSession);
 				ses.setPrivilegio(us.perfilText);
 				ses.setRut(us.usuario);
-				ses.init();
+				
 
 				if(us.getPerfilText().equals("empresa") && us.getEstado() == 0){
+//					ses2.sessionCreated(sesion);
+					ses.init();
 					return new ModelAndView("redirect:/titulo/admin_empresa");
 				}
 				else {
@@ -49,7 +52,7 @@ public class loginEmpresa extends HttpServlet {
 //				return new ModelAndView("redirect:/titulo/perfil");	
 			}
 			else{
-				System.out.println("Incorrecto");
+				model.addAttribute("error", "*Datos incorrectos");
 				return new ModelAndView("loginEmpresa");
 			}
 		}catch(Exception ex){

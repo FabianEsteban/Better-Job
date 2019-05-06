@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3"> -->
@@ -40,7 +40,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index" class="logo"><b><span>Be</span>tter Job</b></a>
+      <a href="perfil" class="logo"><b><span>Be</span>tter Job</b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -230,6 +230,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
+          <li id="lastLogin" style="margin-top:21px; margin-right: 15px;"></li>
           <li><a class="logout" href="exit">Cerrar Sesión</a></li>
         </ul>
       </div>

@@ -44,7 +44,7 @@ public class HelloController {
 			model.addAttribute("javaScriptPage", "inicio");
 	        return new ModelAndView("inicio");
 		}
-    	
+   	
     }
 	
     @RequestMapping("/perfil")
@@ -59,7 +59,7 @@ public class HelloController {
     		
     	}
     	else {
-    		return new ModelAndView("redirect:/titulo/exit");
+    		return new ModelAndView("redirect:/titulo/login");
     	}
     	
     }
@@ -137,7 +137,20 @@ public class HelloController {
 	        return new ModelAndView("registrar");
 		}
     }
-    
+    @RequestMapping("/dashboards")
+    public ModelAndView dashboards(Model model, HttpSession httpSession){
+    	session ses = new session(httpSession);
+    	if(ses.isValid() && ses.getPrivilegio().equals("administrador")){
+    		model.addAttribute("active_dashboards", "active");
+            model.addAttribute("javaScriptPage", "dashboards");    
+            return new ModelAndView("dashboards");
+    		
+    	}
+    	else {
+    		return new ModelAndView("redirect:/titulo/login");
+    	}
+    	
+    }
     @RequestMapping("/admin_curriculum")
     public ModelAndView admin_curriculum(Model model, HttpSession httpSession){
     	session ses = new session(httpSession);
@@ -252,9 +265,10 @@ public class HelloController {
     }
 	@RequestMapping("/exit")
 	public ModelAndView exit(Model model, HttpSession httpSession){
-		lib.security.session ses = new lib.security.session(httpSession);
+		session ses = new session(httpSession);
 		String rut = ses.getRut();
 		ses.close(rut);
+		System.out.println("DESTRUYE");
 		return new ModelAndView("redirect:/titulo/inicio");
 	}
 }

@@ -1,5 +1,8 @@
 package lib.classTI;
 
+import java.util.List;
+
+
 public class loginApp {
 	public int id;
 	public String usuario;
@@ -11,7 +14,28 @@ public class loginApp {
 	public int estado;
 	public int estado_curriculum;
 	public int ingresado;
+	public String last_login;
+	public String fecha_registro;
+//	List<meses> meses;
 	
+//	public List<meses> getMeses() {
+//		return meses;
+//	}
+//	public void setMeses(List<meses> meses) {
+//		this.meses = meses;
+//	}
+	public String getFecha_registro() {
+		return fecha_registro;
+	}
+	public void setFecha_registro(String fecha_registro) {
+		this.fecha_registro = fecha_registro;
+	}
+	public String getLast_login() {
+		return last_login;
+	}
+	public void setLast_login(String last_login) {
+		this.last_login = last_login;
+	}
 	public int getId(){
 		return id;
 	}

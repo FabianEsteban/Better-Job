@@ -1,13 +1,20 @@
 package lib.security;
 
+//import java.util.ArrayList;
+//import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
+
+//import com.companyname.springapp.web.SessionCounter;
 
 import lib.db.HelloDB;
 
-public class session {
+public class session{
 	
 	private HttpSession session;
-	
+//	private List<String> sessions = new ArrayList<String>();
+//    public static final String COUNTER = "session-counter";
 	
 	public int getId(){
 		int value = (Integer) session.getAttribute("id");
@@ -53,19 +60,30 @@ public class session {
 		session = httpSession;
 	}
 	public void init(){
+		
+//		sessions.add(session.getId());
+//		session.setAttribute(COUNTER, this);
+
+        
 		session.setMaxInactiveInterval(30*60);
 		session.setAttribute("login", "ok");
+		
+
+
 	}
-	public void setValue(String key, String value){
-		session.setAttribute(key, value);
-	}
-	public String getValue(String key){
-		String value = (String) session.getAttribute(key);
-		if(value==null){
-			value="";
-		}
-		return value;
-	}
+//	public int getActiveSessionNumber() {
+//        return sessions.size();
+//    }
+//	public void setValue(String key, String value){
+//		session.setAttribute(key, value);
+//	}
+//	public String getValue(String key){
+//		String value = (String) session.getAttribute(key);
+//		if(value==null){
+//			value="";
+//		}
+//		return value;
+//	}
 	public boolean isValid(){
 		boolean sw = true;
 		String login = (String) session.getAttribute("login");
@@ -83,6 +101,9 @@ public class session {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		
 		session.invalidate();
 	}
+
 }

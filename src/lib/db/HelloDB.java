@@ -17,6 +17,7 @@ import lib.classTI.educacion;
 import lib.classTI.empresa;
 import lib.classTI.insertCurriculum;
 import lib.classTI.loginApp;
+import lib.classTI.meses;
 import lib.classTI.region;
 import lib.classTI.relacion;
 import lib.classTI.universidades;
@@ -30,7 +31,7 @@ public class HelloDB {
 		ArrayList<loginApp> data = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select ID, usuario, correo, perfilText, estado from login";
+			sql = "select ID, usuario, correo, perfilText, estado, last_login from login";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -41,6 +42,7 @@ public class HelloDB {
 				c.setCorreo(rs.getString("correo"));
 				c.setPerfilText(rs.getString("perfilText"));
 				c.setEstado(rs.getInt("estado"));
+				c.setLast_login(rs.getString("last_login"));
 				data.add(c);
 			}
 			rs.close();
@@ -87,7 +89,112 @@ public class HelloDB {
 		return data;
 		}
 	}
-	
+	@SuppressWarnings("finally")
+	public static ArrayList<meses> getDatosMesEmpresa(int year) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<meses> data = new ArrayList<meses>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select " + 
+					"sum(case when fecha_registro between '"+year+"-01-01' and '"+year+"-01-31' then 1 else 0 end) as enero, " + 
+					"sum(case when fecha_registro between '"+year+"-02-01' and '"+year+"-02-31' then 1 else 0 end) febrero, " + 
+					"sum(case when fecha_registro between '"+year+"-03-01' and '"+year+"-03-31' then 1 else 0 end) marzo, " + 
+					"sum(case when fecha_registro between '"+year+"-04-01' and '"+year+"-04-31' then 1 else 0 end) abril, " + 
+					"sum(case when fecha_registro between '"+year+"-05-01' and '"+year+"-05-31' then 1 else 0 end) mayo, " + 
+					"sum(case when fecha_registro between '"+year+"-06-01' and '"+year+"-06-31' then 1 else 0 end) junio, " + 
+					"sum(case when fecha_registro between '"+year+"-07-01' and '"+year+"-07-31' then 1 else 0 end) julio, " + 
+					"sum(case when fecha_registro between '"+year+"-08-01' and '"+year+"-08-31' then 1 else 0 end) agosto, " + 
+					"sum(case when fecha_registro between '"+year+"-09-01' and '"+year+"-09-31' then 1 else 0 end) septiembre, " + 
+					"sum(case when fecha_registro between '"+year+"-10-01' and '"+year+"-10-31' then 1 else 0 end) octubre, " + 
+					"sum(case when fecha_registro between '"+year+"-11-01' and '"+year+"-11-31' then 1 else 0 end) noviembre, " + 
+					"sum(case when fecha_registro between '"+year+"-12-01' and '"+year+"-12-31' then 1 else 0 end) diciembre " + 
+					"from titulo.login where perfilText = 'empresa'";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				meses c = new meses();
+				c.setEnero(rs.getInt("enero"));
+				c.setFebrero(rs.getInt("febrero"));
+				c.setMarzo(rs.getInt("marzo"));
+				c.setAbril(rs.getInt("abril"));
+				c.setMayo(rs.getInt("mayo"));
+				c.setJunio(rs.getInt("junio"));
+				c.setJulio(rs.getInt("julio"));
+				c.setAgosto(rs.getInt("agosto"));
+				c.setSeptiembre(rs.getInt("septiembre"));
+				c.setOctubre(rs.getInt("octubre"));
+				c.setNoviembre(rs.getInt("noviembre"));
+				c.setDiciembre(rs.getInt("diciembre"));
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
+	@SuppressWarnings("finally")
+	public static ArrayList<meses> getDatosMesPostulante(int year) throws Exception {
+		PreparedStatement ps = null;
+		String sql = "";
+		ArrayList<meses> data = new ArrayList<meses>();
+		ConnectionDB db = new ConnectionDB();
+		try{
+			sql = "select " + 
+					"sum(case when fecha_registro between '"+year+"-01-01' and '"+year+"-01-31' then 1 else 0 end) as enero, " + 
+					"sum(case when fecha_registro between '"+year+"-02-01' and '"+year+"-02-31' then 1 else 0 end) febrero, " + 
+					"sum(case when fecha_registro between '"+year+"-03-01' and '"+year+"-03-31' then 1 else 0 end) marzo, " + 
+					"sum(case when fecha_registro between '"+year+"-04-01' and '"+year+"-04-31' then 1 else 0 end) abril, " + 
+					"sum(case when fecha_registro between '"+year+"-05-01' and '"+year+"-05-31' then 1 else 0 end) mayo, " + 
+					"sum(case when fecha_registro between '"+year+"-06-01' and '"+year+"-06-31' then 1 else 0 end) junio, " + 
+					"sum(case when fecha_registro between '"+year+"-07-01' and '"+year+"-07-31' then 1 else 0 end) julio, " + 
+					"sum(case when fecha_registro between '"+year+"-08-01' and '"+year+"-08-31' then 1 else 0 end) agosto, " + 
+					"sum(case when fecha_registro between '"+year+"-09-01' and '"+year+"-09-31' then 1 else 0 end) septiembre, " + 
+					"sum(case when fecha_registro between '"+year+"-10-01' and '"+year+"-10-31' then 1 else 0 end) octubre, " + 
+					"sum(case when fecha_registro between '"+year+"-11-01' and '"+year+"-11-31' then 1 else 0 end) noviembre, " + 
+					"sum(case when fecha_registro between '"+year+"-12-01' and '"+year+"-12-31' then 1 else 0 end) diciembre " + 
+					"from titulo.login where perfilText = 'postulante'";
+			
+			ps = db.conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				meses c = new meses();
+				c.setEnero(rs.getInt("enero"));
+				c.setFebrero(rs.getInt("febrero"));
+				c.setMarzo(rs.getInt("marzo"));
+				c.setAbril(rs.getInt("abril"));
+				c.setMayo(rs.getInt("mayo"));
+				c.setJunio(rs.getInt("junio"));
+				c.setJulio(rs.getInt("julio"));
+				c.setAgosto(rs.getInt("agosto"));
+				c.setSeptiembre(rs.getInt("septiembre"));
+				c.setOctubre(rs.getInt("octubre"));
+				c.setNoviembre(rs.getInt("noviembre"));
+				c.setDiciembre(rs.getInt("diciembre"));
+				data.add(c);
+			}
+			rs.close();
+			ps.close();
+			db.conn.close();
+		}catch(Exception ex){
+			System.out.println("Error getclase:"+ex.getMessage());
+		}
+		finally{
+			ps.close();
+			db.close();
+
+		return data;
+		}
+	}
 	@SuppressWarnings("finally")
 	public static ArrayList<universidades> getUniversidades() throws Exception {
 		PreparedStatement ps = null;
@@ -251,7 +358,7 @@ public class HelloDB {
 		ArrayList<loginApp> data = new ArrayList<loginApp>();
 		ConnectionDB db = new ConnectionDB();
 		try{
-			sql = "select ID, usuario, correo, perfilText, estado from login where usuario = '"+rut+"'";
+			sql = "select ID, usuario, correo, perfilText, estado, last_login from login where usuario = '"+rut+"'";
 			
 			ps = db.conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -262,6 +369,7 @@ public class HelloDB {
 				c.setCorreo(rs.getString("correo"));
 				c.setPerfilText(rs.getString("perfilText"));
 				c.setEstado(rs.getInt("estado"));
+				c.setLast_login(rs.getString("last_login"));
 				data.add(c);
 			}
 			rs.close();
@@ -335,8 +443,8 @@ public class HelloDB {
 		ConnectionDB db = new ConnectionDB();
 		
 		try{
-			sql = "INSERT into login (usuario, correo, pass, perfilText, estado, estado_curriculum, ingresado) "
-					+ "values ('"+data.getUsuario()+"', '"+data.getCorreo()+"', '"+data.getPass()+"', '"+data.getPerfilText()+"', 0, 0, 1)";
+			sql = "INSERT into login (usuario, correo, pass, perfilText, estado, estado_curriculum, ingresado, fecha_registro) "
+					+ "values ('"+data.getUsuario()+"', '"+data.getCorreo()+"', '"+data.getPass()+"', '"+data.getPerfilText()+"', 0, 0, 1, DATE(NOW()))";
 			ps = db.conn.prepareStatement(sql);
 			ps.execute();
 			return true;
@@ -413,6 +521,34 @@ public class HelloDB {
 		}
 		finally{
 //			ps.close();
+			db.close();
+		}
+		return false;
+	}
+	public static boolean desenlazar(relacion data) throws Exception{
+		PreparedStatement ps = null;
+
+		String sql = "";
+
+		ConnectionDB db = new ConnectionDB();
+		
+		try{
+
+			sql = "update relacion set estado_relacion = 0 where empresa = '"+data.getEmpresa()+"' and postulante = '"+data.getPostulante()+"'";
+			ps = db.conn.prepareStatement(sql);
+			ps.execute();
+			return true;
+
+			
+		}
+		catch(SQLException e){
+			System.out.println("Error: "+e.getMessage());
+		}
+		catch(Exception e){
+			System.out.println("Error: "+ e.getMessage());
+		}
+		finally{
+			ps.close();
 			db.close();
 		}
 		return false;

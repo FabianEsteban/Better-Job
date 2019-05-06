@@ -1,9 +1,10 @@
 $(document).ready(function(){
 	
 	var arrayData = "";
+	var arrayLast_login = "";
 
 	var rut = document.getElementById("rut").value;
-//	console.log(rut)
+
 	$.ajax({
 		url: "/springapp/titulo/fabian/getCurriculumxRut/"+rut,
 		type:	"GET",
@@ -13,9 +14,21 @@ $(document).ready(function(){
 	        arrayData = data;
 	    }
 	})
+	$.ajax({
+		url: "/springapp/titulo/fabian/getDatosxRut/"+rut,
+		type:	"GET",
+		dataType: 'json',
+		async: false,
+		success: function (data) {
+	        arrayLast_login = data;
+	    }
+	})
 	$.each(arrayData, function(k, v) {
-//		console.log(arrayData)
 		$("#nombre").html(v.nombre);
+	});
+
+	$.each(arrayLast_login, function(k, v) {
+		$("#lastLogin").html('\u00DAltimo ingreso: '+v.last_login);
 	});
 });
 

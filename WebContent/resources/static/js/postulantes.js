@@ -114,7 +114,7 @@ function loadTabla() {
 				}
 		})
 		if (enlazado == true){
-			seleccionar = '<div>Ya seleccionado</div>';
+			seleccionar = '<div><button onclick="javascript: desenlazar('+id+')" type="submit"><span class="glyphicon glyphicon-remove"></span></button></div>';
 		}
 		else{
 			seleccionar = '<div><button onclick="javascript: enlazar('+id+')" type="submit"><span class="glyphicon glyphicon-check"></span></button></div>';
@@ -185,7 +185,28 @@ function enlazar(id){
     }
 	})
 }
+function desenlazar(id){	
+	
+	var empresa = document.getElementById("empresa").value;
+	var datos = {
+			empresa: empresa,
+			postulante: id,
+	}
 
+	$.ajax({
+	url: "/springapp/titulo/fabian/desenlazar/",
+	type:	"PUT",
+	data: JSON.stringify(datos),
+	beforeSend: function(xhr){
+		xhr.setRequestHeader("Accept", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/json");
+	},
+	success: function (data) {
+        alertaSuccess("Postulante solicitado");
+        location.href = 'postulantes';
+    }
+	})
+}
 function loadData(){
 	$.ajax({
 		url: "/springapp/titulo/fabian/getAllCurriculum/",
